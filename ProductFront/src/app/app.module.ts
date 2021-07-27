@@ -7,8 +7,9 @@ import { FooterComponent } from './content/layout/footer/footer.component';
 import { HeaderComponent } from './content/layout/header/header.component';
 import { HomePageComponent } from './content/pages/home-page/home-page.component';
 import { LoginPageComponent } from './content/pages/login-page/login-page.component';
-import { CategoriesPageComponent } from './content/pages/categories-page/categories-page.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { CategoriesPageComponent } from './categories-page/categories-page.component';
+import { ProvidersPageComponent } from './providers-page/providers-page.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
       HomePageComponent,
       LoginPageComponent,
       FooterComponent,
-      CategoriesPageComponent
+      CategoriesPageComponent,
     ],
     imports: [
       BrowserModule,

@@ -1,8 +1,9 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
-import { CategoriesPageComponent } from "./content/pages/categories-page/categories-page.component";
+import { CategoriesPageComponent } from "./categories-page/categories-page.component";
 import { HomePageComponent } from "./content/pages/home-page/home-page.component";
 import { LoginPageComponent } from "./content/pages/login-page/login-page.component";
+import { ProvidersPageComponent } from "./providers-page/providers-page.component";
 
 const routes: Routes = [
     {
@@ -16,6 +17,10 @@ const routes: Routes = [
     {
         path: "categories",
         component: CategoriesPageComponent
+    },
+    {
+        path: "providers",
+        component: ProvidersPageComponent
     },
     {
         path: "admin",

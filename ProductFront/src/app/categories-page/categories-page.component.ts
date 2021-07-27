@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Category, FoundCategory } from 'src/app/core/interfaces/interfaces';
+import { Category, FoundCategory, FoundProvider } from 'src/app/core/interfaces/interfaces';
 import { CategoryService } from 'src/app/core/services/category.service';
+import { ProviderService } from 'src/app/core/services/provider.service';
 
 @Component({
   selector: 'app-categories-page',
@@ -12,16 +12,14 @@ import { CategoryService } from 'src/app/core/services/category.service';
 export class CategoriesPageComponent implements OnInit {
 
   categories: FoundCategory[] = [];
-  name$: string = "Victor";
-
 
   constructor(private router: Router,
-    private categoryService: CategoryService) {
+    private categoryService: CategoryService,
+    ) {
       this.categoryService.GetAllCategories().subscribe((data: FoundCategory[]) => this.categories=data);
     }
     
-    ngOnInit(): void {
-  }
+  ngOnInit(): void {  }
 
   addItem() {
     const log = this.router.navigate(['/admin', 'categorydetail'])
