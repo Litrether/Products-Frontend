@@ -5,9 +5,15 @@
     <a href="/categories">Категории  -  </a>
     Продукты
 </p>
-
 <ul class="list">
     <li class="productTable" *ngFor="let product of products" >
-        <p> id: {{product?.Id}}  -  {{product?.Name}}  -  '{{product?.Description}}'</p>
+        <p> id: {{product?.Id}}  -  {{product?.Name}}  -  '{{product?.Description}}'  {{(product?.Cost).toFixed(1)}} {{params.currency}} </p>
     </li>
 </ul>
+
+<select id="currencySelect" (change)="ChangeCurrency()" >
+    <option disabled>Выберите валюту!</option>
+    <option value="EUR">Евро</option>
+    <option selected value="USD">Доллар</option>
+    <option value="RUB">Рубли</option>
+</select>

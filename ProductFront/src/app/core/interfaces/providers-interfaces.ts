@@ -1,9 +1,9 @@
-export interface Provider {
+export interface IProvider {
     id?: number;
     name: string;
 }
 
-export interface FoundProvider {
+export interface IFoundProvider {
     id: number;
     name: string;
 }

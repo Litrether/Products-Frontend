@@ -1,7 +1,7 @@
-import { Component, OnInit, Provider } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FoundProvider } from 'src/app/core/interfaces/providers-interfaces';
-import { ProviderService } from 'src/app/core/services/provider.service';
+import { IProvider, IFoundProvider} from 'src/app/core/interfaces/providers-interfaces';
+import { ProviderApiService } from 'src/app/core/services/api-services/provider-api.service';
 
 @Component({
   selector: 'app-providers-page',
@@ -10,21 +10,28 @@ import { ProviderService } from 'src/app/core/services/provider.service';
 })
 export class ProvidersPageComponent implements OnInit {
 
-  providers: FoundProvider[] = [];
+  providers: IFoundProvider[] = [];
+
+  private params = {
+    searchTerm: '',
+    pageSize: null,
+    pageNumber: null,
+    orderBy: ''
+  }
 
   constructor(private router: Router,
-    private providerService: ProviderService) { 
+    private providerService: ProviderApiService) { 
     }
     
   ngOnInit(): void {
-    this.providerService.GetAllProviders().subscribe((data: FoundProvider[]) => this.providers=data);
+    this.providerService.GetAllProviders(this.params).subscribe((data: IFoundProvider[]) => this.providers=data);
   }
 
   addItem() {
     const log = this.router.navigate(['/admin', 'providerdetail'])
   }
 
-  deleteItem(provider: Provider){
+  deleteItem(provider: IProvider){
     if(!confirm('Are you sure want to delete ${provider.name}?')){
       return;
     }

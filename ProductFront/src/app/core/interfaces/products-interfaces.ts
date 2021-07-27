@@ -1,4 +1,4 @@
-export interface Product {
+export interface IProduct {
     id: number;
     name: string;
     description: string;
@@ -7,7 +7,7 @@ export interface Product {
     providerId: number;
 }
 
-export interface FoundProduct {
+export interface IFoundProduct {
     Id: number;
     Name: string;
     Description: string;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FoundProduct, Product } from 'src/app/core/interfaces/products-interfaces';
-import { ProductsService } from 'src/app/core/services/products.service';
+import { IProduct, IFoundProduct } from 'src/app/core/interfaces/products-interfaces';
+import { ProductsApiService } from 'src/app/core/services/api-services/products-api.service';
 
 @Component({
   selector: 'app-products-page',
@@ -10,21 +10,39 @@ import { ProductsService } from 'src/app/core/services/products.service';
 })
 export class ProductsPageComponent implements OnInit {
 
-  products: FoundProduct[] = [];
+  products: IFoundProduct[] = [];
+
+  public params = {
+    searchTerm: '',
+    fields: '',
+    currency: 'USD',
+    categories: '',
+    providers: '',
+    minCost: null,
+    maxCost: null,
+    pageNumber: null,
+    pageSize: null,
+    orderBy: ''
+  }
 
   constructor(private router: Router,
-    private  productService: ProductsService) { 
+    private  productService: ProductsApiService) { 
     }
 
   ngOnInit(): void {
-      this.productService.GetAllProducts().subscribe((data: FoundProduct[]) => this.products=data);
+      this.productService.GetAllProducts(this.params).subscribe((data: IFoundProduct[]) => this.products=data);
   }
 
   addItem() {
     const log = this.router.navigate(['/admin', 'productdetail'])
   }
 
-  deleteItem(product: Product){
+  ChangeCurrency(){
+    this.params.currency = (<HTMLInputElement>(document.getElementById('currencySelect'))).value;
+    this.productService.GetAllProducts(this.params).subscribe((data: IFoundProduct[]) => this.products=data);
+  }
+
+  deleteItem(product: IProduct){
     if(!confirm('Are you sure want to delete ${product.name}?')){
       return;
     }

@@ -28,6 +28,10 @@ const routes: Routes = [
         component: ProductsPageComponent
     },
     {
+        path: "login",
+        component: LoginPageComponent
+    },
+    {
         path: "admin",
         loadChildren: () => import("./content/pages/pages.module").then(p => p.PagesModule)
     },

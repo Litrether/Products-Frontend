@@ -1,9 +1,9 @@
-export interface RegistrationAccount {
+export interface IRegistrationAccount {
     id?: number;
     name: string;
 }
 
-export interface AuthenticationAccount {
+export interface IAuthenticationAccount {
     username: string;
     password: string;
 }

@@ -19,7 +19,7 @@
 <div class="categoryId">
     <input type="text" id="input-search" (input)="search()">
     
-        <p>{{search}}</p>
+        <p>{{params.searchTerm}}</p>
         <ul class="list">
             <li class="categoryTable" *ngFor="let category of categories" >
                 <p>id: {{category?.id}}  -  {{category?.name}} </p>
