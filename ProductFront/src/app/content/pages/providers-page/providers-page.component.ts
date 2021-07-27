@@ -1,6 +1,6 @@
 import { Component, OnInit, Provider } from '@angular/core';
 import { Router } from '@angular/router';
-import { FoundProvider } from 'src/app/core/interfaces/interfaces';
+import { FoundProvider } from 'src/app/core/interfaces/providers-interfaces';
 import { ProviderService } from 'src/app/core/services/provider.service';
 
 @Component({
@@ -14,10 +14,10 @@ export class ProvidersPageComponent implements OnInit {
 
   constructor(private router: Router,
     private providerService: ProviderService) { 
-      this.providerService.GetAllProviders().subscribe((data: FoundProvider[]) => this.providers=data);
     }
-
+    
   ngOnInit(): void {
+    this.providerService.GetAllProviders().subscribe((data: FoundProvider[]) => this.providers=data);
   }
 
   addItem() {

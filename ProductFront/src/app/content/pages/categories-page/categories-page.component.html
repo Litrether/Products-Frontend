@@ -1,0 +1,32 @@
+<p>categories-page works!</p>
+
+<p>
+    <a href="/providers">Поставщики  -  </a>
+    Категории  -  
+    <a href="/products">Продукты</a>
+</p>
+
+
+<div class="categoryId">
+<input type="number" id="input-id">
+
+<button (click)="getId()"> send id! </button>
+    <p>{{id}}  -  {{category?.name}}</p>
+
+</div>
+
+
+<div class="categoryId">
+    <input type="text" id="input-search" (input)="search()">
+    
+        <p>{{search}}</p>
+        <ul class="list">
+            <li class="categoryTable" *ngFor="let category of categories" >
+                <p>id: {{category?.id}}  -  {{category?.name}} </p>
+            </li>
+        </ul>
+</div>
+
+
+
+

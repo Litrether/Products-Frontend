@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { Provider, FoundProvider } from "../interfaces/interfaces";
+import { FoundProvider, Provider } from "../interfaces/providers-interfaces";
 
 @Injectable({providedIn: 'root'})
 export class ProviderService {
@@ -21,7 +21,7 @@ export class ProviderService {
     }
 
     public UpdateProvider(provider: Provider):Observable<Provider>{
-        return this.http.put<Provider>(`${this.pathBase}/${provider.id}`, provider);
+        return this.http.put<Provider>(`${this.pathBase}/${provider.id}`, provider)
     }
 
     public DeleteProvider(id: number):Observable<any>{
