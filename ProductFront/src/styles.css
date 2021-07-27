@@ -1,5 +1,5 @@
 :root{
-    --primary-color: #asd234;
+    --primary-color: #332234;
 }
 
 * {
@@ -9,8 +9,7 @@
 }
 
 body{
-    background-color: #fff;
-    color: #333;
+    background-color: lightgray;
 }
 
 img{

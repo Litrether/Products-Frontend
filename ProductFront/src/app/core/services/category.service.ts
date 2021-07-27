@@ -9,22 +9,22 @@ export class CategoryService {
     constructor(private http: HttpClient) {}
 
     public GetAllCategories():Observable<FoundCategory[]>{
-        return this.http.get<FoundCategory[]>('${this.pathBase}category');
+        return this.http.get<FoundCategory[]>(`${this.pathBase}categories`);
     }
 
-    public GetCategoryById(id: number):Observable<Category>{
-        return this.http.get<Category>('${this.pathBase}category/${id}');
+    public GetCategoryById(id:any):Observable<Category>{
+        return this.http.get<Category>(`${this.pathBase}categories/${id}`);
     }
 
     public AddCategory(category: Category):Observable<Category>{
-        return this.http.post<Category>('${this.pathBase}category', category);
+        return this.http.post<Category>(`${this.pathBase}categories`, category);
     }
 
     public UpdateCategory(category: Category):Observable<Category>{
-        return this.http.put<Category>('${this.pathBase}category/${category.id}', category);
+        return this.http.put<Category>(`${this.pathBase}categories/${category.id}`, category);
     }
 
-    public DeleteCategory(id: number):Observable<any>{
-        return this.http.delete<any>('${this.pathBase}category/${id}');
+    public DeleteCategory(id: any):Observable<any>{
+        return this.http.delete<any>(`${this.pathBase}categories/${id}`);
     }
 }
