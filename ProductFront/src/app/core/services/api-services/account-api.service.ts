@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { IAuthenticationAccount, IRegistrationAccount } from "../../interfaces/accounts-interfaces";
+import { IAuthAccount, IRegAccount } from "../../interfaces/accounts-interfaces";
 
 @Injectable({providedIn: 'root'})
 export class AccountApiService {
@@ -10,15 +10,15 @@ export class AccountApiService {
     constructor(private http: HttpClient) {
     }
 
-    public CreateAccount(accountReg: IRegistrationAccount):Observable<Response> {
+    public CreateAccount(accountReg: IRegAccount):Observable<Response> {
         return this.http.post<Response>(`${this.pathBase}`, accountReg);
     }
 
-    public Authentication(accountAuth: IAuthenticationAccount):Observable<any> {
+    public Authentication(accountAuth: IAuthAccount):Observable<any> {
         return this.http.post<any>(`${this.pathBase}/login`, accountAuth);
     }
 
-    public DeleteAccount(accountAuth: IAuthenticationAccount):Observable<Response> {
+    public DeleteAccount(accountAuth: IAuthAccount):Observable<Response> {
         return this.http.delete<Response>(`${this.pathBase}/delete`, { body: accountAuth });
     }
 }

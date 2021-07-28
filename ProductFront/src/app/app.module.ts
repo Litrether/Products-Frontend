@@ -11,6 +11,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CategoriesPageComponent } from './content/pages/categories-page/categories-page.component';
 import { ProvidersPageComponent } from './content/pages/providers-page/providers-page.component';
 import { ProductsPageComponent } from './content/pages/products-page/products-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,10 @@ import { ProductsPageComponent } from './content/pages/products-page/products-pa
       BrowserModule,
       AppRoutingModule,
       CommonModule,
-      HttpClientModule
+      HttpClientModule,
+      FormsModule,
+      ReactiveFormsModule
+
     ],
     providers: [],
     bootstrap: [AppComponent]

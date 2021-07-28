@@ -1,8 +1,22 @@
-<p>login-page works!</p>
+<form class="card" [formGroup]="form" (ngSubmit)="submit()">
+    <p>login-page works!</p>
 
-<p> Username: <input id="username-input" type="text"></p>
-<p> Password: <input id="password-input" type="password"></p>
-<input id="login-btn" type="button" (click)="login()" value="login!">
+    <div class="alert alert-danger" *ngIf="authService.error$ | async as error"> {{error}} </div>
+    <div class="alert alert-info" *ngIf="message"> {{message}} </div>
 
+    <div class="form-control" >
+        <label for="username">Username: </label>
+        <input id="username" type="text" formControlName="username" >
+        <div class="validation" *ngIf="form.get('username') != null">
+            <p>ti lox</p>
+        </div>
+    </div>
 
-{{message}}
+    <div class="form-control">
+        <label for="password">Password: </label>
+        <input id="password" type="password" formControlName="password">
+        <div class="validation">
+            <p>ti lox</p>
+        </div>
+    </div>
+</form>

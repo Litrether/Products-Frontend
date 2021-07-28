@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { IAuthenticationAccount } from 'src/app/core/interfaces/accounts-interfaces';
-import { AccountApiService } from 'src/app/core/services/api-services/account-api.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { AuthService } from 'src/app/core/auth/auth.service';
+import { IAuthAccount } from 'src/app/core/interfaces/accounts-interfaces';
 
 @Component({
   selector: 'app-login-page',
@@ -10,26 +11,49 @@ import { AccountApiService } from 'src/app/core/services/api-services/account-ap
 })
 export class LoginPageComponent implements OnInit {
 
-  account: IAuthenticationAccount =  {
-    username: '',
-    password: ''
-}
-message: string = 'asd'
+  public form!: FormGroup;
+  submitted: boolean = false;
+  message: string = '';
 
 
-  constructor(private router: Router,
-    private accountService: AccountApiService) {
+  constructor(public authService: AuthService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private fb: FormBuilder) { }
+
+  ngOnInit() {
+    this.route.queryParams.subscribe( (params: Params) => {
+      if(params.loginAgain){
+        this.message = 'Please, enter data';
+      } else if (params.authFieled){
+        this.message = 'Session ended. Enter data again.'
+      }
+    });
+
+    this.form = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required, Validators.minLength(6)]
+    });
+
   }
 
-  ngOnInit(): void {
-  }
+  submit(){
+    if(this.form.invalid){
+      return;
+    }
 
-  login(){
-    this.account.username = (<HTMLInputElement>(document.getElementById('username-input'))).value;
-    this.account.password = (<HTMLInputElement>(document.getElementById('password-input'))).value;
+    this.submitted = true;
 
-    console.log(this.account);
+    const authAccount: IAuthAccount = {
+      username: this.form.value.username,
+      password: this.form.value.password
+    }
 
-    this.accountService.Authentication(this.account).subscribe((data:any) => this.message=data.token);
+    this.authService.login(authAccount).subscribe(() => {
+      this.form.reset();
+      this.submitted = false;
+    }, () => {
+      this.submitted = false;
+    });
   }
 }

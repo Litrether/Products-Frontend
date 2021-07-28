@@ -1,9 +1,13 @@
-export interface IRegistrationAccount {
+export interface IRegAccount {
     id?: number;
     name: string;
 }
 
-export interface IAuthenticationAccount {
+export interface IAuthAccount {
     username: string;
     password: string;
+}
+
+export interface IAuthResponse{
+    token: string;
 }

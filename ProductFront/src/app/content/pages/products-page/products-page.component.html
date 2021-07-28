@@ -5,7 +5,8 @@
     <a href="/categories">Категории  -  </a>
     Продукты
 </p>
-<ul class="list">
+<ul class="list
+">
     <li class="productTable" *ngFor="let product of products" >
         <p> id: {{product?.Id}}  -  {{product?.Name}}  -  '{{product?.Description}}'  {{(product?.Cost).toFixed(1)}} {{params.currency}} </p>
     </li>
