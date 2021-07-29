@@ -7,16 +7,23 @@
     <div class="form-control" >
         <label for="username">Username: </label>
         <input id="username" type="text" formControlName="username" >
-        <div class="validation" *ngIf="form.get('username') != null">
-            <p>ti lox</p>
+        <div class="validation" *ngIf="form.get('username')?.invalid && form.get('username')?.touched">
+            <small>Username is required</small>
         </div>
     </div>
 
     <div class="form-control">
         <label for="password">Password: </label>
         <input id="password" type="password" formControlName="password">
-        <div class="validation">
-            <p>ti lox</p>
+        <div class="validation" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+            <small *ngIf="form.get('password')?.errors?.required">Password is required.</small>
+            <small *ngIf="form.get('password')?.errors?.minlength">minlength 6 characters</small>
         </div>
     </div>
+
+    {{authService.isAuthenticated()}}
+    
+    <input value="send" type="button" (click)="submit()">
+    <input value="logout" type="button" (click)="authService.logout()">
+
 </form>
