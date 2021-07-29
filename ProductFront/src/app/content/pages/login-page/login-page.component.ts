@@ -13,11 +13,10 @@ export class LoginPageComponent implements OnInit {
 
   public form!: FormGroup;
   submitted: boolean = false;
-  message: string = '';
+  message: string;
 
 
   constructor(public authService: AuthService,
-              private router: Router,
               private route: ActivatedRoute,
               private fb: FormBuilder) { }
 

@@ -13,13 +13,13 @@ export class AuthInterseptor implements HttpInterceptor {
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        console.log(this.authService.token);
         if(this.authService.isAuthenticated()){
             req = req.clone({
                 headers: req.headers.set('Authorization', `Bearer ${this.authService.token}`)
             });
         }
 
-        console.log(req.body);
         return next.handle(req).pipe(
             catchError((error: HttpErrorResponse) => {
                 console.log('Interseptor error');

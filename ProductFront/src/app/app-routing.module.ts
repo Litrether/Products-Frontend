@@ -5,6 +5,7 @@ import { HomePageComponent } from "./content/pages/home-page/home-page.component
 import { LoginPageComponent } from "./content/pages/login-page/login-page.component";
 import { ProductsPageComponent } from "./content/pages/products-page/products-page.component";
 import { ProvidersPageComponent } from "./content/pages/providers-page/providers-page.component";
+import { SignupPageComponent } from "./content/pages/signup-page/signup-page.component";
 
 const routes: Routes = [
     {
@@ -30,6 +31,10 @@ const routes: Routes = [
     {
         path: "login",
         component: LoginPageComponent
+    },
+    {
+        path: "signup",
+        component:SignupPageComponent
     },
     {
         path: "admin",

@@ -1,3 +1,13 @@
-.productTable{
+.products-card{
+    height: 100px;
+    width: 400px;
     background-color: whitesmoke;
+    border: 1px solid;
+    margin: 5px;
+    padding: 5px;
+}
+
+.currencySelect{
+    font-size: 20px;
+    margin: 5px;
 }

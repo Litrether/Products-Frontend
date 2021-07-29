@@ -1,0 +1,65 @@
+<form class="card" [formGroup]="form" (ngSubmit)="submit()">
+    <p>login-page works!</p>
+
+
+    <div class="form-control" >
+        <label for="firstname">firstname: </label>
+        <input id="firstname" type="text" formControlName="firstname" >
+        <div class="validation" *ngIf="form.get('firstname')?.invalid && form.get('firstname')?.touched">
+            <small>firstname is required</small>
+        </div>
+    </div>
+    <div class="form-control" >
+        <label for="lastname">lastname: </label>
+        <input id="lastname" type="text" formControlName="lastname" >
+        <div class="validation" *ngIf="form.get('lastname')?.invalid && form.get('lastname')?.touched">
+            <small>lastname is required</small>
+        </div>
+    </div>
+    
+    <div class="form-control" >
+        <label for="username">username: </label>
+        <input id="username" type="text" formControlName="username" >
+        <div class="validation" *ngIf="form.get('username')?.invalid && form.get('username')?.touched">
+            <small>Username is required</small>
+        </div>
+    </div>
+
+    <div class="form-control" >
+        <label for="password">password: </label>
+        <input id="password" type="text" formControlName="password" >
+        <div class="validation" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+            <small>password is required</small>
+        </div>
+    </div>
+
+    <div class="form-control" >
+        <label for="repeatedPassword">repeatedPassword: </label>
+        <input id="repeatedPassword" type="text" formControlName="repeatedPassword" >
+        <div class="validation" *ngIf="form.get('repeatedPassword')?.invalid && form.get('repeatedPassword')?.touched">
+            <small>repeatedPassword is required</small>
+        </div>
+    </div>
+
+    <div class="form-control">
+        <label for="email">email: </label>
+        <input id="email" type="email" formControlName="email">
+        <div class="validation" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+            <small *ngIf="form.get('email')?.errors?.required">email is required.</small>
+            <small *ngIf="form.get('email')?.errors?.email">email invalid</small>
+        </div>
+    </div>
+
+    <div class="form-control">
+        <label for="phoneNumber">phoneNumber: </label>
+        <input id="phoneNumber" type="text" formControlName="phoneNumber">
+        <div class="validation" *ngIf="form.get('phoneNumber')?.invalid && form.get('phoneNumber')?.touched">
+            <small *ngIf="form.get('phoneNumber')?.errors?.phoneNumber">phoneNumber invalid</small>
+        </div>
+    </div>
+
+    <input value="send" type="button" (click)="submit()">
+    <div *ngIf="message">  {{message}} </div>
+
+    
+</form>

@@ -20,18 +20,11 @@ export class AuthService {
 
         console.log(localStorage.getItem('fb-token'));
 
-        return String(localStorage.getItem('fb-token-exp'));
+        return localStorage.getItem('fb-token-exp');
 
     }
 
     login(authAccount: IAuthAccount): Observable<any>{
-        var headers = {
-            Authorization: `Bearer ${this.token}`
-        }
-
-        this.http.post(`${this.pathBase}/login`, authAccount)
-        .subscribe((data:any) => localStorage.setItem('fb-token', data.token));
-
         return this.http.post(`${this.pathBase}/login`, authAccount)
         .pipe(
             tap((response: any) => this.setToken(response)),

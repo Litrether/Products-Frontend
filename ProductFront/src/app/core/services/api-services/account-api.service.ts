@@ -14,10 +14,6 @@ export class AccountApiService {
         return this.http.post<Response>(`${this.pathBase}`, accountReg);
     }
 
-    public Authentication(accountAuth: IAuthAccount):Observable<any> {
-        return this.http.post<any>(`${this.pathBase}/login`, accountAuth);
-    }
-
     public DeleteAccount(accountAuth: IAuthAccount):Observable<Response> {
         return this.http.delete<Response>(`${this.pathBase}/delete`, { body: accountAuth });
     }

@@ -1,15 +1,21 @@
-<p>products-page works!</p>
 
-<ul class="list
-">
-    <li class="productTable" *ngFor="let product of products" >
-        <p> id: {{product?.Id}}  -  {{product?.Name}}  -  '{{product?.Description}}'  {{(product?.Cost).toFixed(1)}} {{params.currency}} </p>
+
+<div>
+    <select class="currencySelect" id="currencySelect" (change)="ChangeCurrency()" >
+        <option disabled>Выберите валюту!</option>
+        <option value="EUR">Евро</option>
+        <option selected value="USD">Доллар</option>
+        <option value="RUB">Рубли</option>
+    </select>
+</div>
+
+<ul class="list"*ngFor="let product of products">
+    <li class="productTable"  >
+        <div class="products-card"> 
+            <p>id: {{product?.Id}}</p>
+            <p>{{product?.Name}}</p>
+            <p>{{product?.Description}} </p>
+            <p>{{(product?.Cost).toFixed(1)}} {{params.currency}} </p>
+        </div> 
     </li>
 </ul>
-
-<select id="currencySelect" (change)="ChangeCurrency()" >
-    <option disabled>Выберите валюту!</option>
-    <option value="EUR">Евро</option>
-    <option selected value="USD">Доллар</option>
-    <option value="RUB">Рубли</option>
-</select>
