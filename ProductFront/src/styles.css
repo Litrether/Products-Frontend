@@ -7,6 +7,14 @@
     align-items:center; 
 }
 
+form{
+ background-color: blanchedalmond;   
+ height: min-content;
+ width: min-content;
+ padding: 10px; 
+ max-height: 250px;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;

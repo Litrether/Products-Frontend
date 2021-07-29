@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { IFoundProduct, IProduct } from "../../interfaces/products-interfaces";
 
 @Injectable({providedIn: 'root'})
-export class ProductsApiService {
+export class ProductApiService {
     public pathBase: string = "https://litretherproductwebapi.azurewebsites.net/api/products";
 
     constructor(private http: HttpClient) {

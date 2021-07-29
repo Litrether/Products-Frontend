@@ -12,6 +12,8 @@ import { CategoriesPageComponent } from './content/pages/categories-page/categor
 import { ProvidersPageComponent } from './content/pages/providers-page/providers-page.component';
 import { ProductsPageComponent } from './content/pages/products-page/products-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from './core/auth/auth.service';
+import { AuthInterseptor } from './core/auth/auth.interseptor';
 
 @NgModule({
     declarations: [
@@ -31,9 +33,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       HttpClientModule,
       FormsModule,
       ReactiveFormsModule
-
     ],
-    providers: [],
+    providers: [
+      AuthInterseptor
+    ],
     bootstrap: [AppComponent]
   })
   export class AppModule { }

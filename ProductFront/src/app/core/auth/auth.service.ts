@@ -9,23 +9,32 @@ export class AuthService {
 
     public error$: Subject<string> = new Subject<string>();
     public pathBase: string = "https://litretherproductwebapi.azurewebsites.net/api/account";
-    constructor(private http: HttpClient) {
-    }
+    constructor(private http: HttpClient) { }
 
     get token(): string | null {
-        const expiresDate = new Date(localStorage.getItem('fb-token-exp') || new Date());
+        const expiresDate = new Date(String(localStorage.getItem('fb-token-exp')));
         if(new Date() > expiresDate){
             this.logout();
-            return '';
+            return null;
         }
 
-        return localStorage.getItem('fb-token');
+        console.log(localStorage.getItem('fb-token'));
+
+        return String(localStorage.getItem('fb-token-exp'));
+
     }
 
     login(authAccount: IAuthAccount): Observable<any>{
+        var headers = {
+            Authorization: `Bearer ${this.token}`
+        }
+
+        this.http.post(`${this.pathBase}/login`, authAccount)
+        .subscribe((data:any) => localStorage.setItem('fb-token', data.token));
+
         return this.http.post(`${this.pathBase}/login`, authAccount)
         .pipe(
-            tap(() => this.setToken),
+            tap((response: any) => this.setToken(response)),
             catchError(this.handleError.bind(this))
         );
     }
@@ -42,8 +51,8 @@ export class AuthService {
         const {message} = error.error.error;
 
         switch (message) {
-            case 'INVALID_EMAIL':
-                this.error$.next('Wrong email');
+            case 'INVALID_USERNAME':
+                this.error$.next('Wrong username');
                 break;
             case 'INVALID_PASSWORD':
                 this.error$.next('Wrong password');
@@ -54,8 +63,6 @@ export class AuthService {
             default:
                 this.error$.next('ok');
         }
-
-        console.log(message);
         
         return throwError(error);                                   
     }

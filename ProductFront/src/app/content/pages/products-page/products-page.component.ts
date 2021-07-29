@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IProduct, IFoundProduct } from 'src/app/core/interfaces/products-interfaces';
-import { ProductsApiService } from 'src/app/core/services/api-services/products-api.service';
+import { ProductApiService } from 'src/app/core/services/api-services/product-api.service';
 
 @Component({
   selector: 'app-products-page',
@@ -26,8 +26,7 @@ export class ProductsPageComponent implements OnInit {
   }
 
   constructor(private router: Router,
-    private  productService: ProductsApiService) { 
-    }
+    private productService: ProductApiService) { }
 
   ngOnInit(): void {
       this.productService.GetAllProducts(this.params).subscribe((data: IFoundProduct[]) => this.products=data);
