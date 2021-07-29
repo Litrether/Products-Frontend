@@ -37,6 +37,10 @@ const routes: Routes = [
         component:SignupPageComponent
     },
     {
+        path: "home",
+        component:HomePageComponent
+    },
+    {
         path: "admin",
         loadChildren: () => import("./content/pages/pages.module").then(p => p.PagesModule)
     },

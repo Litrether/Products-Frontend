@@ -1,9 +1,39 @@
 .header{
-    background-color: linen;
+    padding: 1rem 10rem 6rem 2rem;
+    display: flex;
+    background-color: inherit;
+    color: white;
     left: 0;
     top: 0;
     width: 100%;
-    height: 80px;
-    text-align:center;
-    font-size:  30px;
+    font-size:24px;
+}
+
+.signup-img{
+    background: url("D:\Мои проекты\Products-Frontend\ProductFront\src\assets\img\account-img.png") no-repeat;
+    background-size: cover;
+}
+
+.header-logo{
+    align-content: left;
+    color: white;
+    font-size: 50px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin-right: 35rem;
+}
+
+.header-list{
+    justify-content: space-between;
+    display: flex;
+    list-style-type: none;
+}
+
+.header-list li{
+    width: min-content;
+    padding-left: 40px;
+}
+
+a{
+    color: white;
+    text-decoration:wavy;
 }

@@ -1,5 +1,6 @@
 :root{
     --back-ground-color: black;
+    --account-img: 'src/app/assets/account-img.png';
     font-size: 20px;   
 }
 
@@ -9,7 +10,12 @@
     display: inline-block;
 }
 
-form{
+body{
+    background: url(src\assets\img\home-page-bg.jpg) no-repeat;
+    background-size: cover;
+}
+
+form{ 
     background-color: blanchedalmond;   
     height: max-content;
     width: max-content;
