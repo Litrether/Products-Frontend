@@ -1,10 +1,10 @@
 .products-card{
-    height: 10rem;
-    width: 40remgit;
+    height: 10vh;
+    width: 24vw;
     background-color: whitesmoke;
     border: 1px solid;
-    margin: 5px;
-    padding: 5px;
+    margin: 2%;
+    padding: 1%;
 }
 
 .currencySelect{

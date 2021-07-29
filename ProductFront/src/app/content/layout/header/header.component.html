@@ -4,7 +4,11 @@
           <li> <a href="/categories">Категории </a></li>
           <li> <a href="/products">Products </a> </li>
           <li> <a href="/providers">Поставщики </a></li>
-          <li> <a href="/login">Login </a> </li>
-          <li> <a href="/signup"> <div class="signup-img"> </div> </a> </li>
+          <li> <a href="/login"> <img src="assets\img\account-img.png" class="account-img"> </a> </li>
+          <li *ngIf="authService.isAuthenticated();else signin"> <a href="" (click)="logout()" > Logout </a> </li>
      </ul>
 </div>
+
+<ng-template #signin>
+          <li> <a href="" [routerLink]="['/login']"> Sign in </a> </li>
+</ng-template>

@@ -1,13 +1,13 @@
 :root{
     --back-ground-color: black;
-    --account-img: 'src/app/assets/account-img.png';
-    font-size: 20px;   
 }
 
 .list{
-    font-size: 20px;   
+    width: 25vw;
+    font-size: 2vh;   
     align-items:center; 
     display: inline-block;
+    list-style-type: none;
 }
 
 body{
