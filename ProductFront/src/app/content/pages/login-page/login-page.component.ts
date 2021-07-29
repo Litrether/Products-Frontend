@@ -17,6 +17,7 @@ export class LoginPageComponent implements OnInit {
 
 
   constructor(public authService: AuthService,
+              private router: Router,
               private route: ActivatedRoute,
               private fb: FormBuilder) { }
 
@@ -50,6 +51,7 @@ export class LoginPageComponent implements OnInit {
 
     this.authService.login(authAccount).subscribe(() => {
       this.form.reset();
+      this.router.navigate(["/products"]);
       this.submitted = false;
     }, () => {
       this.submitted = false;

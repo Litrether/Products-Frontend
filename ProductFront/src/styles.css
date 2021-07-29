@@ -1,5 +1,8 @@
 :root{
     --back-ground-color: black;
+    --gray-block-color: #292929;
+    --light-gray-input-color: #C2A080;
+
 }
 
 .list{
@@ -15,17 +18,20 @@ body{
     background-size: cover;
 }
 
-form{ 
-    background-color: blanchedalmond;   
-    height: max-content;
-    width: max-content;
-    padding: 10px; 
-    max-height: 250px;
-}
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+form{
+    padding: 2vh 1vw;
+    margin-left: auto;
+    margin-right: auto;
+    width: 18vw;
+    height: max-content;
+    background: var(--gray-block-color);
+    border-radius: 33px;
+    color: white;
+    font-size: 2.5vh;
+}

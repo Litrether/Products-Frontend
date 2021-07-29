@@ -1,29 +1,26 @@
-<form class="card" [formGroup]="form" (ngSubmit)="submit()">
-    <p>login-page works!</p>
+<form class="login-form" [formGroup]="form" (ngSubmit)="submit()">
+
+    <img src="assets/img/logo.png" class="login-logo" alt="logo">
 
     <div class="alert alert-danger" *ngIf="authService.error$ | async as error"> {{error}} </div>
     <div class="alert alert-info" *ngIf="message"> {{message}} </div>
 
     <div class="form-control" >
-        <label for="username">Username: </label>
-        <input id="username" type="text" formControlName="username" >
+        <input class="login-input" id="username" type="text" formControlName="username" placeholder="Username" >
         <div class="validation" *ngIf="form.get('username')?.invalid && form.get('username')?.touched">
             <small>Username is required</small>
         </div>
     </div>
 
     <div class="form-control">
-        <label for="password">Password: </label>
-        <input id="password" type="password" formControlName="password">
+        <input class="login-input" id="password" type="password" formControlName="password" placeholder="Password">
         <div class="validation" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
             <small *ngIf="form.get('password')?.errors?.required">Password is required.</small>
             <small *ngIf="form.get('password')?.errors?.minlength">minlength 6 characters</small>
         </div>
     </div>
 
-    {{authService.isAuthenticated()}}
-    
-    <input value="send" type="button" (click)="submit()">
-    <input value="logout" type="button" (click)="authService.logout()">
+    <button type="submit" class="login-Btn" [disabled]="form.invalid || submitted">Sign in</button>
+    <p class="signup-message"> No account? <a href="/signup"> Create now! </a> </p>
 
 </form>

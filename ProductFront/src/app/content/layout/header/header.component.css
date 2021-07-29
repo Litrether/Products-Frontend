@@ -9,13 +9,14 @@
 }
 
 .header-logo{
-    align-content: left;
+    height: 5vh;
+    width: 15vw;
     color: white;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    margin-right: 52vw;
+    margin-right: 30vw;
 }
 
 .header-list{
+    margin-top: 2.5vh;
     justify-content: space-between;
     display: flex;
     list-style-type: none;
@@ -23,7 +24,7 @@
 
 .header-list li{
     width: max-content;
-    padding-left: 2vw;
+    padding-left: 3vw;
 }
 
 a{
@@ -31,7 +32,8 @@ a{
     text-decoration:wavy;
 }
 
-.account-img{
-    width: 4vh;
-    height: 4vh;
+.header-img{
+    margin-top: -1vh;
+    width: 6vh;
+    height: 6vh;
 }

@@ -1,65 +1,52 @@
 <form class="card" [formGroup]="form" (ngSubmit)="submit()">
-    <p>login-page works!</p>
-
-
     <div class="form-control" >
-        <label for="firstname">firstname: </label>
-        <input id="firstname" type="text" formControlName="firstname" >
+        <input class="signup-input" id="firstname" type="text" formControlName="firstname" placeholder="First Name">
         <div class="validation" *ngIf="form.get('firstname')?.invalid && form.get('firstname')?.touched">
-            <small>firstname is required</small>
+            <small>First Name is required</small>
+        </div>
+
+        <input class="signup-input" id="lastname" type="text" formControlName="lastname" placeholder="Last Name">
+        <div class="validation" *ngIf="form.get('lastname')?.invalid && form.get('lastname')?.touched">
+            <small>Last Name is required</small>
         </div>
     </div>
-    <div class="form-control" >
-        <label for="lastname">lastname: </label>
-        <input id="lastname" type="text" formControlName="lastname" >
-        <div class="validation" *ngIf="form.get('lastname')?.invalid && form.get('lastname')?.touched">
-            <small>lastname is required</small>
+
+    <div class="form-control">
+        <input class="signup-input" id="email" type="email" formControlName="email" placeholder="Email Address">
+        <div class="validation" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+            <small *ngIf="form.get('email')?.errors?.required">Email Address is required.</small>
+            <small *ngIf="form.get('email')?.errors?.email">Email Address invalid</small>
+        </div>
+    </div>
+
+    <div class="form-control">
+        <input class="signup-input" id="phoneNumber" type="text" formControlName="phoneNumber" placeholder="Phone Number">
+        <div class="validation" *ngIf="form.get('phoneNumber')?.invalid && form.get('phoneNumber')?.touched">
+            <small *ngIf="form.get('phoneNumber')?.errors?.phoneNumber">Phone Number invalid</small>
         </div>
     </div>
     
     <div class="form-control" >
-        <label for="username">username: </label>
-        <input id="username" type="text" formControlName="username" >
+        <input class="signup-input" id="username" type="text" formControlName="username" placeholder="User Name">
         <div class="validation" *ngIf="form.get('username')?.invalid && form.get('username')?.touched">
-            <small>Username is required</small>
+            <small>User Name is required</small>
         </div>
     </div>
 
     <div class="form-control" >
-        <label for="password">password: </label>
-        <input id="password" type="text" formControlName="password" >
+        <input class="signup-input" id="password" type="text" formControlName="password" placeholder="Password">
         <div class="validation" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
-            <small>password is required</small>
+            <small>Password is required</small>
         </div>
     </div>
 
     <div class="form-control" >
-        <label for="repeatedPassword">repeatedPassword: </label>
-        <input id="repeatedPassword" type="text" formControlName="repeatedPassword" >
+        <input class="signup-input" id="repeatedPassword" type="text" formControlName="repeatedPassword" placeholder="Confirm Password">
         <div class="validation" *ngIf="form.get('repeatedPassword')?.invalid && form.get('repeatedPassword')?.touched">
-            <small>repeatedPassword is required</small>
+            <small>Confirm Password is required</small>
         </div>
     </div>
 
-    <div class="form-control">
-        <label for="email">email: </label>
-        <input id="email" type="email" formControlName="email">
-        <div class="validation" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
-            <small *ngIf="form.get('email')?.errors?.required">email is required.</small>
-            <small *ngIf="form.get('email')?.errors?.email">email invalid</small>
-        </div>
-    </div>
-
-    <div class="form-control">
-        <label for="phoneNumber">phoneNumber: </label>
-        <input id="phoneNumber" type="text" formControlName="phoneNumber">
-        <div class="validation" *ngIf="form.get('phoneNumber')?.invalid && form.get('phoneNumber')?.touched">
-            <small *ngIf="form.get('phoneNumber')?.errors?.phoneNumber">phoneNumber invalid</small>
-        </div>
-    </div>
-
-    <input value="send" type="button" (click)="submit()">
-    <div *ngIf="message">  {{message}} </div>
-
+    <button type="submit" class="signup-Btn" [disabled]="form.invalid || submitted">Sign Up</button>
     
 </form>

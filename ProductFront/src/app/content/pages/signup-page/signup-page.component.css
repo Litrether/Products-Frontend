@@ -1,0 +1,20 @@
+.signup-input{
+    font-size: 2vh;
+    padding-left: 0.5vw;
+    background-color: var(--light-gray-input-color);
+    border: none;
+    width: 16vw;
+    height: 4vh;
+    margin: 5px 0;
+    border-radius: 10px;
+}
+
+.logup-Btn{
+    font-size: 2.5vh;
+    background:var(--light-gray-input-color);
+    width: 8vw;
+    height: 4vh;
+    display: block;
+    margin: 10px auto;
+    border-radius: 10px;
+}

@@ -38,7 +38,9 @@ export class ProductsPageComponent implements OnInit {
 
   ChangeCurrency(){
     this.params.currency = (<HTMLInputElement>(document.getElementById('currencySelect'))).value;
-    this.productService.GetAllProducts(this.params).subscribe((data: IFoundProduct[]) => this.products=data);
+    this.productService.GetAllProducts(this.params).subscribe((data: IFoundProduct[]) => {
+      this.products=data;
+    });
   }
 
   deleteItem(product: IProduct){
