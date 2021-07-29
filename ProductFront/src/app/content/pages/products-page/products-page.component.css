@@ -1,6 +1,6 @@
 .products-card{
-    height: 100px;
-    width: 400px;
+    height: 10rem;
+    width: 40remgit;
     background-color: whitesmoke;
     border: 1px solid;
     margin: 5px;
@@ -8,6 +8,7 @@
 }
 
 .currencySelect{
+    background-color: linen;
     font-size: 20px;
     margin: 5px;
 }
