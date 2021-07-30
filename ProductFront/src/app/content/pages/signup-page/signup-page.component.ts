@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
+import { AccountService } from 'src/app/core/account/account.service';
 import { IRegAccount } from 'src/app/core/interfaces/accounts-interfaces';
-import { AccountApiService } from 'src/app/core/services/api-services/account-api.service';
 
 @Component({
   selector: 'app-signup-page',
@@ -15,7 +15,7 @@ export class SignupPageComponent implements OnInit {
   submitted: boolean = false;
   message :string;
 
-  constructor(public accountService: AccountApiService,
+  constructor(public accountService: AccountService,
               private route: ActivatedRoute,
               private fb: FormBuilder) { }
 
@@ -60,11 +60,7 @@ export class SignupPageComponent implements OnInit {
 
 
     if(this.form.value.password == this.form.value.repeatedPassword){
-      this.accountService.CreateAccount(regAccount);
-      this.message = "ne lox";
-    }
-    else{
-      this.message = "ti lox";
+      this.accountService.registration(regAccount);
     }
   }
 }

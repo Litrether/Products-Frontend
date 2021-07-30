@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AccountService } from 'src/app/core/account/account.service';
 
 @Component({
   selector: 'app-header',
@@ -10,14 +10,14 @@ export class HeaderComponent implements OnInit {
 
   profileStatus: string;
 
-  constructor(public authService: AuthService) { }
+  constructor(public accountService: AccountService) { }
 
   ngOnInit(): void {
-    this.authService.isAuthenticated() ? 'logout' : 'login';
+    this.accountService.isAuthenticated() ? 'logout' : 'login';
   }
 
   logout(){
-    this.authService.logout();
+    this.accountService.logout();
   }
 
 }

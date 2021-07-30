@@ -1,11 +1,11 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, Subject, throwError } from "rxjs";
-import { IAuthAccount, IAuthResponse } from "../interfaces/accounts-interfaces";
+import { IAuthAccount, IAuthResponse, IRegAccount } from "../interfaces/accounts-interfaces";
 import { tap, catchError } from "rxjs/operators";
 
 @Injectable({providedIn: 'root'})
-export class AuthService {
+export class AccountService {
 
     public error$: Subject<string> = new Subject<string>();
     public pathBase: string = "https://litretherproductwebapi.azurewebsites.net/api/account";
@@ -26,6 +26,14 @@ export class AuthService {
 
     login(authAccount: IAuthAccount): Observable<any>{
         return this.http.post(`${this.pathBase}/login`, authAccount)
+        .pipe(
+            tap((response: any) => this.setToken(response)),
+            catchError(this.handleError.bind(this))
+        );
+    }
+
+    registration(regAccount: IRegAccount): Observable<any>{
+        return this.http.post(`${this.pathBase}`, regAccount)
         .pipe(
             tap((response: any) => this.setToken(response)),
             catchError(this.handleError.bind(this))

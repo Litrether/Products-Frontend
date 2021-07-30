@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AccountService } from 'src/app/core/account/account.service';
 import { IAuthAccount } from 'src/app/core/interfaces/accounts-interfaces';
 
 @Component({
@@ -16,12 +16,16 @@ export class LoginPageComponent implements OnInit {
   message: string;
 
 
-  constructor(public authService: AuthService,
+  constructor(public authService: AccountService,
               private router: Router,
               private route: ActivatedRoute,
               private fb: FormBuilder) { }
 
   ngOnInit() {
+    if(this.authService.isAuthenticated()){
+      this.router.navigate(['/products']);
+    }
+
     this.route.queryParams.subscribe( (params: Params) => {
       if(params.loginAgain){
         this.message = 'Please, enter data';

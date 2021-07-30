@@ -3,12 +3,12 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
-import { AuthService } from "./auth.service";
+import { AccountService } from "./account.service";
 
 @Injectable()
 export class AuthInterseptor implements HttpInterceptor {
 
-    constructor(private authService: AuthService,
+    constructor(private authService: AccountService,
         private router: Router) {
     }
 

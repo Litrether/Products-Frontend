@@ -5,11 +5,16 @@
     border: none;
     width: 16vw;
     height: 4vh;
-    margin: 5px 0;
+    margin-top: 4px;
     border-radius: 10px;
 }
 
-.logup-Btn{
+.signup-logo{
+    width: 10vw;
+}
+
+.signup-Btn{
+    border: none;
     font-size: 2.5vh;
     background:var(--light-gray-input-color);
     width: 8vw;
@@ -17,4 +22,17 @@
     display: block;
     margin: 10px auto;
     border-radius: 10px;
+}
+
+.signup-names-input{
+    width: 16vh;
+}
+
+.signup-name-input-div{
+    display: flex;
+    justify-content: space-between;
+}
+
+a{
+    color:var(--light-gray-input-color);
 }

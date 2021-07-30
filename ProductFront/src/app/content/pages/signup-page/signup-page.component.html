@@ -1,13 +1,15 @@
 <form class="card" [formGroup]="form" (ngSubmit)="submit()">
-    <div class="form-control" >
-        <input class="signup-input" id="firstname" type="text" formControlName="firstname" placeholder="First Name">
+    <img src="assets/img/logo.png" class="signup-logo" alt="logo">
+
+    <div class="signup-name-input-div"  >
+        <input class="signup-input signup-names-input" id="firstname" type="text" formControlName="firstname" placeholder="First Name">
         <div class="validation" *ngIf="form.get('firstname')?.invalid && form.get('firstname')?.touched">
-            <small>First Name is required</small>
+            <small>Is required field</small>
         </div>
 
-        <input class="signup-input" id="lastname" type="text" formControlName="lastname" placeholder="Last Name">
+        <input class="signup-input signup-names-input" id="lastname" type="text" formControlName="lastname" placeholder="Last Name">
         <div class="validation" *ngIf="form.get('lastname')?.invalid && form.get('lastname')?.touched">
-            <small>Last Name is required</small>
+            <small>Is required field</small>
         </div>
     </div>
 
@@ -40,12 +42,14 @@
         </div>
     </div>
 
+
     <div class="form-control" >
         <input class="signup-input" id="repeatedPassword" type="text" formControlName="repeatedPassword" placeholder="Confirm Password">
         <div class="validation" *ngIf="form.get('repeatedPassword')?.invalid && form.get('repeatedPassword')?.touched">
             <small>Confirm Password is required</small>
         </div>
     </div>
+    <p class="signup-message"> Has account? <a href="/login"> Sign in now! </a> </p>
 
     <button type="submit" class="signup-Btn" [disabled]="form.invalid || submitted">Sign Up</button>
     

@@ -1,3 +1,4 @@
+<nav>
 <div class="header">
     <img src="assets/img/logo.png" class="header-logo" alt="logo">
      <ul class="header-list" >
@@ -6,10 +7,12 @@
           <li> <a href="/providers">Поставщики </a></li>
           <li> <a href="/login"> <img src="assets\img\basket.png" class="header-img"> </a> </li>
           <li> <a href="/login"> <img src="assets\img\account.png" class="header-img"> </a> </li>
-          <li *ngIf="authService.isAuthenticated();else signin"> <a href="" (click)="logout()" > Logout </a> </li>
+          <li *ngIf="accountService.isAuthenticated();else signin"> <a href="" (click)="logout()" > Logout </a> </li>
      </ul>
 </div>
 
 <ng-template #signin>
           <li> <a href="" [routerLink]="['/login']"> Sign in </a> </li>
 </ng-template>
+
+</nav>
