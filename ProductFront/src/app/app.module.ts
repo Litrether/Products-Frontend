@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './content/layout/footer/footer.component';
 import { HomePageComponent } from './content/pages/home-page/home-page.component';
 import { LoginPageComponent } from './content/pages/login-page/login-page.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -14,11 +13,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterseptor } from './core/account/auth.interseptor';
 import { SignupPageComponent } from './content/pages/signup-page/signup-page.component';
 import { HeaderModule } from './content/layout/header/header.module';
+import { FooterModule } from './content/layout/footer/footer.module';
+import { AuthGuard } from './core/guards/auth.guard';
+import { AccountService } from './core/account/account.service';
 
 @NgModule({
     declarations: [
       AppComponent,
-      FooterComponent,
       HomePageComponent,
       LoginPageComponent,
       SignupPageComponent,
@@ -33,9 +34,18 @@ import { HeaderModule } from './content/layout/header/header.module';
       HttpClientModule,
       FormsModule,
       ReactiveFormsModule,
-      HeaderModule
+      HeaderModule,
+      FooterModule
     ],
-    providers: [AuthInterseptor],    
+    providers: [
+      AuthGuard,
+      AccountService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterseptor,
+        multi: true
+      }
+    ],    
     bootstrap: [AppComponent]
   })
   export class AppModule { }

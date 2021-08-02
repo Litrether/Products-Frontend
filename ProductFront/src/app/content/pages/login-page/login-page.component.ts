@@ -16,14 +16,14 @@ export class LoginPageComponent implements OnInit {
   message: string;
 
 
-  constructor(public authService: AccountService,
+  constructor(public accountService: AccountService,
               private router: Router,
               private route: ActivatedRoute,
               private fb: FormBuilder) { }
 
   ngOnInit() {
-    if(this.authService.isAuthenticated()){
-      this.router.navigate(['/products']);
+    if(this.accountService.isAuthenticated()){
+      this.router.navigate(['']);
     }
 
     this.route.queryParams.subscribe( (params: Params) => {
@@ -53,9 +53,9 @@ export class LoginPageComponent implements OnInit {
       password: this.form.value.password
     }
 
-    this.authService.login(authAccount).subscribe(() => {
+    this.accountService.login(authAccount).subscribe(() => {
       this.form.reset();
-      this.router.navigate(["/products"]);
+      this.router.navigate(['/user', "products"]);
       this.submitted = false;
     }, () => {
       this.submitted = false;

@@ -28,7 +28,7 @@ export class ProvidersPageComponent implements OnInit {
   }
 
   addItem() {
-    const log = this.router.navigate(['/admin', 'providerdetail'])
+    const log = this.router.navigate(['/user', 'providerdetail'])
   }
 
   deleteItem(provider: IProvider){

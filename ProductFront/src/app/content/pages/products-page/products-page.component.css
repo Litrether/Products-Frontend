@@ -1,14 +1,51 @@
+.products-page{
+    display: flex;
+    justify-content: space-between;
+    padding: 25px;
+}
+
+.list{
+    width: 25vw;
+    font-size: 2vh;   
+    align-items:center; 
+    display: inline-block;
+    list-style-type: none;
+}
+
+.filtering-panel{
+    margin-top: 40px;
+    padding: 20px;
+    background-color: var(--gray-block-color);
+    width: 20vw;
+    min-height: 500px;
+    border-radius: 20px;
+}
+
+.search-input{
+    font-size: 14px;
+    padding-left: 5px;
+    background-color: var(--light-gray-input-color);
+    border: none;
+    width: 75%;
+    min-height: 30px;
+    margin: 5px 0;
+    border-radius: 10px;
+}
+
+.products-panel{
+    width: 75vw;
+}
+
 .products-card{
-    height: 10vh;
-    width: 24vw;
-    background-color: whitesmoke;
+    background-color: var(--light-gray-input-color);
     border: 1px solid;
-    margin: 2%;
-    padding: 1%;
+    margin: 3px;
+    padding: 5px;
 }
 
 .currencySelect{
-    background-color: linen;
     font-size: 20px;
     margin: 5px;
+    background-color: var(--light-gray-input-color);
+    color: var(--gray-block-color);
 }

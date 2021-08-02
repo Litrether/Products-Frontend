@@ -12,6 +12,6 @@ export interface IFoundProduct {
     Name: string;
     Description: string;
     Cost: any;
-    CategoryName: string;
-    ProviderName: string;
+    Category: string;
+    Provider: string;
 }

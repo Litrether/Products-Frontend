@@ -8,26 +8,24 @@ import { AccountService } from "./account.service";
 @Injectable()
 export class AuthInterseptor implements HttpInterceptor {
 
-    constructor(private authService: AccountService,
+    constructor(private accountService: AccountService,
         private router: Router) {
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log(this.authService.token);
-        if(this.authService.isAuthenticated()){
+       /* if(this.accountService.isAuthenticated()){
             req = req.clone({
-                headers: req.headers.set('Authorization', `Bearer ${this.authService.token}`)
+                headers: req.headers.set('Authorization', `Bearer ${this.accountService.token}`)
             });
-        }
-
+        }*/
         return next.handle(req).pipe(
             catchError((error: HttpErrorResponse) => {
                 console.log('Interseptor error');
                 if(error.status === 401) {
-                    this.authService.logout();
-                    this.router.navigate(['login'], {
+                    this.accountService.logout();
+                    this.router.navigate(['/admin', 'login'], {
                         queryParams: {
-                            authFailed:true
+                            authFailed: true
                         }
                     });
                 }

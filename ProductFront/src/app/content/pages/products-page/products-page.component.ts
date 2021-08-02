@@ -33,14 +33,17 @@ export class ProductsPageComponent implements OnInit {
   }
 
   addItem() {
-    const log = this.router.navigate(['/admin', 'productdetail'])
+    const log = this.router.navigate(['/user', 'productdetail'])
+  }
+
+  search(){
+    this.params.searchTerm = (<HTMLInputElement>(document.getElementById('input-search'))).value;
+    this.productService.GetAllProducts(this.params).subscribe((data: IFoundProduct[]) => this.products=data);
   }
 
   ChangeCurrency(){
     this.params.currency = (<HTMLInputElement>(document.getElementById('currencySelect'))).value;
-    this.productService.GetAllProducts(this.params).subscribe((data: IFoundProduct[]) => {
-      this.products=data;
-    });
+    this.productService.GetAllProducts(this.params).subscribe((data: IFoundProduct[]) => this.products=data);
   }
 
   deleteItem(product: IProduct){

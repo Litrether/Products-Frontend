@@ -1,17 +1,34 @@
 <nav>
 <div class="header">
     <img src="assets/img/logo.png" class="header-logo" alt="logo">
-     <ul class="header-list" >
-          <li> <a [routerLink]="['/categories']">Категории </a></li>
-          <li> <a [routerLink]="['/products']">Products </a> </li>
-          <li> <a [routerLink]="['/providers']" >Поставщики </a></li>
-          <li> <a [routerLink]="['/login']"> <img src="assets\img\basket.png" class="header-img"> </a> </li>
-          <li *ngIf="accountService.isAuthenticated();else signin"> <a (click)="logout()" > Logout </a> </li>
+     <ul class="header-list" *ngIf="accountService.isAuthenticated();else signin">
+          <li routerLinkActive="active"> 
+               <a [routerLink]="['']">Home </a>
+          </li>
+          <li routerLinkActive="active"> 
+               <a [routerLink]="['/user', 'products']">About </a> 
+          </li>
+          <li routerLinkActive="active"> 
+               <a [routerLink]="['/user', 'products']" >Products </a>
+          </li>
+          <li routerLinkActive="active"> 
+               <a [routerLink]="['/user', 'login']"> <img src="assets\img\basket.png" class="header-img"> </a> 
+          </li>
+          <li  routerLinkActive="active" > 
+               <a (click)="logout()" > Logout </a> 
+          </li>
      </ul>
 </div>
 
 <ng-template #signin>
-          <li> <a [routerLink]="['/login']"> Sign in </a> </li>
+     <ul class="header-list">
+          <li  routerLinkActive="active"> 
+               <a [routerLink]="['']"> Home </a> 
+          </li>
+          <li  routerLinkActive="active"> 
+               <a [routerLink]="['/login']"> Sign in </a> 
+          </li>
+     </ul>
 </ng-template>
 
 </nav>

@@ -1,4 +1,16 @@
 <div class="home-page">
-
-    
+    <div class="home-block">
+    <img src="assets/img/logo.png" class="header-logo" alt="logo">
+    <p class="home-info">
+    We are delicious. We are fast. We are only
+       fresh products. Order only the most
+       selected products from us, with a 30% 
+       discount on the first purchase!
+    </p>
+    <input *ngIf="accountService.isAuthenticated();else signin" class="home-btn" type="button" value="Products" [routerLink]="['/products']">
+    </div>
 </div>
+
+<ng-template #signin>
+    <input id="btn1" class="home-btn" type="button" value="Sign In" [routerLink]="['/login']">
+</ng-template>

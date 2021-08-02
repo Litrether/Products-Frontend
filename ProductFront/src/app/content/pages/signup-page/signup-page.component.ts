@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AccountService } from 'src/app/core/account/account.service';
 import { IRegAccount } from 'src/app/core/interfaces/accounts-interfaces';
 
@@ -16,10 +16,15 @@ export class SignupPageComponent implements OnInit {
   message :string;
 
   constructor(public accountService: AccountService,
+              private router: Router,
               private route: ActivatedRoute,
               private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    if(this.accountService.isAuthenticated()){
+      this.router.navigate(['']);
+    }
+
     this.route.queryParams.subscribe( (params: Params) => {
       if(params.loginAgain){
         this.message = 'Please, enter data';

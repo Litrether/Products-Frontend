@@ -1,0 +1,32 @@
+.home-block{
+    margin: 12.5vw 0vh 0vh 60vw;
+    width: 530px;
+    min-width: 530px;
+}
+
+.home-info{
+    
+    margin-top: 30px;
+    font-size: 30px;
+    color:white;
+}
+
+.home-btn{
+    border: none;
+    font-size: 20px;
+    background:var(--light-gray-input-color);
+    width: 30%;
+    min-height: 40px;
+    display: block;
+    margin: 20px 80px;
+    border-radius: 10px;
+}
+
+input:hover{
+    cursor: pointer;
+}
+
+input:active{
+    cursor: pointer;
+    margin: 21px 81px;
+}
