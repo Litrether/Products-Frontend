@@ -1,67 +1,72 @@
 <div class="products-page">
-    <div class="filtering-panel">
-        <div>
+    <div class="filter-panel">
+
         <input type="text" id="search-input" class="search-input" (input)="search()" placeholder="Search">
-        <select class="currency-select" id="currency-select" (change)="ChangeCurrency()" >
-            <option value="EUR">EUR</option>
+        <select class="currency-select" id="currency-select" (change)="changeCurrency()" >
             <option selected value="USD">USD</option>
+            <option value="EUR">EUR</option>
             <option value="RUB">RUB</option>
         </select>
+
+        <ul class="categories-list">
+            <li routerLinkActive="active" class="categories-list-item"> 
+                <a (click)="changeCategory('')"> <h2>  All categories</h2></a>
+            </li>
+            <li routerLinkActive="active" class="categories-list-item"> 
+                <a (click)="changeCategory('Vegetables')"> Vegetables </a>
+            </li>
+            <li routerLinkActive="active" class="categories-list-item"> 
+                <a (click)="changeCategory('Fruits')"> Fruits </a>
+            </li>
+            <li routerLinkActive="active" class="categories-list-item"> 
+                <a (click)="changeCategory('Grocery')"> Grocery </a>
+            </li>
+            <li routerLinkActive="active" class="categories-list-item"> 
+                <a (click)="changeCategory('Meat')"> Meat </a>
+            </li>
+            <li routerLinkActive="active" class="categories-list-item"> 
+                <a (click)="changeCategory('Dairy Products')"> Dairy Products </a>
+            </li>
+            <li routerLinkActive="active" class="categories-list-item"> 
+                <a (click)="changeCategory('Confectionery')"> Confectionery </a>
+            </li>
+        </ul>
     </div>
 
-    <div>
-    <ul>
-        
-        <select class="currency-select" id="currency-select" (change)="ChangeCurrency()">
-            <option value="Vegetables">Vegetables</option>
-            <option selected value="Fruits">Fruits</option>
-            <option value="Grocery">Grocery</option>
-            <option value="Meat">Meat</option>
-            <option value="Dairy Products">Dairy Products</option>
-            <option value="Confectionery">Confectionery</option>
-        </select>
-        <li routerLinkActive="active"> 
-             <a class="categories-choose" (click)="ChooseCategory('')"> <h2>  All categories</h2></a>
-        </li>
-        <li routerLinkActive="active"> 
-             <a class="categories-choose" (click)="ChooseCategory('Vegetables')"> Vegetables </a>
-        </li>
-        <li routerLinkActive="active"> 
-             <a class="categories-choose" (click)="ChooseCategory('Fruits')"> Fruits </a>
-        </li>
-        <li routerLinkActive="active"> 
-             <a class="categories-choose" (click)="ChooseCategory('Grocery')"> Grocery </a>
-        </li>
-        <li routerLinkActive="active"> 
-             <a class="categories-choose" (click)="ChooseCategory('Meat')"> Meat </a>
-        </li>
-        <li routerLinkActive="active"> 
-             <a class="categories-choose" (click)="ChooseCategory('Dairy Products')"> Dairy Products </a>
-        </li>
-        <li routerLinkActive="active"> 
-             <a class="categories-choose" (click)="ChooseCategory('Confectionery')"> Confectionery </a>
-        </li>
-   </ul>
-</div>
-    </div>
-    <div class="products-panel" *ngIf="products$ | async as products; else loading">
-        <ul class="list" *ngFor="let product of products">
-            <li class="productTable">
-                <div class="products-card"> 
-                    <p>id: {{product.Id}}</p>
-                    <p>{{product.Name}}</p>
-                    <p>{{product.Description}} </p>
-                    <p>{{product.Category}} </p>
-                    <p>{{product.Provider}} </p>
-                    <p>{{(product.Cost).toFixed(1)}} {{currCurrency}} </p>
-                </div> 
+    <div class="products-panel" *ngIf="accountService.isClient();else notClientCard">
+        <ul class="products-list" *ngFor="let product of products">
+            <li class="product-card">
+                <img class="card-product-img" src="assets/img/account.png">
+                <p>{{product.Name}}</p>
+                <p>{{product.Provider}}</p>
+                <p>
+                    {{product.Cost}} {{currCurrency}} 
+                    <img class="card-img" src="assets/img/basket.png" (click)="null">
+                </p>
             </li>
         </ul>
     </div>
 </div>
 
 <ng-template #loading>
-    <div class="loading">
-        loading...
+    <app-loading></app-loading>
+</ng-template>
+
+<ng-template #notClientCard>
+    <div class="products-panel">
+        <ul class="products-list" *ngFor="let product of products">
+            <li class="product-card">
+                <img class="card-product-img" src="assets/img/account.png">
+                <p>{{product.Name}}</p>
+                <p>{{product.Provider}} </p>
+                <p>
+                    {{product.Cost}} {{currCurrency}} 
+                </p> 
+                <div class="card-buttons">
+                    <img class="card-img" src="assets/img/basket.png" (click)="null">
+                    <img class="card-img" src="assets/img/basket.png" (click)="null">
+                    <img class="card-img" src="assets/img/basket.png" (click)="null">
+                </div>
+        </ul>
     </div>
 </ng-template>
