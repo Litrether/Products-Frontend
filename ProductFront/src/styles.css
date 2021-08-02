@@ -1,14 +1,14 @@
 :root{
     --back-ground-color: black;
     --gray-block-color: #292929;
-    --light-gray-input-color: #C2A080;
-
+    --light-brown-input-color: #C2A080;
+    --light-gray-input-color: #C8BBB5;
+    ;
 }
 
 body{
-    background: url(src\assets\img\home-page-bg.jpg) no-repeat;
+    background: url('assets/img/home-bg.jpg') no-repeat fixed;
     background-size: cover;
-    background-color: black;
 }
 
 * {
@@ -20,8 +20,11 @@ body{
 form{
     min-width: 240px;
     padding: 15px;
-    margin-left: auto;
-    margin-right: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
     width: 18vw;
     height: max-content;
     background: var(--gray-block-color);
@@ -33,7 +36,7 @@ form{
 .form-input{
     font-size: 14px;
     padding-left: 5px;
-    background-color: var(--light-gray-input-color);
+    background-color: var(--light-brown-input-color);
     border: none;
     width: 100%;
     min-height: 30px;
@@ -49,7 +52,7 @@ form{
 .form-btn{
     border: none;
     font-size: 14px;
-    background:var(--light-gray-input-color);
+    background:var(--light-brown-input-color);
     width: 50%;
     min-height: 30px;
     display: block;

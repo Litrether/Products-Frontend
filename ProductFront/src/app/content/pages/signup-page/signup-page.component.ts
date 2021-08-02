@@ -18,7 +18,10 @@ export class SignupPageComponent implements OnInit {
   constructor(public accountService: AccountService,
               private router: Router,
               private route: ActivatedRoute,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder) { 
+                  document.body.style.backgroundImage  = "url('assets/img/signup-bg.jpg')";
+              }
+              
 
   ngOnInit(): void {
     if(this.accountService.isAuthenticated()){

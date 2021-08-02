@@ -1,51 +1,63 @@
 .products-page{
     display: flex;
-    justify-content: space-between;
     padding: 25px;
 }
 
 .list{
-    width: 25vw;
-    font-size: 2vh;   
+    width: 300px;
+    font-size: 16px;   
     align-items:center; 
     display: inline-block;
     list-style-type: none;
 }
 
 .filtering-panel{
-    margin-top: 40px;
     padding: 20px;
-    background-color: var(--gray-block-color);
-    width: 20vw;
+    background-color: var(--light-gray-input-color);
+    color: Black;
+    width: 350px;
+    min-width: 350px;
     min-height: 500px;
     border-radius: 20px;
 }
 
 .search-input{
-    font-size: 14px;
     padding-left: 5px;
-    background-color: var(--light-gray-input-color);
     border: none;
     width: 75%;
-    min-height: 30px;
-    margin: 5px 0;
-    border-radius: 10px;
+    height: 28px;
+    margin: 6px 0;
+    border-radius: 10px 0px 0px 10px;
 }
 
 .products-panel{
+    margin-left: 20px;
     width: 75vw;
 }
 
 .products-card{
-    background-color: var(--light-gray-input-color);
-    border: 1px solid;
+    background-color: var(--light-brown-input-color);
     margin: 3px;
     padding: 5px;
 }
 
-.currencySelect{
-    font-size: 20px;
-    margin: 5px;
-    background-color: var(--light-gray-input-color);
+.currency-select{
+    height: 28px;
+    border: none;
+    border-radius: 0px 10px 10px 0px;
     color: var(--gray-block-color);
+}
+
+li{
+    list-style-type: none;
+}
+
+.categories-choose:hover{
+    font-size: 17px;
+    list-style-type: none;
+}
+
+.loading{
+    font-size: 30px;
+    color:white;
 }

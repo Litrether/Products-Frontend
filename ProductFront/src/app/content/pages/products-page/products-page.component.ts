@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { IProduct, IFoundProduct } from 'src/app/core/interfaces/products-interfaces';
 import { ProductApiService } from 'src/app/core/services/api-services/product-api.service';
 
@@ -10,7 +11,8 @@ import { ProductApiService } from 'src/app/core/services/api-services/product-ap
 })
 export class ProductsPageComponent implements OnInit {
 
-  products: IFoundProduct[] = [];
+  products$: Observable<IFoundProduct[]>;
+  currCurrency: string = 'USD';
 
   public params = {
     searchTerm: '',
@@ -26,10 +28,11 @@ export class ProductsPageComponent implements OnInit {
   }
 
   constructor(private router: Router,
-    private productService: ProductApiService) { }
+    private productService: ProductApiService) { 
+    }
 
   ngOnInit(): void {
-      this.productService.GetAllProducts(this.params).subscribe((data: IFoundProduct[]) => this.products=data);
+      this.products$ = this.productService.GetAllProducts(this.params);
   }
 
   addItem() {
@@ -37,13 +40,18 @@ export class ProductsPageComponent implements OnInit {
   }
 
   search(){
-    this.params.searchTerm = (<HTMLInputElement>(document.getElementById('input-search'))).value;
-    this.productService.GetAllProducts(this.params).subscribe((data: IFoundProduct[]) => this.products=data);
+    this.params.searchTerm = (<HTMLInputElement>(document.getElementById('search-input'))).value;
+    this.products$ = this.productService.GetAllProducts(this.params);
+  }
+
+  ChooseCategory(category:string){
+    this.params.categories = category;
+      this.products$ = this.productService.GetAllProducts(this.params);
   }
 
   ChangeCurrency(){
-    this.params.currency = (<HTMLInputElement>(document.getElementById('currencySelect'))).value;
-    this.productService.GetAllProducts(this.params).subscribe((data: IFoundProduct[]) => this.products=data);
+    this.params.currency = (<HTMLInputElement>(document.getElementById('currency-select'))).value;
+    this.products$ = this.productService.GetAllProducts(this.params);
   }
 
   deleteItem(product: IProduct){

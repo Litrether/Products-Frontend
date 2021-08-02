@@ -1,16 +1,18 @@
 .header{
     display: flex;
     justify-content: space-between;
-    padding: 2vh 4vw 3vh 4vw;
+    padding: 20px 40px 30px 40px;
     display: flex;
     width: 100%;
-    font-size: 3vh;
+    font-size: 24px;
 }
 
 .header-logo{
-    width: 10vw;
-    height: 1.5vw;
-    margin-top: 3vh;
+    width: 250px;
+    min-width: 250px;
+    height: 40px;
+    min-height: 40px;
+    margin-top: 10px;
     margin-right: 30vw;
 }
 
@@ -18,10 +20,10 @@
     margin-top: 2.5vh;
     justify-content: space-between;
     display: flex;
-    list-style-type: none;
 }
 
-.header-list li{
+li{
+    list-style-type: none;
     width: max-content;
     padding-left: 3vw;
 }

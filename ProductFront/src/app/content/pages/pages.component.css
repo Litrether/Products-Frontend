@@ -14,7 +14,7 @@ form{
 .form-input{
     font-size: 14px;
     padding-left: 0.5vw;
-    background-color: var(--light-gray-input-color);
+    background-color: var(--light-brown-input-color);
     border: none;
     width: 100%;
     min-height: 30px;
@@ -30,7 +30,7 @@ form{
 .form-Btn{
     border: none;
     font-size: 14px;
-    background:var(--light-gray-input-color);
+    background:var(--light-brown-input-color);
     width: 50%;
     min-height: 30px;
     display: block;

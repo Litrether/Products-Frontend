@@ -1,3 +1,9 @@
 a{
-    color:var(--light-gray-input-color);
+    color:var(--light-brown-input-color);
+}
+
+body{
+    background: url('src/assets/img/login-bg.jpg') no-repeat;
+    background-size: cover;
+    background-color: black;
 }

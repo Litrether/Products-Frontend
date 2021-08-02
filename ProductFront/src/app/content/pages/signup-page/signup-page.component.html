@@ -41,7 +41,7 @@
         </div>
     </div>
     
-    <p class="form-message"> Has account? <a href="/login"> Sign in now! </a> </p>
+    <p class="form-message"> Has account? <a [routerLink]="['/login']"> Sign in now! </a> </p>
 
     <button type="submit" class="form-btn" [disabled]="form.invalid || submitted">Sign Up</button>
     

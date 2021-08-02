@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AccountService } from 'src/app/core/account/account.service';
 
 @Component({
@@ -8,9 +9,12 @@ import { AccountService } from 'src/app/core/account/account.service';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(public accountService: AccountService) { }
+  constructor(public accountService: AccountService,
+              public router: Router) { 
+              }
 
   ngOnInit(): void {
+    document.body.style.backgroundImage = "url('assets/img/home-bg.jpg')";
   }
 
 }

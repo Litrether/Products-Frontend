@@ -1,4 +1,4 @@
-<form class="form-form" [formGroup]="form" (ngSubmit)="submit()">
+<form class="form" [formGroup]="form" (ngSubmit)="submit()">
 
     <img src="assets/img/logo.png" class="form-logo" alt="logo">
 
@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <p class="form-message"> No account? <a href="/signup"> Create now! </a> </p>
+    <p class="form-message"> No account? <a [routerLink]="['/signup']"> Create now! </a> </p>
     <button type="submit" class="form-btn" [disabled]="form.invalid || submitted">Sign in</button>
 
 </form>

@@ -3,13 +3,15 @@ import { Injectable } from "@angular/core";
 import { Observable, Subject, throwError } from "rxjs";
 import { IAuthAccount, IAuthResponse, IRegAccount } from "../interfaces/accounts-interfaces";
 import { tap, catchError } from "rxjs/operators";
+import { Router } from "@angular/router";
 
 @Injectable({providedIn: 'root'})
 export class AccountService {
 
     public error$: Subject<string> = new Subject<string>();
     public pathBase: string = "https://litretherproductwebapi.azurewebsites.net/api/account";
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient,
+        private router: Router) { }
 
     get token(): string | null {
         const expiresDate = new Date(String(localStorage.getItem('fb-token-exp')));
@@ -39,6 +41,7 @@ export class AccountService {
 
     logout(){
         this.setToken(null);
+        this.router.navigate(['']);
     }
 
     isAuthenticated(): boolean{

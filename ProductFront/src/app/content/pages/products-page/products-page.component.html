@@ -1,27 +1,67 @@
 <div class="products-page">
     <div class="filtering-panel">
-    <input type="text" class="search-input" (input)="search()" placeholder="Search">
-        
-    </div>
-    <div class="products-panel">
         <div>
-            <select class="currencySelect" id="currencySelect" (change)="ChangeCurrency()" >
-                <option value="EUR">EUR</option>
-                <option selected value="USD">USD</option>
-                <option value="RUB">RUB</option>
-            </select>
-        </div>
+        <input type="text" id="search-input" class="search-input" (input)="search()" placeholder="Search">
+        <select class="currency-select" id="currency-select" (change)="ChangeCurrency()" >
+            <option value="EUR">EUR</option>
+            <option selected value="USD">USD</option>
+            <option value="RUB">RUB</option>
+        </select>
+    </div>
+
+    <div>
+    <ul>
+        
+        <select class="currency-select" id="currency-select" (change)="ChangeCurrency()">
+            <option value="Vegetables">Vegetables</option>
+            <option selected value="Fruits">Fruits</option>
+            <option value="Grocery">Grocery</option>
+            <option value="Meat">Meat</option>
+            <option value="Dairy Products">Dairy Products</option>
+            <option value="Confectionery">Confectionery</option>
+        </select>
+        <li routerLinkActive="active"> 
+             <a class="categories-choose" (click)="ChooseCategory('')"> <h2>  All categories</h2></a>
+        </li>
+        <li routerLinkActive="active"> 
+             <a class="categories-choose" (click)="ChooseCategory('Vegetables')"> Vegetables </a>
+        </li>
+        <li routerLinkActive="active"> 
+             <a class="categories-choose" (click)="ChooseCategory('Fruits')"> Fruits </a>
+        </li>
+        <li routerLinkActive="active"> 
+             <a class="categories-choose" (click)="ChooseCategory('Grocery')"> Grocery </a>
+        </li>
+        <li routerLinkActive="active"> 
+             <a class="categories-choose" (click)="ChooseCategory('Meat')"> Meat </a>
+        </li>
+        <li routerLinkActive="active"> 
+             <a class="categories-choose" (click)="ChooseCategory('Dairy Products')"> Dairy Products </a>
+        </li>
+        <li routerLinkActive="active"> 
+             <a class="categories-choose" (click)="ChooseCategory('Confectionery')"> Confectionery </a>
+        </li>
+   </ul>
+</div>
+    </div>
+    <div class="products-panel" *ngIf="products$ | async as products; else loading">
         <ul class="list" *ngFor="let product of products">
-            <li class="productTable"  >
+            <li class="productTable">
                 <div class="products-card"> 
-                    <p>id: {{product?.Id}}</p>
-                    <p>{{product?.Name}}</p>
-                    <p>{{product?.Description}} </p>
-                    <p>{{product?.Category}} </p>
-                    <p>{{product?.Provider}} </p>
-                    <p>{{(product?.Cost).toFixed(1)}} {{params.currency}} </p>
+                    <p>id: {{product.Id}}</p>
+                    <p>{{product.Name}}</p>
+                    <p>{{product.Description}} </p>
+                    <p>{{product.Category}} </p>
+                    <p>{{product.Provider}} </p>
+                    <p>{{(product.Cost).toFixed(1)}} {{currCurrency}} </p>
                 </div> 
             </li>
         </ul>
     </div>
 </div>
+
+<ng-template #loading>
+    <div class="loading">
+        loading...
+    </div>
+</ng-template>

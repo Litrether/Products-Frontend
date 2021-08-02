@@ -19,7 +19,9 @@ export class LoginPageComponent implements OnInit {
   constructor(public accountService: AccountService,
               private router: Router,
               private route: ActivatedRoute,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder) { 
+                  document.body.style.backgroundImage  = "url('assets/img/login-bg.jpg')";
+              }
 
   ngOnInit() {
     if(this.accountService.isAuthenticated()){
