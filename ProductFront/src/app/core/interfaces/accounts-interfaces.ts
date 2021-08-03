@@ -16,4 +16,5 @@ export interface IAuthAccount {
 
 export interface IAuthResponse{
     token: string;
+    roles: string [] | string;
 }

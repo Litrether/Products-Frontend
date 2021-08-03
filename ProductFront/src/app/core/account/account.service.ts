@@ -23,6 +23,8 @@ export class AccountService {
     }
 
     isClient():boolean{
+        if(localStorage.getItem('fb-isClient') == "true")
+            return true;
         return true;
     }
 
@@ -76,6 +78,8 @@ export class AccountService {
             const expiresDate = new Date(new Date().getTime() + 60*60*1000);
             localStorage.setItem('fb-token', response.token);
             localStorage.setItem('fb-token-exp', expiresDate.toString());
+            if(response.roles.indexOf('Manager') == -1 && response.roles.indexOf('Administrator') == -1)
+                localStorage.setItem('fb-isClient', "true");
         } else {
             localStorage.clear();
         }

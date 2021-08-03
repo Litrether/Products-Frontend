@@ -10,12 +10,11 @@ export class CartApiService {
     constructor(private http: HttpClient) {
     }
 
-    public GetCartProducts(params: any): Observable<IFoundProduct[]> {
+    public GetCartProducts() {
         return this.http.get<IFoundProduct[]>(`${this.pathBase}`);
     }
 
-    public CreateCart(productId: number): Observable<any> {
-        console.log(`${this.pathBase}/3`)
-        return this.http.post<any>(`${this.pathBase}/3`, { body: null });
+    public CreateCart(productId: number){
+        return this.http.post(`${this.pathBase}/${productId}`, null).subscribe((data:any)=>{console.log(data)});
     }
 }

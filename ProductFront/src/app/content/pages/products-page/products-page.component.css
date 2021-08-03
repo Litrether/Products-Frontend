@@ -9,8 +9,8 @@
     color: Black;
     width: 350px;
     min-width: 350px;
-    height: 560px;
-    min-height: 550px;
+    height: 525px;
+    min-height: 525px;
     border-radius: 20px;
 }
 
@@ -47,7 +47,7 @@
 }
 
 .categories-list-item:active{
-    transform: scale(0.90);
+    transform: scale(0.95);
 }
 
 .products-list{
@@ -107,7 +107,9 @@ li{
 }
 
 .pagination {
-    display: inline-block;
+    display: flex;
+    margin-top: 110px;
+    justify-content: space-evenly;
 }
   
 .pagination a {
