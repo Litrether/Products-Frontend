@@ -19,8 +19,11 @@ export class AccountService {
             this.logout();
             return null;
         }
-        console.log(localStorage.getItem('fb-token'));
-        return localStorage.getItem('fb-token-exp');
+        return localStorage.getItem('fb-token');
+    }
+
+    isClient():boolean{
+        return true;
     }
 
     login(authAccount: IAuthAccount): Observable<any>{

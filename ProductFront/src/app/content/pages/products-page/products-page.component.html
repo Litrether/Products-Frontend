@@ -31,6 +31,7 @@
                 <a (click)="changeCategory('Confectionery')"> Confectionery </a>
             </li>
         </ul>
+        <p>Finded products: {{totalAmount}}</p>
     </div>
 
     <div class="products-panel" *ngIf="accountService.isClient();else notClientCard">
@@ -45,7 +46,9 @@
                 </p>
             </li>
         </ul>
-    </div>
+<app-pagination></app-pagination>
+</div>
+    
 </div>
 
 <ng-template #loading>
@@ -68,5 +71,6 @@
                     <img class="card-img" src="assets/img/basket.png" (click)="null">
                 </div>
         </ul>
-    </div>
+<app-pagination></app-pagination>
+</div>
 </ng-template>

@@ -14,7 +14,7 @@ export class ProductsPageComponent implements OnInit {
 
   products$: Observable<IFoundProduct[]>;
   products: IFoundProduct[];
-  totalAmount: Number;
+  totalAmount: number;
   currCurrency: string = 'USD';
 
   public params = {
@@ -39,7 +39,7 @@ export class ProductsPageComponent implements OnInit {
       this.productService.GetAllProducts(this.params).subscribe((data: any) =>{
         this.totalAmount = data.totalAmount;
         this.products = data.products;
-      }) 
+      });
     }
 
   addItem() {
@@ -48,17 +48,27 @@ export class ProductsPageComponent implements OnInit {
 
   search(){
     this.params.searchTerm = (<HTMLInputElement>(document.getElementById('search-input'))).value;
-    this.products$ = this.productService.GetAllProducts(this.params);
+    this.productService.GetAllProducts(this.params).subscribe((data: any) =>{
+      this.totalAmount = data.totalAmount;
+      this.products = data.products;
+    });
+    console.log(this.totalAmount);
   }
 
   changeCategory(category:string){
     this.params.categories = category;
-      this.products$ = this.productService.GetAllProducts(this.params);
+    this.productService.GetAllProducts(this.params).subscribe((data: any) =>{
+      this.totalAmount = data.totalAmount;
+      this.products = data.products;
+    });
   }
 
   changeCurrency(){
     this.params.currency = (<HTMLInputElement>(document.getElementById('currency-select'))).value;
-    this.products$ = this.productService.GetAllProducts(this.params);
+    this.productService.GetAllProducts(this.params).subscribe((data: any) =>{
+      this.totalAmount = data.totalAmount;
+      this.products = data.products;
+    });
   }
 
   deleteItem(product: IProduct){

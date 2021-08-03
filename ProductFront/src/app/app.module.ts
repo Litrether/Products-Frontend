@@ -16,6 +16,8 @@ import { HeaderModule } from './content/layout/header/header.module';
 import { FooterModule } from './content/layout/footer/footer.module';
 import { AuthGuard } from './core/guards/auth.guard';
 import { AccountService } from './core/account/account.service';
+import { LoadingComponent } from './content/layout/loading/loading.component';
+import { PaginationComponent } from './content/layout/pagination/pagination.component';
 
 @NgModule({
     declarations: [
@@ -25,7 +27,9 @@ import { AccountService } from './core/account/account.service';
       SignupPageComponent,
       CategoriesPageComponent,
       ProvidersPageComponent,
-      ProductsPageComponent
+      ProductsPageComponent,
+      LoadingComponent,
+      PaginationComponent
     ],
     imports: [
       BrowserModule,

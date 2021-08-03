@@ -32,11 +32,14 @@
 }
 
 .categories-list-item{
+    margin-left: 10px;
+    transition: margin-left 2s reverse;
     font-size: 25px;
     margin-top: 10px;
 }
 
 .categories-list-item:hover{
+    margin-left: 30px;
     cursor: pointer;
     font-size: 26px;
     margin-top: 9px;
@@ -49,11 +52,11 @@
 
 .products-panel{
     margin-left: 20px;
-    width: 70vw;
+    width: 950px;
 }
 
 .product-card{
-    background-color: black;
+    background-color: var(--gray-block-color);
     border: solid 1px white;
     color: white;
     width: 175px;
@@ -96,4 +99,8 @@ li{
     margin-top: 7.5px;
     display: flex;
     justify-content: space-between;
+}
+
+.pagination-button{
+    width: 50px;
 }
