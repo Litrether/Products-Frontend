@@ -2,36 +2,44 @@
     <div class="filter-panel">
 
         <input type="text" id="search-input" class="search-input" (input)="search()" placeholder="Search">
-        <select class="currency-select" id="currency-select" (change)="changeCurrency()" >
+        <select class="currency-select" id="currency-select" (change)="changeCurrency()">
             <option selected value="USD">USD</option>
             <option value="EUR">EUR</option>
             <option value="RUB">RUB</option>
         </select>
 
         <ul class="categories-list">
-            <li routerLinkActive="active" class="categories-list-item"> 
-                <a (click)="changeCategory('')"> <h2>  All categories</h2></a>
+            <li routerLinkActive="active" class="categories-list-item">
+                <a (click)="changeCategory('')">
+                    <h2> All categories</h2>
+                </a>
             </li>
-            <li routerLinkActive="active" class="categories-list-item"> 
+            <li routerLinkActive="active" class="categories-list-item">
                 <a (click)="changeCategory('Vegetables')"> Vegetables </a>
             </li>
-            <li routerLinkActive="active" class="categories-list-item"> 
+            <li routerLinkActive="active" class="categories-list-item">
                 <a (click)="changeCategory('Fruits')"> Fruits </a>
             </li>
-            <li routerLinkActive="active" class="categories-list-item"> 
+            <li routerLinkActive="active" class="categories-list-item">
                 <a (click)="changeCategory('Grocery')"> Grocery </a>
             </li>
-            <li routerLinkActive="active" class="categories-list-item"> 
+            <li routerLinkActive="active" class="categories-list-item">
                 <a (click)="changeCategory('Meat')"> Meat </a>
             </li>
-            <li routerLinkActive="active" class="categories-list-item"> 
+            <li routerLinkActive="active" class="categories-list-item">
                 <a (click)="changeCategory('Dairy Products')"> Dairy Products </a>
             </li>
-            <li routerLinkActive="active" class="categories-list-item"> 
+            <li routerLinkActive="active" class="categories-list-item">
                 <a (click)="changeCategory('Confectionery')"> Confectionery </a>
             </li>
         </ul>
         <p>Finded products: {{totalAmount}}</p>
+
+        <div class="pagination" *ngIf="totalAmount - 10 > 0">
+            <a (click)="leftPage()">&laquo;</a>
+            <a class="active"> {{params.pageNumber}} </a>
+            <a (click)="rightPage()">&raquo;</a>
+        </div>
     </div>
 
     <div class="products-panel" *ngIf="accountService.isClient();else notClientCard">
@@ -41,14 +49,13 @@
                 <p>{{product.Name}}</p>
                 <p>{{product.Provider}}</p>
                 <p>
-                    {{product.Cost}} {{currCurrency}} 
-                    <img class="card-img" src="assets/img/basket.png" (click)="null">
+                    {{product.Cost}} {{currCurrency}}
+                    <img class="card-img" src="assets/img/basket.png" (click)="cartApiService.CreateCart(product.Id)">
                 </p>
             </li>
         </ul>
-<app-pagination></app-pagination>
-</div>
-    
+    </div>
+
 </div>
 
 <ng-template #loading>
@@ -63,14 +70,13 @@
                 <p>{{product.Name}}</p>
                 <p>{{product.Provider}} </p>
                 <p>
-                    {{product.Cost}} {{currCurrency}} 
-                </p> 
+                    {{product.Cost}} {{currCurrency}}
+                </p>
                 <div class="card-buttons">
                     <img class="card-img" src="assets/img/basket.png" (click)="null">
                     <img class="card-img" src="assets/img/basket.png" (click)="null">
                     <img class="card-img" src="assets/img/basket.png" (click)="null">
                 </div>
         </ul>
-<app-pagination></app-pagination>
-</div>
+    </div>
 </ng-template>

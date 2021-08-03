@@ -1,13 +1,15 @@
 <form class="card" [formGroup]="form" (ngSubmit)="submit()">
     <img src="assets/img/logo.png" class="form-logo" alt="logo">
 
-    <div class="signup-name-input-div"  >
-        <input class="form-input signup-names-input" id="firstname" type="text" formControlName="firstname" placeholder="First Name">
+    <div class="signup-name-input-div">
+        <input class="form-input signup-names-input" id="firstname" type="text" formControlName="firstname"
+            placeholder="First Name">
         <div class="validation" *ngIf="form.get('firstname')?.invalid && form.get('firstname')?.touched">
             <small>Is required field</small>
         </div>
 
-        <input class="form-input signup-names-input" id="lastname" type="text" formControlName="lastname" placeholder="Last Name">
+        <input class="form-input signup-names-input" id="lastname" type="text" formControlName="lastname"
+            placeholder="Last Name">
         <div class="validation" *ngIf="form.get('lastname')?.invalid && form.get('lastname')?.touched">
             <small>Is required field</small>
         </div>
@@ -20,29 +22,30 @@
             <small *ngIf="form.get('email')?.errors?.email">Email Address invalid</small>
         </div>
     </div>
-    <div class="form-control" >
+    <div class="form-control">
         <input class="form-input" id="username" type="text" formControlName="username" placeholder="User Name">
         <div class="validation" *ngIf="form.get('username')?.invalid && form.get('username')?.touched">
             <small>User Name is required</small>
         </div>
     </div>
 
-    <div class="form-control" >
+    <div class="form-control">
         <input class="form-input" id="password" type="text" formControlName="password" placeholder="Password">
         <div class="validation" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
             <small>Password is required</small>
         </div>
     </div>
 
-    <div class="form-control" >
-        <input class="form-input" id="repeatedPassword" type="text" formControlName="repeatedPassword" placeholder="Confirm Password">
+    <div class="form-control">
+        <input class="form-input" id="repeatedPassword" type="text" formControlName="repeatedPassword"
+            placeholder="Confirm Password">
         <div class="validation" *ngIf="form.get('repeatedPassword')?.invalid && form.get('repeatedPassword')?.touched">
             <small>Confirm Password is required</small>
         </div>
     </div>
-    
+
     <p class="form-message"> Has account? <a [routerLink]="['/login']"> Sign in now! </a> </p>
 
     <button type="submit" class="form-btn" [disabled]="form.invalid || submitted">Sign Up</button>
-    
+
 </form>

@@ -13,25 +13,25 @@ export class SignupPageComponent implements OnInit {
 
   public form!: FormGroup;
   submitted: boolean = false;
-  message :string;
+  message: string;
 
   constructor(public accountService: AccountService,
-              private router: Router,
-              private route: ActivatedRoute,
-              private fb: FormBuilder) { 
-                  document.body.style.backgroundImage  = "url('assets/img/signup-bg.jpg')";
-              }
-              
+    private router: Router,
+    private route: ActivatedRoute,
+    private fb: FormBuilder) {
+    document.body.style.backgroundImage = "url('assets/img/signup-bg.jpg')";
+  }
+
 
   ngOnInit(): void {
-    if(this.accountService.isAuthenticated()){
+    if (this.accountService.isAuthenticated()) {
       this.router.navigate(['']);
     }
 
-    this.route.queryParams.subscribe( (params: Params) => {
-      if(params.loginAgain){
+    this.route.queryParams.subscribe((params: Params) => {
+      if (params.loginAgain) {
         this.message = 'Please, enter data';
-      } else if (params.authFieled){
+      } else if (params.authFieled) {
         this.message = 'Session ended. Enter data again.'
       }
     });
@@ -48,8 +48,8 @@ export class SignupPageComponent implements OnInit {
     });
   }
 
-  submit(){
-    if(this.form.invalid){
+  submit() {
+    if (this.form.invalid) {
       return;
     }
 
@@ -57,17 +57,17 @@ export class SignupPageComponent implements OnInit {
     this.submitted = true;
 
     const regAccount: IRegAccount = {
-    firstname: this.form.value.firstname,
-    lastname: this.form.value.lastname,
-    username: this.form.value.username,
-    password: this.form.value.password,
-    email: this.form.value.email,
-    phoneNumber: this.form.value.phoneNumber,
-    roles: 'User'
+      firstname: this.form.value.firstname,
+      lastname: this.form.value.lastname,
+      username: this.form.value.username,
+      password: this.form.value.password,
+      email: this.form.value.email,
+      phoneNumber: this.form.value.phoneNumber,
+      roles: 'User'
     }
 
 
-    if(this.form.value.password == this.form.value.repeatedPassword){
+    if (this.form.value.password == this.form.value.repeatedPassword) {
       this.accountService.registration(regAccount);
     }
   }

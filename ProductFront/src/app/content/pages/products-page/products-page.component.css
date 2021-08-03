@@ -36,13 +36,18 @@
     transition: margin-left 2s reverse;
     font-size: 25px;
     margin-top: 10px;
+    transition: transform .5s;
 }
 
 .categories-list-item:hover{
-    margin-left: 30px;
+    transform: scale(1.05);
     cursor: pointer;
     font-size: 26px;
     margin-top: 9px;
+}
+
+.categories-list-item:active{
+    transform: scale(0.90);
 }
 
 .products-list{
@@ -101,6 +106,26 @@ li{
     justify-content: space-between;
 }
 
-.pagination-button{
-    width: 50px;
+.pagination {
+    display: inline-block;
+}
+  
+.pagination a {
+    background-color: white;
+    color: black;
+    float: left;
+    padding: 6px 12px;
+    text-decoration: none;
+    border: white 1px solid;
+    margin-left: 2px;
+}
+  
+.pagination a.active {
+    background-color: var(--gray-block-color);
+    color: white;
+}
+  
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+      cursor: pointer;
 }
