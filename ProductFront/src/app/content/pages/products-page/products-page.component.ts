@@ -12,10 +12,7 @@ import { ProductApiService } from 'src/app/core/services/api-services/product-ap
   styleUrls: ['./products-page.component.css']
 })
 export class ProductsPageComponent implements OnInit {
-
   products$: Observable<IFoundProduct[]>;
-  products: IFoundProduct[];
-  totalAmount: number;
   currCurrency: string = 'USD';
 
   public params = {
@@ -38,14 +35,20 @@ export class ProductsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.Query();
+    this.query();
   }
 
-  Query() {
-    this.productService.GetAllProducts(this.params).subscribe((data: any) => {
-      this.totalAmount = data.totalAmount;
-      this.products = data.products;
+  DeleteItem(product: IFoundProduct) {
+    if (!confirm(`Are you sure you want to delete ${product.name} ?`)) {
+      return;
+    }
+    this.productService.DeleteProduct(product.id).subscribe(() => {
+      this.products$ = this.productService.GetAllProducts(this.params);
     });
+  }
+
+  query() {
+    this.products$ = this.productService.GetAllProducts(this.params);
   }
 
   addItem() {
@@ -55,45 +58,37 @@ export class ProductsPageComponent implements OnInit {
   search() {
     this.params.searchTerm = (<HTMLInputElement>(document.getElementById('search-input'))).value;
     this.params.pageNumber = 1;
-    this.Query();
-
-    console.log(this.totalAmount);
+    this.query();
   }
 
   changeCategory(category: string) {
     this.params.categories = category;
     this.params.pageNumber = 1;
-    this.Query();
-
+    this.query();
   }
 
   changeCurrency() {
     this.params.currency = (<HTMLInputElement>(document.getElementById('currency-select'))).value;
     this.params.pageNumber = 1;
-    this.Query();
-
-  }
-
-  deleteItem(product: IProduct) {
-    if (!confirm('Are you sure want to delete ${product.name}?')) {
-      return;
-    }
-    //this.productService.DeleteProduct(product.id).subscribe(() => {
-    //this.products$ = this.productService.GetAllProducts();
-    //})
+    this.query();
   }
 
   leftPage() {
     if (this.params.pageNumber > 1) {
       this.params.pageNumber--;
-      this.Query();
+      this.query();
     }
   }
 
   rightPage() {
-    if (this.params.pageNumber < (this.totalAmount / 10)) {
-      this.params.pageNumber++;
-      this.Query();
+    let lengthNextPage: number = 10;
+    this.params.pageNumber++;
+    this.productService.GetAllProducts(this.params).subscribe(data => {
+      lengthNextPage = data.length;
+    })
+
+    if (lengthNextPage > 0) {
+      this.products$ = this.productService.GetAllProducts(this.params);
     }
   }
 }

@@ -5,8 +5,7 @@ import { ICategory, IFoundCategory } from "../../interfaces/categories-interface
 
 @Injectable({ providedIn: 'root' })
 export class CategoryApiService {
-    public pathBase: string = "https://localhost:5001/api/categories";
-    //public pathBase: string = "https://litretherproductwebapi.azurewebsites.net/api/categories";
+    public pathBase: string = "https://litretherproducts.azurewebsites.net/api/categories";
 
     constructor(private http: HttpClient) {
     }

@@ -9,8 +9,6 @@
     color: Black;
     width: 350px;
     min-width: 350px;
-    height: 525px;
-    min-height: 525px;
     border-radius: 20px;
 }
 
@@ -20,7 +18,25 @@
     width: 75%;
     height: 28px;
     margin: 6px 0;
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 10px 0 0 10px;
+}
+
+.min-cost-input{
+    padding-left: 5px;
+    border: none;
+    width: 30%;
+    height: 28px;
+    margin: 6px 0;
+    border-radius: 10px 0 0 10px;
+}
+
+.max-cost-input{
+    padding-left: 5px;
+    border: none;
+    width: 30%;
+    height: 28px;
+    margin: 6px 0;
+    border-radius: 0 10px 10px 0;
 }
 
 .currency-select{
@@ -31,7 +47,7 @@
     color: var(--gray-block-color);
 }
 
-.categories-list-item{
+.categories-list li{
     margin-left: 10px;
     transition: margin-left 2s reverse;
     font-size: 25px;
@@ -39,14 +55,12 @@
     transition: transform .5s;
 }
 
-.categories-list-item:hover{
+.categories-list li:hover{
     transform: scale(1.05);
     cursor: pointer;
-    font-size: 26px;
-    margin-top: 9px;
 }
 
-.categories-list-item:active{
+.categories-list li:active{
     transform: scale(0.95);
 }
 
@@ -57,7 +71,7 @@
 
 .products-panel{
     margin-left: 20px;
-    width: 950px;
+    width: 1000px;
 }
 
 .product-card{
@@ -65,8 +79,8 @@
     border: solid 1px white;
     color: white;
     width: 175px;
-    height: 255px;
-    margin: 4px;
+    height: 260px;
+    margin: 4px 8px;
     padding: 10px;
 }
 
@@ -75,16 +89,19 @@
     width: 100%;
 }
 
+.manage-card-buttons{
+    margin-top: 2px;
+    display: flex;
+    justify-content: space-between;
+}
+
 p{
     display: flex;
     justify-content: space-between;
 }
 
 .card-img{
-    display: flex;
-    justify-content: space-between;
-    height: 30px;
-    margin-top: -10px;
+    height: 25px;
 }
 
 .card-img:hover{
@@ -108,7 +125,7 @@ li{
 
 .pagination {
     display: flex;
-    margin-top: 110px;
+    margin-top: 100px;
     justify-content: space-evenly;
 }
   
@@ -131,3 +148,4 @@ li{
     background-color: #ddd;
       cursor: pointer;
 }
+

@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "src/app/core/guards/auth.guard";
+import { AccountPageComponent } from "./account-page/account-page.component";
 import { CategoriesPageComponent } from "./categories-page/categories-page.component";
 import { HomePageComponent } from "./home-page/home-page.component";
 import { LoginPageComponent } from "./login-page/login-page.component";
@@ -17,9 +18,10 @@ const routes: Routes = [
             { path: "categories", component: CategoriesPageComponent },
             { path: "providers", component: ProvidersPageComponent },
             { path: "products", component: ProductsPageComponent },
+            { path: "account", component: AccountPageComponent },
             { path: "signup", component: SignupPageComponent },
             { path: "login", component: LoginPageComponent },
-            { path: "home",  component: HomePageComponent },
+            { path: "home", component: HomePageComponent },
         ],
         canActivate: [AuthGuard]
     },
@@ -34,4 +36,4 @@ const routes: Routes = [
     exports: [RouterModule],
     providers: [AuthGuard]
 })
-export class PagesRoutingModule  { }
+export class PagesRoutingModule { }

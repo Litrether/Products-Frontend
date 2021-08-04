@@ -5,8 +5,7 @@ import { IFoundProvider, IProvider } from "../../interfaces/providers-interfaces
 
 @Injectable({ providedIn: 'root' })
 export class ProviderApiService {
-    public pathBase: string = "https://localhost:5001/api/providers";
-    //public pathBase: string = "https://litretherproductwebapi.azurewebsites.net/api/providers";
+    public pathBase: string = "https://litretherproducts.azurewebsites.net/api/providers";
     constructor(private http: HttpClient) { }
 
     public GetAllProviders(params: any): Observable<IFoundProvider[]> {

@@ -5,8 +5,7 @@ import { IFoundProduct } from "../../interfaces/products-interfaces";
 
 @Injectable({ providedIn: 'root' })
 export class CartApiService {
-    public pathBase: string = "https://localhost:5001/api/cart";
-    //public pathBase: string = "https://litretherproductwebapi.azurewebsites.net/api/cart";
+    public pathBase: string = "https://litretherproducts.azurewebsites.net/api/cart";
 
     constructor(private http: HttpClient) {
     }

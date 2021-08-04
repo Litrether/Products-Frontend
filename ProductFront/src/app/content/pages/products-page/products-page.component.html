@@ -7,76 +7,69 @@
             <option value="EUR">EUR</option>
             <option value="RUB">RUB</option>
         </select>
+        <input type="text" id="currency-min-input" class="min-cost-input" (input)="search()" placeholder="Minimal cost">
+        <input type="text" id="currency-min-input" class="max-cost-input" (input)="search()" placeholder="Minimal cost">
 
         <ul class="categories-list">
-            <li routerLinkActive="active" class="categories-list-item">
+            <li routerLinkActive="active">
                 <a (click)="changeCategory('')">
                     <h2> All categories</h2>
                 </a>
             </li>
-            <li routerLinkActive="active" class="categories-list-item">
+            <li routerLinkActive="active">
                 <a (click)="changeCategory('Vegetables')"> Vegetables </a>
             </li>
-            <li routerLinkActive="active" class="categories-list-item">
+            <li routerLinkActive="active">
                 <a (click)="changeCategory('Fruits')"> Fruits </a>
             </li>
-            <li routerLinkActive="active" class="categories-list-item">
+            <li routerLinkActive="active">
                 <a (click)="changeCategory('Grocery')"> Grocery </a>
             </li>
-            <li routerLinkActive="active" class="categories-list-item">
+            <li routerLinkActive="active">
                 <a (click)="changeCategory('Meat')"> Meat </a>
             </li>
-            <li routerLinkActive="active" class="categories-list-item">
+            <li routerLinkActive="active">
                 <a (click)="changeCategory('Dairy Products')"> Dairy Products </a>
             </li>
-            <li routerLinkActive="active" class="categories-list-item">
+            <li routerLinkActive="active">
                 <a (click)="changeCategory('Confectionery')"> Confectionery </a>
             </li>
         </ul>
-        <p>Finded products: {{totalAmount}}</p>
 
-        <div class="pagination" *ngIf="totalAmount - 10 > 0">
+        <div class="pagination">
             <a (click)="leftPage()">&laquo;</a>
             <a class="active"> {{params.pageNumber}} </a>
             <a (click)="rightPage()">&raquo;</a>
         </div>
+
     </div>
 
-    <div class="products-panel" *ngIf="accountService.isClient();else notClientCard">
+    <div class="products-panel" *ngIf="products$ | async as products; else loading">
         <ul class="products-list" *ngFor="let product of products">
             <li class="product-card">
                 <img class="card-product-img" src="assets/img/account.png">
-                <p>{{product.Name}}</p>
-                <p>{{product.Provider}}</p>
+                <p>{{product.name}}</p>
+                <p>{{product.provider}}</p>
                 <p>
-                    {{(product.Cost).toFixed(2)}} {{currCurrency}}
-                    <img class="card-img" src="assets/img/basket.png" (click)="cartApiService.CreateCart(product.Id)">
+                    {{(product.cost).toFixed(2)}} {{currCurrency}}
                 </p>
+
+                <div class="manage-card-buttons">
+                    <img class="card-img" src="assets/img/basket.png" (click)="cartApiService.CreateCart(product.id)">
+                    <img class="card-img" src="assets/img/edit.png" (click)="cartApiService.CreateCart(product.id)"
+                        *ngIf="!accountService.isClient()">
+                    <img class="card-img" src="assets/img/delete.png" (click)="DeleteItem(product)"
+                        *ngIf="!accountService.isClient()">
+                </div>
+
             </li>
         </ul>
     </div>
+
+
 
 </div>
 
 <ng-template #loading>
     <app-loading></app-loading>
-</ng-template>
-
-<ng-template #notClientCard>
-    <div class="products-panel">
-        <ul class="products-list" *ngFor="let product of products">
-            <li class="product-card">
-                <img class="card-product-img" src="assets/img/account.png">
-                <p>{{product.Name}}</p>
-                <p>{{product.Provider}} </p>
-                <p>
-                    {{(product.Cost).toFixed(2)}} {{currCurrency}}
-                </p>
-                <div class="card-buttons">
-                    <img class="card-img" src="assets/img/basket.png" (click)="null">
-                    <img class="card-img" src="assets/img/basket.png" (click)="null">
-                    <img class="card-img" src="assets/img/basket.png" (click)="null">
-                </div>
-        </ul>
-    </div>
 </ng-template>

@@ -1,11 +1,10 @@
-.home-block{
-    margin: 12.5vw 0vh 0vh 60vw;
+.home-page{
+    margin: 12.5vw 0vh 0vh 40vw;
     width: 530px;
     min-width: 530px;
 }
 
 .home-info{
-    
     margin-top: 30px;
     font-size: 30px;
     color:white;

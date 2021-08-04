@@ -9,8 +9,7 @@ import { Router } from "@angular/router";
 export class AccountService {
 
     public error$: Subject<string> = new Subject<string>();
-    public pathBase: string = "https://localhost:5001/api/account";
-    //public pathBase: string = "https://litretherproductwebapi.azurewebsites.net/api/account";
+    public pathBase: string = "https://litretherproducts.azurewebsites.net/api/account";
     constructor(private http: HttpClient,
         private router: Router) { }
 
@@ -26,7 +25,7 @@ export class AccountService {
     isClient(): boolean {
         if (localStorage.getItem('fb-isClient') == "true")
             return true;
-        return true;
+        return false;
     }
 
     login(authAccount: IAuthAccount): Observable<any> {

@@ -8,10 +8,10 @@ export interface IProduct {
 }
 
 export interface IFoundProduct {
-    Id: number;
-    Name: string;
-    Description: string;
-    Cost: any;
-    Category: string;
-    Provider: string;
+    id: number;
+    name: string;
+    description: string;
+    cost: number;
+    category: string;
+    provider: string;
 }
