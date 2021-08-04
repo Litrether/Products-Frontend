@@ -5,7 +5,8 @@ import { IFoundProduct } from "../../interfaces/products-interfaces";
 
 @Injectable({ providedIn: 'root' })
 export class CartApiService {
-    public pathBase: string = "https://litretherproductwebapi.azurewebsites.net/api/cart";
+    public pathBase: string = "https://localhost:5001/api/cart";
+    //public pathBase: string = "https://litretherproductwebapi.azurewebsites.net/api/cart";
 
     constructor(private http: HttpClient) {
     }
@@ -14,7 +15,7 @@ export class CartApiService {
         return this.http.get<IFoundProduct[]>(`${this.pathBase}`);
     }
 
-    public CreateCart(productId: number){
-        return this.http.post(`${this.pathBase}/${productId}`, null).subscribe((data:any)=>{console.log(data)});
+    public CreateCart(productId: number) {
+        return this.http.post(`${this.pathBase}/${productId}`, null).subscribe((data: any) => { console.log(data) });
     }
 }

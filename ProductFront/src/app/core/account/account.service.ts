@@ -5,56 +5,57 @@ import { IAuthAccount, IAuthResponse, IRegAccount } from "../interfaces/accounts
 import { tap, catchError } from "rxjs/operators";
 import { Router } from "@angular/router";
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class AccountService {
 
     public error$: Subject<string> = new Subject<string>();
-    public pathBase: string = "https://litretherproductwebapi.azurewebsites.net/api/account";
+    public pathBase: string = "https://localhost:5001/api/account";
+    //public pathBase: string = "https://litretherproductwebapi.azurewebsites.net/api/account";
     constructor(private http: HttpClient,
         private router: Router) { }
 
     get token(): string | null {
         const expiresDate = new Date(String(localStorage.getItem('fb-token-exp')));
-        if(new Date() > expiresDate){
+        if (new Date() > expiresDate) {
             this.logout();
             return null;
         }
         return localStorage.getItem('fb-token');
     }
 
-    isClient():boolean{
-        if(localStorage.getItem('fb-isClient') == "true")
+    isClient(): boolean {
+        if (localStorage.getItem('fb-isClient') == "true")
             return true;
         return true;
     }
 
-    login(authAccount: IAuthAccount): Observable<any>{
+    login(authAccount: IAuthAccount): Observable<any> {
         return this.http.post(`${this.pathBase}/login`, authAccount)
-        .pipe(
-            tap((response: any) => this.setToken(response)),
-            catchError(this.handleError.bind(this))
-        );
+            .pipe(
+                tap((response: any) => this.setToken(response)),
+                catchError(this.handleError.bind(this))
+            );
     }
 
-    registration(regAccount: IRegAccount): Observable<any>{
+    registration(regAccount: IRegAccount): Observable<any> {
         return this.http.post(`${this.pathBase}`, regAccount)
-        .pipe(
-            tap((response: any) => this.setToken(response)),
-            catchError(this.handleError.bind(this))
-        );
+            .pipe(
+                tap((response: any) => this.setToken(response)),
+                catchError(this.handleError.bind(this))
+            );
     }
 
-    logout(){
+    logout() {
         this.setToken(null);
         this.router.navigate(['']);
     }
 
-    isAuthenticated(): boolean{
+    isAuthenticated(): boolean {
         return !!this.token;
     }
 
-    handleError(error: HttpErrorResponse){
-        const {message} = error.error.error;
+    handleError(error: HttpErrorResponse) {
+        const { message } = error.error.error;
 
         switch (message) {
             case 'INVALID_USERNAME':
@@ -69,16 +70,16 @@ export class AccountService {
             default:
                 this.error$.next('ok');
         }
-        
-        return throwError(error);                                   
+
+        return throwError(error);
     }
-    
-    private setToken(response: IAuthResponse | null){
-        if(response){
-            const expiresDate = new Date(new Date().getTime() + 60*60*1000);
+
+    private setToken(response: IAuthResponse | null) {
+        if (response) {
+            const expiresDate = new Date(new Date().getTime() + 60 * 60 * 1000);
             localStorage.setItem('fb-token', response.token);
             localStorage.setItem('fb-token-exp', expiresDate.toString());
-            if(response.roles.indexOf('Manager') == -1 && response.roles.indexOf('Administrator') == -1)
+            if (response.roles.indexOf('Manager') == -1 && response.roles.indexOf('Administrator') == -1)
                 localStorage.setItem('fb-isClient', "true");
         } else {
             localStorage.clear();
