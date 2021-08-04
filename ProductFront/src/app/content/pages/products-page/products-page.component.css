@@ -1,21 +1,21 @@
 .products-page{
     display: flex;
-    padding: 25px;
 }
 
 .filter-panel{
+    position:relative; 
     padding: 20px;
     background-color: var(--light-gray-input-color);
-    color: Black;
-    width: 350px;
-    min-width: 350px;
     border-radius: 20px;
+    height: 75vh;
+    min-width: 300px;
+    width: 20vw;
 }
 
 .search-input{
+    color: white;
     padding-left: 5px;
     border: none;
-    width: 75%;
     height: 28px;
     margin: 6px 0;
     border-radius: 10px 0 0 10px;
@@ -48,7 +48,7 @@
 }
 
 .categories-list li{
-    margin-left: 10px;
+    width: max-content;
     transition: margin-left 2s reverse;
     font-size: 25px;
     margin-top: 10px;
@@ -65,13 +65,8 @@
 }
 
 .products-list{
-    font-size: 16px;   
     display: inline-block;
-}
-
-.products-panel{
-    margin-left: 20px;
-    width: 1000px;
+    font-size: 16px;   
 }
 
 .product-card{
@@ -79,7 +74,6 @@
     border: solid 1px white;
     color: white;
     width: 175px;
-    height: 260px;
     margin: 4px 8px;
     padding: 10px;
 }
@@ -95,26 +89,12 @@
     justify-content: space-between;
 }
 
-p{
-    display: flex;
-    justify-content: space-between;
-}
-
 .card-img{
     height: 25px;
 }
 
 .card-img:hover{
     cursor: pointer;
-}
-
-li{
-    list-style-type: none;
-}
-
-.loading{
-    font-size: 30px;
-    color:white;
 }
 
 .card-buttons{
@@ -125,17 +105,15 @@ li{
 
 .pagination {
     display: flex;
-    margin-top: 100px;
     justify-content: space-evenly;
+    margin-left: -20px;
+    width: 300px;
 }
   
 .pagination a {
     background-color: white;
-    color: black;
-    float: left;
     padding: 6px 12px;
-    text-decoration: none;
-    border: white 1px solid;
+    border: black 1px solid;
     margin-left: 2px;
 }
   

@@ -1,15 +1,14 @@
-
 :root{
     font-size: 20px;
-    --back-ground-color: black;
-    --gray-block-color: #292929;
+    --gray-block-color: #001514;
     --light-brown-input-color: #C2A080;
     --light-gray-input-color: #C8BBB5;
+
 }
 
 body{
     margin:0 auto;
-    width: 75%;
+    width: 85%;
     -khtml-user-select: none; user-select: none;
     background: url('assets/img/home-bg.jpg') no-repeat fixed;
     background-color: black;
@@ -26,6 +25,10 @@ a{
     cursor: pointer;
 }
 
+li{
+    list-style-type: none;
+}
+
 form{
     min-width: 240px;
     padding: 15px;
@@ -39,11 +42,9 @@ form{
     background: var(--gray-block-color);
     border-radius: 33px;
     color: white;
-    font-size: 2.5vh;
 }
 
 .form-input{
-    font-size: 18px;
     padding-left: 5px;
     background-color: var(--light-brown-input-color);
     border: none;
@@ -51,6 +52,7 @@ form{
     min-height: 30px;
     margin: 5px 0;
     border-radius: 10px;
+    font-size: 16px;
 }
 
 .form-logo{
@@ -67,6 +69,7 @@ form{
     display: block;
     margin: 10px auto;
     border-radius: 10px;
+    font-size: 16px;
 }
 
 .form-message{

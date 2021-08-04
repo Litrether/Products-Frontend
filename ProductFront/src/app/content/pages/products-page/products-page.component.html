@@ -1,14 +1,11 @@
 <div class="products-page">
     <div class="filter-panel">
-
         <input type="text" id="search-input" class="search-input" (input)="search()" placeholder="Search">
         <select class="currency-select" id="currency-select" (change)="changeCurrency()">
             <option selected value="USD">USD</option>
             <option value="EUR">EUR</option>
             <option value="RUB">RUB</option>
         </select>
-        <input type="text" id="currency-min-input" class="min-cost-input" (input)="search()" placeholder="Minimal cost">
-        <input type="text" id="currency-min-input" class="max-cost-input" (input)="search()" placeholder="Minimal cost">
 
         <ul class="categories-list">
             <li routerLinkActive="active">
@@ -34,8 +31,10 @@
             <li routerLinkActive="active">
                 <a (click)="changeCategory('Confectionery')"> Confectionery </a>
             </li>
+            
         </ul>
 
+        
         <div class="pagination">
             <a (click)="leftPage()">&laquo;</a>
             <a class="active"> {{params.pageNumber}} </a>
@@ -43,7 +42,8 @@
         </div>
     </div>
 
-    <div class="products-panel" *ngIf="products$ | async as products; else loading">
+    
+    <div >
         <ul class="products-list" *ngFor="let product of products">
             <li class="product-card">
                 <img class="card-product-img" src="assets/img/account.png">
@@ -64,6 +64,7 @@
             </li>
         </ul>
     </div>
+    
 </div>
 
 <ng-template #loading>

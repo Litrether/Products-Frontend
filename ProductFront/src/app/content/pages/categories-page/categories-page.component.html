@@ -1,18 +1,33 @@
-<div class="categoryId">
-<input type="number" id="input-id">
-
-<button (click)="getId()"> send id! </button>
-    <p>{{id}}  -  {{category?.name}}</p>
-
-</div>
-
-<div class="categoryId">
-    <input type="text" id="input-search" (input)="search()">
+<div class="providers-page">
+    <div class="filter-panel" >
+        <h2>Categories manage</h2>
     
-        <p>{{params.searchTerm}}</p>
-        <ul class="list">
-            <li class="categoryTable" *ngFor="let category of categories" >
-                <p>id: {{category?.id}}  -  {{category?.name}} </p>
-            </li>
-        </ul>
-</div>
+        <input  type="text" (input)="search()" placeholder="Search" id="search-input" >
+           
+        
+
+    </div>
+    <table>
+        <tr>
+            <td>Id</td>
+            <td class="td-name">Name</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+        <tr *ngFor="let category of categories">
+            <td>{{category.id}}</td>
+
+            <td class="td-name" *ngIf="editParams.categoryId != category.id; else editItem">{{category.name}}</td>
+
+            <td><img class="list-img" src="assets/img/edit.png" alt="edit" (click)="beginEdit(category)"></td>
+            <td><img class="list-img" src="assets/img/delete.png" alt="delete" (click)="deleteItem(category)"></td>
+        </tr>
+    </table>
+    </div>
+
+    <ng-template #editItem>
+        <td class="td-name">
+            <input type="text" id="edit-input">
+            <input type="button" value="ok" (click)="endEdit()">
+        </td>
+    </ng-template>

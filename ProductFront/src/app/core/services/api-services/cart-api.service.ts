@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParamsOptions } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { IFoundProduct } from "../../interfaces/products-interfaces";
+import { IProduct } from "../../interfaces/products-interfaces";
 
 @Injectable({ providedIn: 'root' })
 export class CartApiService {
@@ -11,7 +11,7 @@ export class CartApiService {
     }
 
     public GetCartProducts() {
-        return this.http.get<IFoundProduct[]>(`${this.pathBase}`);
+        return this.http.get<IProduct[]>(`${this.pathBase}`);
     }
 
     public CreateCart(productId: number) {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AccountService } from 'src/app/core/account/account.service';
-import { IProduct, IFoundProduct } from 'src/app/core/interfaces/products-interfaces';
+import { IProduct } from 'src/app/core/interfaces/products-interfaces';
 import { CartApiService } from 'src/app/core/services/api-services/cart-api.service';
 import { ProductApiService } from 'src/app/core/services/api-services/product-api.service';
 
@@ -12,8 +12,9 @@ import { ProductApiService } from 'src/app/core/services/api-services/product-ap
   styleUrls: ['./products-page.component.css']
 })
 export class ProductsPageComponent implements OnInit {
-  products$: Observable<IFoundProduct[]>;
+  products: IProduct[];
   currCurrency: string = 'USD';
+  pagination: any;
 
   public params = {
     searchTerm: '',
@@ -36,18 +37,20 @@ export class ProductsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.products$ = this.productService.GetAllProducts(this.params);
-    this.ngOnInit();
+    this.productService.GetAllProducts(this.params).subscribe((resp:any)=>{
+      console.log(resp);
+      this.pagination = resp.headers.get('pagination');
+        this.products = resp.body;
+    })
   }
 
-  DeleteItem(product: IFoundProduct) {
+  DeleteItem(product: IProduct) {
     if (!confirm(`Are you sure you want to delete ${product.name} ?`)) {
       return;
     }
     this.productService.DeleteProduct(product.id).subscribe(() => {
-      this.products$ = this.productService.GetAllProducts(this.params);
+      this.ngOnInit();
     });
-    this.ngOnInit();
   }
 
 
@@ -87,7 +90,7 @@ export class ProductsPageComponent implements OnInit {
     })
 
     if (lengthNextPage > 0) {
-      this.products$ = this.productService.GetAllProducts(this.params);
+      this.ngOnInit();
     }
   }
 }

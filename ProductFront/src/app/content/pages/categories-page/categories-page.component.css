@@ -1,7 +1,49 @@
-.categoryTable{
-    background-color: whitesmoke;
+.providers-page{
+    display: flex;
+}
+    
+.filter-panel{
+    padding: 20px;
+    background-color: var(--light-gray-input-color);
+    border-radius: 20px;
+    height: 75vh;
+    width: 20vw;
 }
 
-.categoryId{
-    background-color: white;
+table{
+    height: 50px;
+    margin-left: 20px;
+    text-align: left;
 }
+
+table td {
+    padding: 0px 15px;
+}
+
+tr{
+    height: 47.5px;
+    background-color: var(--gray-block-color);
+    color: white;
+}
+
+.list-img{
+    margin-left: 9px;
+    width: 35px;
+}
+.list-img:hover{
+    cursor: pointer;
+}
+
+input{
+    color: black;
+    padding-left: 5px;
+    border: none;
+    height: 28px;
+    margin: 6px 0;
+    border-radius: 10px;
+}
+
+.td-name{
+    width: 50vw;
+}
+    

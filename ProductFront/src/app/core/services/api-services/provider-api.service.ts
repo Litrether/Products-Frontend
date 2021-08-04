@@ -1,15 +1,15 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { IFoundProvider, IProvider } from "../../interfaces/providers-interfaces";
+import { IProvider } from "../../interfaces/providers-interfaces";
 
 @Injectable({ providedIn: 'root' })
 export class ProviderApiService {
     public pathBase: string = "https://litretherproducts.azurewebsites.net/api/providers";
     constructor(private http: HttpClient) { }
 
-    public GetAllProviders(params: any): Observable<IFoundProvider[]> {
-        return this.http.get<IFoundProvider[]>(`${this.pathBase}`, { params: params });
+    public GetAllProviders(params: any): Observable<IProvider[]> {
+        return this.http.get<IProvider[]>(`${this.pathBase}`, { params: params });
     }
 
     public GetProviderById(id: Number, params: any): Observable<IProvider> {

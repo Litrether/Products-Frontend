@@ -1,9 +1,5 @@
-export interface IProvider {
-    id?: number;
-    name: string;
-}
 
-export interface IFoundProvider {
+export interface IProvider {
     id: number;
     name: string;
 }

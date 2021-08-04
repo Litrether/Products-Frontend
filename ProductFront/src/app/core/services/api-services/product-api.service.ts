@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { IFoundProduct, IProduct } from "../../interfaces/products-interfaces";
+import { IProduct } from "../../interfaces/products-interfaces";
 
 @Injectable({ providedIn: 'root' })
 export class ProductApiService {
@@ -10,8 +10,10 @@ export class ProductApiService {
     constructor(private http: HttpClient) {
     }
 
-    public GetAllProducts(params: any): Observable<IFoundProduct[]> {
-        return this.http.get<IFoundProduct[]>(`${this.pathBase}`, { params: params });
+    public GetAllProducts(params: any): Observable<any> {
+        return this.http.get<any>(`${this.pathBase}`, { params: params, observe: 'response', headers: {'Content-Type': 'application/json', 
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST'} });
     }
 
     public GetProductById(id: Number, params: any): Observable<IProduct> {

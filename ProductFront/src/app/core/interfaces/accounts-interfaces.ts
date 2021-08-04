@@ -11,7 +11,6 @@ export interface IRegAccount {
 export interface IAuthAccount {
     username: string;
     password: string;
-    returnSecureToken?: boolean;
 }
 
 export interface IAuthResponse{

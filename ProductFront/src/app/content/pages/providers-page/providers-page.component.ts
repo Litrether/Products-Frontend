@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IProvider, IFoundProvider} from 'src/app/core/interfaces/providers-interfaces';
+import { IProvider} from 'src/app/core/interfaces/providers-interfaces';
 import { ProviderApiService } from 'src/app/core/services/api-services/provider-api.service';
 
 @Component({
@@ -10,12 +10,12 @@ import { ProviderApiService } from 'src/app/core/services/api-services/provider-
 })
 export class ProvidersPageComponent implements OnInit {
 
-  providers: IFoundProvider[] = [];
+  providers: IProvider[] = [];
 
   private params = {
     searchTerm: '',
-    pageSize: null,
-    pageNumber: null,
+    pageSize: 10,
+    pageNumber: 1,
     orderBy: ''
   }
 
@@ -24,7 +24,14 @@ export class ProvidersPageComponent implements OnInit {
     }
     
   ngOnInit(): void {
-    this.providerService.GetAllProviders(this.params).subscribe((data: IFoundProvider[]) => this.providers=data);
+    this.providerService.GetAllProviders(this.params).subscribe(
+      (data: IProvider[]) => this.providers=data);
+  }
+
+  search() {
+    this.params.searchTerm = (<HTMLInputElement>(document.getElementById('search-input'))).value;
+    this.params.pageNumber = 1;
+    this.ngOnInit();
   }
 
   addItem() {
@@ -35,8 +42,7 @@ export class ProvidersPageComponent implements OnInit {
     if(!confirm('Are you sure want to delete ${provider.name}?')){
       return;
     }
-    //this.providerService.DeleteProvider(provider.id).subscribe(() => {
-      //this.providers$ = this.providerService.GetAllProviders();
-    //})
-  }
+    this.providerService.DeleteProvider(provider.id);
+    
+    }
 }
