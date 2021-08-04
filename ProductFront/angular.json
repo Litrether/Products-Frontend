@@ -30,8 +30,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "src/assets/fonts/Sumana/Sumana-Regular.ttf"
+              "src/styles.css"
             ],
             "scripts": []
           },

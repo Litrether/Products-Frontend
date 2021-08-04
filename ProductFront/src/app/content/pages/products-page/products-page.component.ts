@@ -32,10 +32,12 @@ export class ProductsPageComponent implements OnInit {
     private productService: ProductApiService,
     public accountService: AccountService,
     public cartApiService: CartApiService) {
+    document.body.style.backgroundImage = "url('assets/img/products-bg.jpg')";
   }
 
   ngOnInit(): void {
-    this.query();
+    this.products$ = this.productService.GetAllProducts(this.params);
+    this.ngOnInit();
   }
 
   DeleteItem(product: IFoundProduct) {
@@ -45,11 +47,9 @@ export class ProductsPageComponent implements OnInit {
     this.productService.DeleteProduct(product.id).subscribe(() => {
       this.products$ = this.productService.GetAllProducts(this.params);
     });
+    this.ngOnInit();
   }
 
-  query() {
-    this.products$ = this.productService.GetAllProducts(this.params);
-  }
 
   addItem() {
     const log = this.router.navigate(['/user', 'productDetail'])
@@ -58,25 +58,24 @@ export class ProductsPageComponent implements OnInit {
   search() {
     this.params.searchTerm = (<HTMLInputElement>(document.getElementById('search-input'))).value;
     this.params.pageNumber = 1;
-    this.query();
+    this.ngOnInit();
   }
 
   changeCategory(category: string) {
     this.params.categories = category;
     this.params.pageNumber = 1;
-    this.query();
+    this.ngOnInit();
   }
 
   changeCurrency() {
     this.params.currency = (<HTMLInputElement>(document.getElementById('currency-select'))).value;
     this.params.pageNumber = 1;
-    this.query();
+    this.ngOnInit();
   }
 
   leftPage() {
     if (this.params.pageNumber > 1) {
       this.params.pageNumber--;
-      this.query();
     }
   }
 

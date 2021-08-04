@@ -41,7 +41,6 @@
             <a class="active"> {{params.pageNumber}} </a>
             <a (click)="rightPage()">&raquo;</a>
         </div>
-
     </div>
 
     <div class="products-panel" *ngIf="products$ | async as products; else loading">
@@ -65,9 +64,6 @@
             </li>
         </ul>
     </div>
-
-
-
 </div>
 
 <ng-template #loading>

@@ -1,5 +1,6 @@
 
 :root{
+    font-size: 20px;
     --back-ground-color: black;
     --gray-block-color: #292929;
     --light-brown-input-color: #C2A080;
@@ -42,7 +43,7 @@ form{
 }
 
 .form-input{
-    font-size: 14px;
+    font-size: 18px;
     padding-left: 5px;
     background-color: var(--light-brown-input-color);
     border: none;
