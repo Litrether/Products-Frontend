@@ -1,0 +1,27 @@
+table{
+    height: 50px;
+    margin-left: 20px;
+    text-align: left;
+}
+
+table td {
+    padding: 0px 15px;
+}
+
+tr{
+    height: 47.5px;
+    background-color: var(--gray-block-color);
+    color: white;
+}
+
+.list-img{
+    margin-left: 9px;
+    width: 35px;
+}
+.list-img:hover{
+    cursor: pointer;
+}
+
+.td-name{
+    width: 50vw;
+}

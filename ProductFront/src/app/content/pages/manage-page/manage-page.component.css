@@ -1,0 +1,65 @@
+.manage-page{
+    display: flex;
+}
+
+.filter-panel{
+    padding: 20px;
+    background-color: var(--light-gray-input-color);
+    border-radius: 20px;
+    height: 540px;
+    width: 20vw;
+}
+
+input{
+    color: black;
+    padding-left: 5px;
+    border: none;
+    height: 28px;
+    margin: 6px 0;
+    border-radius: 10px;
+}
+
+.purpose-list li{
+    width: max-content;
+    transition: margin-left 2s reverse;
+    font-size: 25px;
+    margin-top: 10px;
+    transition: transform .5s;
+}
+
+.purpose-list li:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.purpose-list li:active{
+    transform: scale(0.95);
+}
+
+table{
+    height: 50px;
+    margin-left: 20px;
+    text-align: left;
+}
+
+table td {
+    padding: 0px 15px;
+}
+
+tr{
+    height: 47.5px;
+    background-color: var(--gray-block-color);
+    color: white;
+}
+
+.list-img{
+    margin-left: 9px;
+    width: 35px;
+}
+.list-img:hover{
+    cursor: pointer;
+}
+
+.td-name{
+    width: 50vw;
+}

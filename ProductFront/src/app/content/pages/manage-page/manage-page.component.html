@@ -1,0 +1,25 @@
+<div class="manage-page">
+    <div class="filter-panel">
+        <h2> Manage </h2>
+
+        <input type="text" (input)="null" placeholder="Search" id="search-input">
+        <ul class="purpose-list">
+            <li routerLinkActive="active">
+                <a [routerLink]="['/user', '/manage','categories']"> Categories </a>
+            </li>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/user','/manage', 'providers']"> Providers </a>
+            </li>
+        </ul>
+    </div>
+
+    <table>
+        <tr>
+            <td>Id</td>
+            <td class="td-name">Name</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+        <router-outlet></router-outlet>
+    </table>
+</div>
