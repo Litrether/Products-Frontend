@@ -7,13 +7,10 @@ import { IProduct } from "../../interfaces/products-interfaces";
 export class ProductApiService {
     public pathBase: string = "https://litretherproducts.azurewebsites.net/api/products";
 
-    constructor(private http: HttpClient) {
-    }
+    constructor(private http: HttpClient) { }
 
     public GetAllProducts(params: any): Observable<any> {
-        return this.http.get<any>(`${this.pathBase}`, { params: params, observe: 'response', headers: {'Content-Type': 'application/json', 
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST'} });
+        return this.http.get<any>(`${this.pathBase}`, { params: params, observe: 'response' });
     }
 
     public GetProductById(id: Number, params: any): Observable<IProduct> {

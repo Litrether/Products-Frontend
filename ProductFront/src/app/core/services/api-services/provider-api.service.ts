@@ -6,10 +6,11 @@ import { IProvider } from "../../interfaces/providers-interfaces";
 @Injectable({ providedIn: 'root' })
 export class ProviderApiService {
     public pathBase: string = "https://litretherproducts.azurewebsites.net/api/providers";
+
     constructor(private http: HttpClient) { }
 
-    public GetAllProviders(params: any): Observable<IProvider[]> {
-        return this.http.get<IProvider[]>(`${this.pathBase}`, { params: params });
+    public GetAllProviders(params: any): Observable<any> {
+        return this.http.get<any>(`${this.pathBase}`, { params: params, observe: 'response' });
     }
 
     public GetProviderById(id: Number, params: any): Observable<IProvider> {
@@ -21,7 +22,8 @@ export class ProviderApiService {
     }
 
     public UpdateProvider(provider: IProvider): Observable<IProvider> {
-        return this.http.put<IProvider>(`${this.pathBase}/${provider.id}`, provider)
+        console.log({ name: provider.name })
+        return this.http.put<IProvider>(`${this.pathBase}/${provider.id}`, { name: provider.name })
     }
 
     public DeleteProvider(id: Number): Observable<any> {

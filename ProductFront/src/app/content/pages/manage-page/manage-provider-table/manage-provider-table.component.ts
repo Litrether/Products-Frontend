@@ -10,12 +10,13 @@ import { ProviderApiService } from 'src/app/core/services/api-services/provider-
   styleUrls: ['./manage-provider-table.component.css']
 })
 export class ManageProviderTableComponent implements OnInit {
-
   providers: IProvider[] = [];
   pagination: IPagination;
+
+  editId: number = -1;
   public params = {
     searchTerm: '',
-    pageSize: 5,
+    pageSize: 10,
     pageNumber: 1,
     orderBy: ''
   }
@@ -29,6 +30,11 @@ export class ManageProviderTableComponent implements OnInit {
     })
   }
 
+  orderBy(orderBy: string) {
+    this.params.orderBy = orderBy;
+    this.ngOnInit();
+  }
+
   deleteItem(provider: IProvider) {
     if (!confirm(`Are you sure want to delete ${provider.name}?`)) {
       return;
@@ -36,5 +42,24 @@ export class ManageProviderTableComponent implements OnInit {
     this.providerService.DeleteProvider(provider.id).subscribe(() => {
       this.ngOnInit();
     })
+  }
+
+  editItem(provider: IProvider) {
+    if (this.editId == -1) {
+      this.editId = provider.id;
+    }
+  }
+
+  submitEdit(submit: boolean) {
+    if (submit == true) {
+      var provider: IProvider = {
+        id: this.editId,
+        name: this.params.searchTerm = (<HTMLInputElement>(document.getElementById('editName'))).value
+      }
+      this.providerService.UpdateProvider(provider).subscribe((data: any) =>
+        this.ngOnInit()
+      );
+    }
+    this.editId = -1;
   }
 }

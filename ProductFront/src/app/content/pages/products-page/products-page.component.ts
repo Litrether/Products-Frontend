@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AccountService } from 'src/app/core/account/account.service';
+import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
 import { IProduct } from 'src/app/core/interfaces/products-interfaces';
 import { CartApiService } from 'src/app/core/services/api-services/cart-api.service';
 import { ProductApiService } from 'src/app/core/services/api-services/product-api.service';
@@ -14,7 +15,7 @@ import { ProductApiService } from 'src/app/core/services/api-services/product-ap
 export class ProductsPageComponent implements OnInit {
   products: IProduct[];
   currCurrency: string = 'USD';
-  pagination: any;
+  pagination: IPagination;
 
   public params = {
     searchTerm: '',
@@ -37,10 +38,9 @@ export class ProductsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productService.GetAllProducts(this.params).subscribe((resp:any)=>{
-      console.log(resp);
-      this.pagination = resp.headers.get('pagination');
-        this.products = resp.body;
+    this.productService.GetAllProducts(this.params).subscribe((resp: any) => {
+      this.pagination = JSON.parse(resp.headers.get('pagination'));
+      this.products = resp.body;
     })
   }
 
@@ -79,17 +79,13 @@ export class ProductsPageComponent implements OnInit {
   leftPage() {
     if (this.params.pageNumber > 1) {
       this.params.pageNumber--;
+      this.ngOnInit();
     }
   }
 
   rightPage() {
-    let lengthNextPage: number = 10;
-    this.params.pageNumber++;
-    this.productService.GetAllProducts(this.params).subscribe(data => {
-      lengthNextPage = data.length;
-    })
-
-    if (lengthNextPage > 0) {
+    if (this.params.pageNumber < this.pagination.TotalPages) {
+      this.params.pageNumber++;
       this.ngOnInit();
     }
   }

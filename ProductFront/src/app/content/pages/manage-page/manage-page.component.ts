@@ -8,15 +8,11 @@ import { ManageCategoriesTableComponent } from './manage-categories-table/manage
 })
 export class ManagePageComponent implements OnInit {
 
-  currentPurpose: string;
+  currentPurpose: string = 'Categories';
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  changePurpose(purpose: string) {
-    this.currentPurpose = purpose;
   }
 
 }

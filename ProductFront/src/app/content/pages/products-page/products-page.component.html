@@ -31,10 +31,10 @@
             <li routerLinkActive="active">
                 <a (click)="changeCategory('Confectionery')"> Confectionery </a>
             </li>
-            
+
         </ul>
 
-        
+
         <div class="pagination">
             <a (click)="leftPage()">&laquo;</a>
             <a class="active"> {{params.pageNumber}} </a>
@@ -42,8 +42,8 @@
         </div>
     </div>
 
-    
-    <div >
+
+    <div class="products-panel">
         <ul class="products-list" *ngFor="let product of products">
             <li class="product-card">
                 <img class="card-product-img" src="assets/img/account.png">
@@ -64,7 +64,7 @@
             </li>
         </ul>
     </div>
-    
+
 </div>
 
 <ng-template #loading>

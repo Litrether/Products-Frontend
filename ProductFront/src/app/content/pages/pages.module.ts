@@ -1,14 +1,20 @@
 import { NgModule } from '@angular/core';
 import { PagesRoutingModule } from './pages-routing-module';
 import { PagesComponent } from './pages.component';
-import { AccountPageComponent } from './account-page/account-page.component';
+import { CommonModule } from '@angular/common';
+import { DialogProductFormComponent } from './products-page/dialog-product-form/dialog-product-form.component';
 
 @NgModule({
   declarations: [
     PagesComponent,
+    DialogProductFormComponent,
   ],
   imports: [
+    CommonModule,
     PagesRoutingModule
+  ],
+  exports: [
+    PagesComponent
   ],
   providers: []
 })

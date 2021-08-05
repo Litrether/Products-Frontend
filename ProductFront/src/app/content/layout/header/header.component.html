@@ -12,10 +12,7 @@
                     <a [routerLink]="['/user', 'products']"> Catalog </a>
                </li>
                <li routerLinkActive="active" *ngIf="accountService.isClient">
-                    <a [routerLink]="['/user', 'providers']"> Provider </a>
-               </li>
-               <li routerLinkActive="active" *ngIf="accountService.isClient">
-                    <a [routerLink]="['/user', 'categories']"> Categories </a>
+                    <a [routerLink]="['/user/manage/categories']"> Manage </a>
                </li>
                <li routerLinkActive="active">
                     <a [routerLink]="['/user', 'account']"> <img src="assets\img\account.png" class="account-img"> </a>

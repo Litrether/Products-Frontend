@@ -6,7 +6,7 @@
     padding: 20px;
     background-color: var(--light-gray-input-color);
     border-radius: 20px;
-    height: 540px;
+    min-width: 300px;
     width: 20vw;
 }
 
@@ -36,30 +36,45 @@ input{
     transform: scale(0.95);
 }
 
-table{
+:host ::ng-deep  table{
     height: 50px;
     margin-left: 20px;
     text-align: left;
 }
 
-table td {
+:host::ng-deep  table td {
     padding: 0px 15px;
 }
 
-tr{
+:host::ng-deep  tr{
     height: 47.5px;
     background-color: var(--gray-block-color);
     color: white;
 }
 
-.list-img{
+:host::ng-deep  .list-img{
     margin-left: 9px;
     width: 35px;
 }
-.list-img:hover{
+:host::ng-deep  .list-img:hover{
+    margin-top: 3px;
     cursor: pointer;
 }
 
-.td-name{
+:host::ng-deep .td-name{
+    align-content: "center";
     width: 50vw;
+}
+
+:host::ng-deep .td-header:hover{
+    cursor: pointer;
+}
+
+:host::ng-deep  .edit-input{
+    height: 25px;
+    margin: 10px 0;
+}
+
+:host::ng-deep .edit-img{
+    width: 25px;
 }

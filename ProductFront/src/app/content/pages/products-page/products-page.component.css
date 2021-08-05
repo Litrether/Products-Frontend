@@ -7,9 +7,7 @@
     padding: 20px;
     background-color: var(--light-gray-input-color);
     border-radius: 20px;
-    height: 75vh;
     min-width: 300px;
-    width: 20vw;
 }
 
 .search-input{
@@ -127,3 +125,6 @@
       cursor: pointer;
 }
 
+.products-panel{
+    max-width: 70%;
+}

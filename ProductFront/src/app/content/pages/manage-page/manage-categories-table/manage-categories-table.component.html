@@ -1,12 +1,24 @@
-<tr *ngFor="let category of categories">
-    <td>{{category.id}}</td>
-    <td class="td-name">{{category.name}}</td>
-    <td><img class="list-img" src="assets/img/edit.png" alt=""></td>
-    <td><img class="list-img" src="assets/img/delete.png" alt=""></td>
-</tr>
-<tr *ngFor="let category of categories">
-    <td>{{category.id}}</td>
-    <td class="td-name">{{category.name}}</td>
-    <td><img class="list-img" src="assets/img/edit.png" alt=""></td>
-    <td><img class="list-img" src="assets/img/delete.png" alt=""></td>
-</tr>
+<div class="wapper">
+    <table>
+        <tr>
+            <td class="td-header " (click)="orderBy('id')">Id </td>
+            <td class="td-header td-name" (click)="orderBy('name')">Name</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+        <tr *ngFor="let category of categories">
+            <td>{{category.id}}</td>
+            <td class="td-name" *ngIf="editId != category.id; else editTemplate">{{category.name}}</td>
+            <td><img class="list-img" src="assets/img/edit.png" alt="edit" (click)="editItem(category)"></td>
+            <td><img class="list-img" src="assets/img/delete.png" alt="delete" (click)="deleteItem(category)"></td>
+        </tr>
+    </table>
+</div>
+
+<ng-template #editTemplate>
+    <td class="td-name">
+        <input class="edit-input" type="text" id="editName">
+        <img class="edit-img" src="assets/img/ok.png" alt="ok" (click)="submitEdit(true)">
+        <img class="edit-img" src="assets/img/cancel.png" alt="cancel" (click)="submitEdit(false)">
+    </td>
+</ng-template>
