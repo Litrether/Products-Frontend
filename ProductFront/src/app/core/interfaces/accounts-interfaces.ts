@@ -4,8 +4,7 @@ export interface IRegAccount {
     username: string;
     password: string;
     email: string;
-    phoneNumber: string;
-    roles: string [] | string;
+    roles: string[] | string;
 }
 
 export interface IAuthAccount {
@@ -13,7 +12,18 @@ export interface IAuthAccount {
     password: string;
 }
 
-export interface IAuthResponse{
+export interface IAuthResponse {
     token: string;
-    roles: string [] | string;
+    roles: string[] | string;
+}
+
+export interface IAccountData {
+    firstName: string;
+    lastName: string;
+    username: string;
+    email: string;
+}
+export interface IChangePassword {
+    oldPassword: string;
+    newPassword: string;
 }

@@ -1,12 +1,12 @@
-<form class="form" [formGroup]="form" (ngSubmit)="submit()">
+<form class="card" [formGroup]="form" (ngSubmit)="submit()">
 
     <img src="assets/img/logo.png" class="form-logo" alt="logo">
 
-    <div class="alert alert-danger" *ngIf="accountService.error$ | async as error"> {{error}} </div>
+    <div class="alert alert-danger" *ngIf="authService.error$ | async as error"> {{error}} </div>
     <div class="alert alert-info" *ngIf="message"> {{message}} </div>
 
-    <div class="form-control" >
-        <input class="form-input" id="username" type="text" formControlName="username" placeholder="Username" >
+    <div class="form-control">
+        <input class="form-input" id="username" type="text" formControlName="username" placeholder="Username">
         <div class="validation" *ngIf="form.get('username')?.invalid && form.get('username')?.touched">
             <small>Username is required</small>
         </div>

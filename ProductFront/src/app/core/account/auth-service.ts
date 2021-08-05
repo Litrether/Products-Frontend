@@ -6,7 +6,7 @@ import { tap, catchError } from "rxjs/operators";
 import { Router } from "@angular/router";
 
 @Injectable({ providedIn: 'root' })
-export class AccountService {
+export class AuthService {
 
     public error$: Subject<string> = new Subject<string>();
     public pathBase: string = "https://litretherproducts.azurewebsites.net/api/account";

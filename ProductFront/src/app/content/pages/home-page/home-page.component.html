@@ -6,7 +6,7 @@
         selected products from us, with a 30%
         discount on the first purchase!
     </p>
-    <input *ngIf="accountService.isAuthenticated();else signin" class="home-btn" type="button" value="Catalog"
+    <input *ngIf="authService.isAuthenticated();else signin" class="home-btn" type="button" value="Catalog"
         [routerLink]="['/user', '/products']">
 </div>
 

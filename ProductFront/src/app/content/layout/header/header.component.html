@@ -1,7 +1,7 @@
 <nav>
      <div class="header">
           <img src="assets/img/logo.png" class="header-logo" alt="logo">
-          <ul class="header-list" *ngIf="accountService.isAuthenticated();else signin">
+          <ul class="header-list" *ngIf="authService.isAuthenticated();else signin">
                <li routerLinkActive="active">
                     <a [routerLink]="['']">Home </a>
                </li>
@@ -11,7 +11,7 @@
                <li routerLinkActive="active">
                     <a [routerLink]="['/user', 'products']"> Catalog </a>
                </li>
-               <li routerLinkActive="active" *ngIf="accountService.isClient">
+               <li routerLinkActive="active" *ngIf="authService.isClient">
                     <a [routerLink]="['/user/manage/categories']"> Manage </a>
                </li>
                <li routerLinkActive="active">

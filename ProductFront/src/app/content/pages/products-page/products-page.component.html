@@ -56,15 +56,14 @@
                 <div class="manage-card-buttons">
                     <img class="card-img" src="assets/img/basket.png" (click)="cartApiService.CreateCart(product.id)">
                     <img class="card-img" src="assets/img/edit.png" (click)="cartApiService.CreateCart(product.id)"
-                        *ngIf="!accountService.isClient()">
+                        *ngIf="!authService.isClient()">
                     <img class="card-img" src="assets/img/delete.png" (click)="DeleteItem(product)"
-                        *ngIf="!accountService.isClient()">
+                        *ngIf="!authService.isClient()">
                 </div>
 
             </li>
         </ul>
     </div>
-
 </div>
 
 <ng-template #loading>

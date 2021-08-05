@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { AccountService } from 'src/app/core/account/account.service';
+import { AuthService } from 'src/app/core/account/auth-service';
 import { IAuthAccount } from 'src/app/core/interfaces/accounts-interfaces';
 
 @Component({
@@ -16,22 +16,22 @@ export class LoginPageComponent implements OnInit {
   message: string;
 
 
-  constructor(public accountService: AccountService,
-              private router: Router,
-              private route: ActivatedRoute,
-              private fb: FormBuilder) { 
-                  document.body.style.backgroundImage  = "url('assets/img/login-bg.jpg')";
-              }
+  constructor(public authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private fb: FormBuilder) {
+    document.body.style.backgroundImage = "url('assets/img/login-bg.jpg')";
+  }
 
   ngOnInit() {
-    if(this.accountService.isAuthenticated()){
+    if (this.authService.isAuthenticated()) {
       this.router.navigate(['']);
     }
 
-    this.route.queryParams.subscribe( (params: Params) => {
-      if(params.loginAgain){
+    this.route.queryParams.subscribe((params: Params) => {
+      if (params.loginAgain) {
         this.message = 'Please, enter data';
-      } else if (params.authFieled){
+      } else if (params.authFieled) {
         this.message = 'Session ended. Enter data again.'
       }
     });
@@ -43,8 +43,8 @@ export class LoginPageComponent implements OnInit {
 
   }
 
-  submit(){
-    if(this.form.invalid){
+  submit() {
+    if (this.form.invalid) {
       return;
     }
 
@@ -55,7 +55,7 @@ export class LoginPageComponent implements OnInit {
       password: this.form.value.password
     }
 
-    this.accountService.login(authAccount).subscribe(() => {
+    this.authService.login(authAccount).subscribe(() => {
       this.form.reset();
       this.router.navigate(['/user', "products"]);
       this.submitted = false;

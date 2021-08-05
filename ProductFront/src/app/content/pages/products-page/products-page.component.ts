@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AccountService } from 'src/app/core/account/account.service';
+import { AuthService } from 'src/app/core/account/auth-service';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
 import { IProduct } from 'src/app/core/interfaces/products-interfaces';
 import { CartApiService } from 'src/app/core/services/api-services/cart-api.service';
@@ -32,7 +31,7 @@ export class ProductsPageComponent implements OnInit {
 
   constructor(private router: Router,
     private productService: ProductApiService,
-    public accountService: AccountService,
+    public authService: AuthService,
     public cartApiService: CartApiService) {
     document.body.style.backgroundImage = "url('assets/img/products-bg.jpg')";
   }
@@ -75,6 +74,7 @@ export class ProductsPageComponent implements OnInit {
     this.params.pageNumber = 1;
     this.ngOnInit();
   }
+
 
   leftPage() {
     if (this.params.pageNumber > 1) {

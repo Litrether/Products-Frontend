@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { AccountService } from 'src/app/core/account/account.service';
+import { AuthService } from 'src/app/core/account/auth-service';
 import { IRegAccount } from 'src/app/core/interfaces/accounts-interfaces';
 
 @Component({
@@ -15,7 +15,7 @@ export class SignupPageComponent implements OnInit {
   submitted: boolean = false;
   message: string;
 
-  constructor(public accountService: AccountService,
+  constructor(public authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder) {
@@ -24,7 +24,7 @@ export class SignupPageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if (this.accountService.isAuthenticated()) {
+    if (this.authService.isAuthenticated()) {
       this.router.navigate(['']);
     }
 
@@ -43,7 +43,6 @@ export class SignupPageComponent implements OnInit {
       password: ['', Validators.required],
       repeatedPassword: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: [''],
       roles: [''],
     });
   }
@@ -62,13 +61,12 @@ export class SignupPageComponent implements OnInit {
       username: this.form.value.username,
       password: this.form.value.password,
       email: this.form.value.email,
-      phoneNumber: this.form.value.phoneNumber,
       roles: 'User'
     }
 
 
     if (this.form.value.password == this.form.value.repeatedPassword) {
-      this.accountService.registration(regAccount);
+      this.authService.registration(regAccount);
     }
   }
 }

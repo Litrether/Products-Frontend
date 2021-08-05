@@ -43,3 +43,7 @@ form{
     font-size: 16px;
     display: block;
 }
+
+.card{
+    box-shadow: insed 2px 0px 10px 0px black;
+}

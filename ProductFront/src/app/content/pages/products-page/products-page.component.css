@@ -8,6 +8,7 @@
     background-color: var(--light-gray-input-color);
     border-radius: 20px;
     min-width: 300px;
+    box-shadow: 3px 3px 5px -3px #000000 inset;
 }
 
 .search-input{

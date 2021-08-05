@@ -1,0 +1,23 @@
+.account-page{
+    padding: 0 10vw;
+}
+
+.account-photo{
+    width: 15vw;
+    height: 15vw;
+    transition: box-shadow 1s;
+    transition: transform 1s;
+    border-radius: 100%;
+}
+
+.account-photo:hover{
+    box-shadow: 1px 1px 10px 3px white;
+    transform:scale(1.05);
+}
+
+.account-wrapper{
+    border-radius: 20px;
+    padding: 3vw;
+    background-color: var(--light-gray-input-color);
+    box-shadow: 3px 3px 5px -3px #000000 inset;
+}
