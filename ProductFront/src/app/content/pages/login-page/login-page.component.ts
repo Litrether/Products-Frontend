@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AuthService } from 'src/app/core/account/auth-service';
@@ -10,6 +10,8 @@ import { IAuthAccount } from 'src/app/core/interfaces/accounts-interfaces';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
+
+  @Input() authFailed = false;
 
   public form!: FormGroup;
   submitted: boolean = false;
@@ -24,6 +26,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.authFailed)
     if (this.authService.isAuthenticated()) {
       this.router.navigate(['']);
     }

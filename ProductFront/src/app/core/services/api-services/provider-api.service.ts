@@ -22,7 +22,6 @@ export class ProviderApiService {
     }
 
     public UpdateProvider(provider: IProvider): Observable<IProvider> {
-        console.log({ name: provider.name })
         return this.http.put<IProvider>(`${this.pathBase}/${provider.id}`, { name: provider.name })
     }
 

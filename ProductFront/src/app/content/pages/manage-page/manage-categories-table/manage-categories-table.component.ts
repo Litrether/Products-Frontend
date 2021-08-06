@@ -54,11 +54,12 @@ export class ManageCategoriesTableComponent implements OnInit {
     if (submit == true) {
       var category: ICategory = {
         id: this.editId,
-        name: this.params.searchTerm = (<HTMLInputElement>(document.getElementById('editName'))).value
+        name: (<HTMLInputElement>(document.getElementById('editName'))).value
       }
-      this.categoryService.UpdateCategory(category).subscribe((data: any) =>
+      console.log(category)
+      this.categoryService.UpdateCategory(category).subscribe((data: any) => {
         this.ngOnInit()
-      );
+      });
     }
     this.editId = -1;
   }

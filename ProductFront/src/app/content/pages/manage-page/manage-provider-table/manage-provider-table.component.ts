@@ -54,12 +54,13 @@ export class ManageProviderTableComponent implements OnInit {
     if (submit == true) {
       var provider: IProvider = {
         id: this.editId,
-        name: this.params.searchTerm = (<HTMLInputElement>(document.getElementById('editName'))).value
+        name: (<HTMLInputElement>(document.getElementById('editName'))).value
       }
-      this.providerService.UpdateProvider(provider).subscribe((data: any) =>
+      this.providerService.UpdateProvider(provider).subscribe((data: any) => {
+        console.log(data)
         this.ngOnInit()
-      );
+      });
+      this.editId = -1;
     }
-    this.editId = -1;
   }
 }

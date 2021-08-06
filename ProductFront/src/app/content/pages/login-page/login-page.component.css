@@ -1,15 +1,4 @@
 
-.card{
-    box-shadow: insed 2px 0px 10px 0px black;
-}
-
-
 a{
     color:var(--light-brown-input-color);
-}
-
-body{
-    background: url('src/assets/img/login-bg.jpg') no-repeat;
-    background-size: cover;
-    background-color: black;
 }

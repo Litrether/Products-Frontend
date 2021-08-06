@@ -23,7 +23,7 @@ export class AuthInterseptor implements HttpInterceptor {
                 console.log('Interseptor error');
                 if (error.status === 401) {
                     this.authService.logout();
-                    this.router.navigate(['/admin', 'login'], {
+                    this.router.navigate(['login'], {
                         queryParams: {
                             authFailed: true
                         }

@@ -22,6 +22,8 @@ export class CategoryApiService {
     }
 
     public UpdateCategory(category: ICategory): Observable<ICategory> {
+        this.http.put<ICategory>(`${this.pathBase}/${category.id}`, { name: category.name }).subscribe((data: any) =>
+            console.log(data))
         return this.http.put<ICategory>(`${this.pathBase}/${category.id}`, { name: category.name })
     }
 

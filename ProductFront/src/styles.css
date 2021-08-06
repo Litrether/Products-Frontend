@@ -44,6 +44,7 @@ form{
     background: var(--gray-block-color);
     border-radius: 33px;
     color: white;
+    box-shadow: inset 2px 2px 20px 0px black;
 }
 
 .form-input{
@@ -55,6 +56,7 @@ form{
     margin: 5px 0;
     border-radius: 10px;
     font-size: 16px;
+    box-shadow: inset 1px 1px 5px 0px black;
 }
 
 .form-logo{
@@ -72,6 +74,12 @@ form{
     margin: 10px auto;
     border-radius: 10px;
     font-size: 16px;
+    box-shadow: inset 1px 1px 5px 0px black;
+}
+
+
+.form-btn:active{
+    box-shadow: inset 2px 2px 5px 0px black;
 }
 
 .form-message{
