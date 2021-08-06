@@ -14,8 +14,8 @@ const routes: Routes = [
         component: PagesComponent,
         children: [
             { path: "products", component: ProductsPageComponent },
-            { path: "signup", component: SignupPageComponent },
             { path: "account", component: AccountPageComponent },
+            { path: "signup", component: SignupPageComponent },
             { path: "manage", loadChildren: () => import("./manage-page/manage-page.module").then(p => p.ManagePageModule) },
             { path: "login", component: LoginPageComponent },
             { path: "home", component: HomePageComponent },

@@ -3,11 +3,13 @@
 }
 
 .filter-panel{
-    position:relative; 
+    position:fixed; 
+    top: 10vh;
     padding: 20px;
     background-color: var(--light-gray-input-color);
     border-radius: 20px;
     min-width: 300px;
+    min-height: 530px;
     box-shadow: 3px 3px 5px -3px #000000 inset;
 }
 
@@ -64,6 +66,7 @@
 }
 
 .products-list{
+    top: 10vh;
     display: inline-block;
     font-size: 16px;   
 }
@@ -88,11 +91,11 @@
     justify-content: space-between;
 }
 
-.card-img{
+.manage-card-buttons img{
     height: 25px;
 }
 
-.card-img:hover{
+.manage-card-buttons img:hover{
     cursor: pointer;
 }
 
@@ -103,6 +106,8 @@
 }
 
 .pagination {
+    position:absolute;
+    bottom: 10px;
     display: flex;
     justify-content: space-evenly;
     margin-left: -20px;
@@ -127,5 +132,6 @@
 }
 
 .products-panel{
+    margin-left: 40vh;
     max-width: 70%;
 }

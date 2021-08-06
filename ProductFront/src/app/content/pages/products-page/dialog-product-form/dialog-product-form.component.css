@@ -1,0 +1,16 @@
+form{
+    position:fixed; 
+}
+
+.formhead{
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-exit{
+    height: 20px;
+}
+
+.form-exit:active{
+    padding: 1px 0 0 1px;
+}

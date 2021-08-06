@@ -1,12 +1,3 @@
-.signup-names-input{
-    width: 48%;
-}
-
-.signup-name-input-div{
-    display: flex;
-    justify-content: space-between;
-}
-
 a{
     color:var(--light-brown-input-color);
 }

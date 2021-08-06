@@ -31,59 +31,15 @@ li{
     list-style-type: none;
 }
 
-form{
-    min-width: 240px;
-    padding: 15px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    width: 18vw;
-    height: max-content;
-    background: var(--gray-block-color);
-    border-radius: 33px;
-    color: white;
-    box-shadow: inset 2px 2px 20px 0px black;
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.form-input{
-    padding-left: 5px;
-    background-color: var(--light-brown-input-color);
-    border: none;
-    width: 100%;
-    min-height: 30px;
-    margin: 5px 0;
-    border-radius: 10px;
-    font-size: 16px;
-    box-shadow: inset 1px 1px 5px 0px black;
-}
-
-.form-logo{
-    min-width: 20px;
-    width: 50%;
-}
-
-.form-btn{
-    border: none;
-    font-size: 14px;
-    background:var(--light-brown-input-color);
-    width: 50%;
-    min-height: 30px;
-    display: block;
-    margin: 10px auto;
-    border-radius: 10px;
-    font-size: 16px;
-    box-shadow: inset 1px 1px 5px 0px black;
-}
-
-
-.form-btn:active{
-    box-shadow: inset 2px 2px 5px 0px black;
-}
-
-.form-message{
-    margin: 2px;
-    font-size: 16px;
-    display: block;
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

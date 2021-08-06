@@ -6,7 +6,6 @@
             <option value="EUR">EUR</option>
             <option value="RUB">RUB</option>
         </select>
-
         <ul class="categories-list">
             <li routerLinkActive="active">
                 <a (click)="changeCategory('')">
@@ -31,22 +30,17 @@
             <li routerLinkActive="active">
                 <a (click)="changeCategory('Confectionery')"> Confectionery </a>
             </li>
-
         </ul>
-
-
         <div class="pagination">
             <a (click)="leftPage()">&laquo;</a>
             <a class="active"> {{params.pageNumber}} </a>
             <a (click)="rightPage()">&raquo;</a>
         </div>
     </div>
-
-
     <div class="products-panel">
         <ul class="products-list" *ngFor="let product of products">
             <li class="product-card">
-                <img class="card-product-img" src="assets/img/account.png">
+                <img class="card-product-img" src="{{product.imageUrl}}">
                 <p>{{product.name}}</p>
                 <p>{{product.provider}}</p>
                 <p>
@@ -54,18 +48,13 @@
                 </p>
 
                 <div class="manage-card-buttons">
-                    <img class="card-img" src="assets/img/basket.png" (click)="cartApiService.CreateCart(product.id)">
-                    <img class="card-img" src="assets/img/edit.png" (click)="cartApiService.CreateCart(product.id)"
-                        *ngIf="!authService.isClient()">
-                    <img class="card-img" src="assets/img/delete.png" (click)="DeleteItem(product)"
-                        *ngIf="!authService.isClient()">
+                    <img src="assets/img/basket.png" (click)="cartApiService.CreateCart(product.id)">
+                    <img src="assets/img/edit.png" (click)="editItem(product)" *ngIf="!authService.isClient()">
+                    <img src="assets/img/delete.png" (click)="deleteItem(product)" *ngIf="!authService.isClient()">
                 </div>
 
             </li>
         </ul>
     </div>
+    <router-outlet></router-outlet>
 </div>
-
-<ng-template #loading>
-    <app-loading></app-loading>
-</ng-template>

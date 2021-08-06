@@ -13,8 +13,8 @@ export class ProductApiService {
         return this.http.get<any>(`${this.pathBase}`, { params: params, observe: 'response' });
     }
 
-    public GetProductById(id: Number, params: any): Observable<IProduct> {
-        return this.http.get<IProduct>(`${this.pathBase}/${id}`, { params: params });
+    public GetProductById(id: Number, params: any): Observable<any> {
+        return this.http.get<any>(`${this.pathBase}/${id}`, { params: params });
     }
 
     public AddProduct(product: IProduct, params: any): Observable<IProduct> {

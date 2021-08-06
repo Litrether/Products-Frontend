@@ -64,9 +64,15 @@ export class SignupPageComponent implements OnInit {
       roles: 'User'
     }
 
+    console.log(regAccount);
+
 
     if (this.form.value.password == this.form.value.repeatedPassword) {
       this.authService.registration(regAccount);
+      this.submitted = false;
+    } else {
+      this.submitted = false;
+
     }
   }
 }

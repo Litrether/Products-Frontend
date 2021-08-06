@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { PagesRoutingModule } from './pages-routing-module';
 import { PagesComponent } from './pages.component';
 import { CommonModule } from '@angular/common';
+import { ManagePageModule } from './manage-page/manage-page.module';
+import { ProductsPageModule } from './products-page/products-page.module';
 
 @NgModule({
   declarations: [
@@ -10,6 +12,8 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     PagesRoutingModule,
+    ManagePageModule,
+    ProductsPageModule
   ],
   exports: [
     PagesComponent
