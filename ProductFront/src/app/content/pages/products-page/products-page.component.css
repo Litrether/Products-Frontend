@@ -8,9 +8,14 @@
     padding: 20px;
     background-color: var(--light-gray-input-color);
     border-radius: 20px;
-    min-width: 300px;
+    width: 300px;
     min-height: 530px;
     box-shadow: 3px 3px 5px -3px #000000 inset;
+}
+
+.products-panel{
+    margin-left: 300px;
+    width: 65vw;
 }
 
 .search-input{
@@ -85,7 +90,7 @@
     border: solid 1px white;
     color: white;
     width: 175px;
-    margin: 4px 4px;
+    margin-left: 20px;
     padding: 10px;
 }
 
@@ -138,9 +143,4 @@
 .pagination a:hover:not(.active) {
     background-color: #ddd;
       cursor: pointer;
-}
-
-.products-panel{
-    margin-left: 40vh;
-    max-width: 70%;
 }

@@ -1,64 +1,45 @@
-<div class="products-page">
-    <div class="filter-panel">
-        <input type="text" id="search-input" class="search-input" (input)="search()" placeholder="Search">
-        <select class="currency-select" id="currency-select" (change)="changeCurrency()">
-            <option selected value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="RUB">RUB</option>
-        </select>
-        <a class="create-link" *ngIf="!authService.isClient()" [routerLink]="['/user/products/form']">
-            <img src=" assets/img/create.png" alt="create">
-        </a>
+<router-outlet></router-outlet>
+<div class="filter-panel">
+    <input type="text" id="search-input" class="search-input" (input)="search()" placeholder="Search">
+    <select class="currency-select" id="currency-select" (change)="changeCurrency()">
+        <option selected value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="RUB">RUB</option>
+    </select>
+    <a class="create-link" *ngIf="!authService.isClient()" [routerLink]="['/user/products/form']">
+        <img src=" assets/img/create.png" alt="create">
+    </a>
 
-        <ul class="categories-list">
-            <li routerLinkActive="active">
-                <a (click)="changeCategory('')">
-                    <h2> All categories</h2>
-                </a>
-            </li>
-            <li routerLinkActive="active">
-                <a (click)="changeCategory('Vegetables')"> Vegetables </a>
-            </li>
-            <li routerLinkActive="active">
-                <a (click)="changeCategory('Fruits')"> Fruits </a>
-            </li>
-            <li routerLinkActive="active">
-                <a (click)="changeCategory('Grocery')"> Grocery </a>
-            </li>
-            <li routerLinkActive="active">
-                <a (click)="changeCategory('Meat')"> Meat </a>
-            </li>
-            <li routerLinkActive="active">
-                <a (click)="changeCategory('Dairy Products')"> Dairy Products </a>
-            </li>
-            <li routerLinkActive="active">
-                <a (click)="changeCategory('Confectionery')"> Confectionery </a>
-            </li>
-        </ul>
-        <div class="pagination">
-            <a (click)="leftPage()">&laquo;</a>
-            <a class="active"> {{params.pageNumber}} </a>
-            <a (click)="rightPage()">&raquo;</a>
-        </div>
+    <ul class="categories-list">
+        <li routerLinkActive="active">
+            <a (click)="changeCategory('')">
+                <h3> All categories</h3>
+            </a>
+        </li>
+        <li routerLinkActive="active" *ngFor="let category of categories">
+            <a (click)="changeCategory(category.name)"> {{category.name}} </a>
+        </li>
+    </ul>
+    <div class="pagination">
+        <a (click)="leftPage()">&laquo;</a>
+        <a class="active"> {{prodParams.pageNumber}} </a>
+        <a (click)="rightPage()">&raquo;</a>
     </div>
-    <div class="products-panel">
-        <ul class="products-list" *ngFor="let product of products">
-            <li class="product-card">
-                <img class="card-product-img" src="{{product.imageUrl}}">
-                <p>{{product.name}}</p>
-                <p>{{product.provider}}</p>
-                <p>
-                    {{(product.cost).toFixed(2)}} {{currCurrency}}
-                </p>
-
-                <div class="manage-card-buttons">
-                    <img src="assets/img/basket.png" (click)="cartApiService.CreateCart(product.id)">
-                    <img src="assets/img/edit.png" (click)="editItem(product)" *ngIf="!authService.isClient()">
-                    <img src="assets/img/delete.png" (click)="deleteItem(product)" *ngIf="!authService.isClient()">
-                </div>
-
-            </li>
-        </ul>
-    </div>
-    <router-outlet></router-outlet>
+</div>
+<div class="products-panel">
+    <ul class="products-list" *ngFor="let product of products">
+        <li class="product-card">
+            <img class="card-product-img" src="{{product.imageUrl}}">
+            <p>{{product.name}}</p>
+            <p>{{product.provider}}</p>
+            <p>
+                {{(product.cost).toFixed(2)}} {{currCurrency}}
+            </p>
+            <div class="manage-card-buttons">
+                <img src="assets/img/basket.png" (click)="cartApiService.CreateCart(product.id)">
+                <img src="assets/img/edit.png" (click)="editItem(product)" *ngIf="!authService.isClient()">
+                <img src="assets/img/delete.png" (click)="deleteItem(product)" *ngIf="!authService.isClient()">
+            </div>
+        </li>
+    </ul>
 </div>
