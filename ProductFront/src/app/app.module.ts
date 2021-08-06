@@ -13,7 +13,6 @@ import { HeaderModule } from './content/layout/header/header.module';
 import { AuthGuard } from './core/guards/auth.guard';
 import { LoadingComponent } from './content/layout/loading/loading.component';
 import { PaginationComponent } from './content/layout/pagination/pagination.component';
-import { AccountPageComponent } from './content/pages/account-page/account-page.component';
 import { AuthService } from './core/account/auth-service';
 
 @NgModule({
@@ -24,7 +23,6 @@ import { AuthService } from './core/account/auth-service';
     SignupPageComponent,
     LoadingComponent,
     PaginationComponent,
-    AccountPageComponent,
   ],
   imports: [
     CommonModule,

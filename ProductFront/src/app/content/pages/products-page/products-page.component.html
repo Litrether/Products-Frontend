@@ -6,6 +6,10 @@
             <option value="EUR">EUR</option>
             <option value="RUB">RUB</option>
         </select>
+        <a class="create-link" *ngIf="!authService.isClient()" [routerLink]="['/user/products/form']">
+            <img src=" assets/img/create.png" alt="create">
+        </a>
+
         <ul class="categories-list">
             <li routerLinkActive="active">
                 <a (click)="changeCategory('')">

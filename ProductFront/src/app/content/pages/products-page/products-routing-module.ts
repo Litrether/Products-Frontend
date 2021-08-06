@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "src/app/core/guards/auth.guard";
-import { DialogProductFormComponent } from "./dialog-product-form/dialog-product-form.component";
+import { ProductFormComponent } from "./product-form/product-form.component";
 import { ProductsPageComponent } from "./products-page.component";
 
 const routes: Routes = [
@@ -10,7 +10,7 @@ const routes: Routes = [
         path: "",
         component: ProductsPageComponent,
         children: [
-            { path: "form", component: DialogProductFormComponent },
+            { path: "form", component: ProductFormComponent },
         ],
     },
     {

@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ManageCategoriesTableComponent } from './manage-categories-table/manage-categories-table.component';
 
 @Component({
   selector: 'app-manage-page',

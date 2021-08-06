@@ -16,8 +16,6 @@ export class ProductsPageComponent implements OnInit {
   currCurrency: string = 'USD';
   pagination: IPagination;
 
-  editId: number = -1;
-
   public params = {
     searchTerm: '',
     fields: '',
@@ -45,36 +43,24 @@ export class ProductsPageComponent implements OnInit {
     })
   }
 
-  addItem() {
-    const log = this.router.navigate(['/user', 'form'])
-  }
-
   editItem(product: IProduct) {
-    if (this.editId == -1) {
-      this.editId = product.id;
-
-      this.router.navigate(['/user/products/form'], {
-        state: {
-          options: {
-            product
-          }
+    this.router.navigate(['/user/products/form'], {
+      state: {
+        options: {
+          product
         }
-      });
-    }
+      }
+    });
   }
 
   deleteItem(product: IProduct) {
     if (!confirm(`Are you sure you want to delete ${product.name} ?`)) {
       return;
     }
-    this.productService.DeleteProduct(product.id).subscribe(() => {
+    this.productService.DeleteProduct(product?.id).subscribe(() => {
       this.ngOnInit();
     });
   }
-
-
-
-
 
   search() {
     this.params.searchTerm = (<HTMLInputElement>(document.getElementById('search-input'))).value;
@@ -93,7 +79,6 @@ export class ProductsPageComponent implements OnInit {
     this.params.pageNumber = 1;
     this.ngOnInit();
   }
-
 
   leftPage() {
     if (this.params.pageNumber > 1) {

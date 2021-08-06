@@ -1,9 +1,9 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="formhead">
-        <img src="assets/img/logo.png" class="form-logo" alt="logo">
-        <a><img src="assets/img/cross.png" class="form-exit" alt="exit"></a>
+        <img class="form-logo" src="assets/img/logo.png" alt="logo">
+        <a><img class="form-exit" [routerLink]="['/user/products']" src="assets/img/cross.png" alt="exit"></a>
     </div>
-    <div class="form-control">
+    <div class=" form-control">
         <input id="name" type="name" formControlName="name" placeholder="Product name">
         <div class="validation" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
             <small *ngIf="form.get('name')?.errors?.required">Name is required.</small>

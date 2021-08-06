@@ -65,6 +65,15 @@
     transform: scale(0.95);
 }
 
+.create-link{
+    padding-top: 20px;
+}
+
+.create-link img{
+    width: 28px;
+    height: 28px;
+}
+
 .products-list{
     top: 10vh;
     display: inline-block;

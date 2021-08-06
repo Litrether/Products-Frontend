@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ICategory } from 'src/app/core/interfaces/categories-interfaces';
 import { IProduct } from 'src/app/core/interfaces/products-interfaces';
 import { IProvider } from 'src/app/core/interfaces/providers-interfaces';
@@ -8,13 +9,13 @@ import { ProductApiService } from 'src/app/core/services/api-services/product-ap
 import { ProviderApiService } from 'src/app/core/services/api-services/provider-api.service';
 
 @Component({
-  selector: 'app-dialog-product-form',
-  templateUrl: './dialog-product-form.component.html',
-  styleUrls: ['./dialog-product-form.component.css']
+  selector: 'app-product-form',
+  templateUrl: './product-form.component.html',
+  styleUrls: ['./product-form.component.css']
 })
-export class DialogProductFormComponent implements OnInit {
+export class ProductFormComponent implements OnInit {
 
-  public form!: FormGroup;
+  public form: FormGroup;
   submitted: boolean = false;
   message: string;
 
@@ -31,22 +32,22 @@ export class DialogProductFormComponent implements OnInit {
     orderBy: 'name'
   }
 
-  constructor(private productsService: ProductApiService,
+  constructor(private router: Router,
+    private productsService: ProductApiService,
     private categoryService: CategoryApiService,
     private providerService: ProviderApiService,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    const options = history.state.options;
-    this.product = options && options.product;
-
-    console.log(this.product);
 
     this.categoryService.GetAllCategories(this.params).subscribe((data: any) =>
       this.categories = data.body);
 
     this.providerService.GetAllProviders(this.params).subscribe((data: any) =>
       this.providers = data.body);
+
+    const options = history.state.options;
+    this.product = options && options.product;
 
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -67,5 +68,39 @@ export class DialogProductFormComponent implements OnInit {
   }
 
   submit() {
+    if (this.form.invalid) {
+      return;
+    }
+
+    this.submitted = true;
+
+    let product: IProduct = {
+      name: this.form.value.name,
+      description: this.form.value.description,
+      cost: this.form.value.cost,
+      imageUrl: 'https://i.pinimg.com/originals/49/6c/a0/496ca0854f493248fb57b0d0b6753777.jpg',
+      categoryId: this.form.value.categoryId,
+      providerId: this.form.value.providerId,
+    }
+
+    if (this.isEditMode) {
+      product.id = this.product.id;
+      this, this.productsService.UpdateProduct(product).subscribe(() => {
+        this.form.reset();
+        this.router.navigate(['/user', 'products']);
+        this.submitted = false;
+      }, () => {
+        this.submitted = false;
+        this.isEditMode = false;
+      });
+    } else {
+      this.productsService.AddProduct(product).subscribe(() => {
+        this.form.reset();
+        this.router.navigate(['/user', 'products']);
+        this.submitted = false;
+      }, () => {
+        this.submitted = false;
+      });
+    }
   }
 }

@@ -13,7 +13,7 @@ export class CartApiService {
         return this.http.get<IProduct[]>(`${this.pathBase}`);
     }
 
-    public CreateCart(productId: number) {
+    public CreateCart(productId?: number) {
         return this.http.post(`${this.pathBase}/${productId}`, null).subscribe((data: any) => { console.log(data) });
     }
 }
