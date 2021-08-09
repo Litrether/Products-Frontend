@@ -1,7 +1,6 @@
 <div class="account-page">
     <div class="account-wrapper" ngIf="">
         <img class="account-photo" src="assets/img/account.png" alt="photo">
-
         <div class="account-info">
             <ul>
                 <li>
@@ -15,6 +14,20 @@
                 </li>
                 <li>
                     <p> Email: {{accountData.email}}</p>
+                </li>
+            </ul>
+        </div>
+        <div class="account-control">
+            <button (click)="changePassword()">Change password</button>
+            <button (click)="deleteAccount()">Delete account</button>
+        </div>
+
+        <div class="cart-panel">
+            <ul class="products-list" *ngFor="let product of cartProducts">
+                <li class="product-card">
+                    <img class="card-product-img" src="{{product.imageUrl}}">
+                    <p>{{product.name}}</p>
+                    <p>{{product.provider}}</p>
                 </li>
             </ul>
         </div>

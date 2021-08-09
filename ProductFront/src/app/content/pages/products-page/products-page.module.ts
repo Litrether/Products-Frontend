@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { LoadingComponent } from "../../layout/loading/loading.component";
+import { LoadingModule } from "../../layout/loading/loading.module";
 import { ProductFormComponent } from "./product-form/product-form.component";
 import { ProductsPageComponent } from "./products-page.component";
 import { ProductsPageRoutingModule } from "./products-routing-module";
@@ -17,6 +17,7 @@ import { ProductsPageRoutingModule } from "./products-routing-module";
     FormsModule,
     ReactiveFormsModule,
     ProductsPageRoutingModule,
+    LoadingModule,
   ],
   exports: [
     ProductsPageComponent

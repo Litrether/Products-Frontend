@@ -4,6 +4,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    margin-right: -50%;
     transform: translate(-50%, -50%);
     width: 18vw;
     height: max-content;
@@ -34,7 +35,7 @@
     width: 50%;
 }
 
-:host::ng-deep form button,
+:host::ng-deep button,
 :host::ng-deep form select{
     border: none;
     font-size: 14px;
@@ -49,7 +50,7 @@
 }
 
 
-:host::ng-deep form button:active{
+:host::ng-deep button:active{
     padding: 1px 0 0 1px;
     box-shadow: inset 2px 2px 5px 0px black;
 }

@@ -28,7 +28,7 @@ export class ProductsPageComponent implements OnInit {
     minCost: null,
     maxCost: null,
     pageNumber: 1,
-    pageSize: 10,
+    pageSize: 12,
     orderBy: ''
   }
 
@@ -36,7 +36,7 @@ export class ProductsPageComponent implements OnInit {
     searchTerm: '',
     pageNumber: 1,
     pageSize: 50,
-    orderBy: ''
+    orderBy: 'name'
   }
 
   isLoad: boolean = false;
@@ -54,11 +54,11 @@ export class ProductsPageComponent implements OnInit {
     this.productService.GetAllProducts(this.prodParams).subscribe((resp: any) => {
       this.pagination = JSON.parse(resp.headers.get('pagination'));
       this.products = resp.body;
-      this.isLoad = true;
     })
 
     this.categoyService.GetAllCategories(this.catParams).subscribe((resp: any) => {
       this.categories = resp.body;
+      this.isLoad = true;
     })
   }
 

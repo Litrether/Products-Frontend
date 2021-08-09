@@ -22,3 +22,26 @@
     box-shadow: 1px 1px 10px 3px white;
     transform:scale(1.05);
 }
+
+.account-control{
+    align-items: left;
+    margin-top: 5px;
+    width: 25%;
+}
+
+.products-list{
+    display: inline-block;
+    font-size: 16px;   
+}
+
+.product-card{
+    background-color: var(--gray-block-color);
+    border: solid 1px white;
+    color: white;
+    width: 175px;
+    margin: 0 0 25px 20px;
+    padding: 10px;
+}
+
+
+
