@@ -1,10 +1,11 @@
 import { HttpClient, HttpHeaders, HttpParamsOptions } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { IProduct } from "../../interfaces/products-interfaces";
+import { connectionString } from "src/app/shared/constants/connection.constants";
+import { IProduct } from "../interfaces/products-interfaces";
 
 @Injectable({ providedIn: 'root' })
 export class CartApiService {
-    public pathBase: string = "https://litretherproducts.azurewebsites.net/api/cart";
+    public pathBase: string = `${connectionString}/cart`;
 
     constructor(private http: HttpClient) {
     }

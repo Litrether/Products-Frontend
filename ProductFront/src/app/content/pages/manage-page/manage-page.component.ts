@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { AuthService } from 'src/app/core/account/auth-service';
 
 @Component({
   selector: 'app-manage-page',
@@ -9,7 +10,7 @@ export class ManagePageComponent implements OnInit {
 
   currentPurpose: string = 'Categories';
 
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
   }

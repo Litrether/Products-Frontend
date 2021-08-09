@@ -11,9 +11,9 @@ import { AuthInterseptor } from './core/account/auth-interseptor';
 import { SignupPageComponent } from './content/pages/signup-page/signup-page.component';
 import { HeaderModule } from './content/layout/header/header.module';
 import { AuthGuard } from './core/guards/auth.guard';
-import { LoadingComponent } from './content/layout/loading/loading.component';
 import { PaginationComponent } from './content/layout/pagination/pagination.component';
 import { AuthService } from './core/account/auth-service';
+import { LoadingModule } from './content/layout/loading/loading.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,6 @@ import { AuthService } from './core/account/auth-service';
     HomePageComponent,
     LoginPageComponent,
     SignupPageComponent,
-    LoadingComponent,
     PaginationComponent,
   ],
   imports: [
@@ -32,6 +31,7 @@ import { AuthService } from './core/account/auth-service';
     FormsModule,
     ReactiveFormsModule,
     HeaderModule,
+    LoadingModule
   ],
   providers: [
     AuthGuard,

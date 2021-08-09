@@ -4,9 +4,9 @@ import { AuthService } from 'src/app/core/account/auth-service';
 import { ICategory } from 'src/app/core/interfaces/categories-interfaces';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
 import { IProduct } from 'src/app/core/interfaces/products-interfaces';
-import { CartApiService } from 'src/app/core/services/api-services/cart-api.service';
-import { CategoryApiService } from 'src/app/core/services/api-services/category-api.service';
-import { ProductApiService } from 'src/app/core/services/api-services/product-api.service';
+import { CartApiService } from 'src/app/core/services/cart-api.service';
+import { CategoryApiService } from 'src/app/core/services/category-api.service';
+import { ProductApiService } from 'src/app/core/services/product-api.service';
 
 @Component({
   selector: 'app-products-page',
@@ -39,6 +39,7 @@ export class ProductsPageComponent implements OnInit {
     orderBy: ''
   }
 
+  isLoad: boolean = false;
 
   constructor(private router: Router,
     private productService: ProductApiService,
@@ -49,9 +50,11 @@ export class ProductsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoad = false;
     this.productService.GetAllProducts(this.prodParams).subscribe((resp: any) => {
       this.pagination = JSON.parse(resp.headers.get('pagination'));
       this.products = resp.body;
+      this.isLoad = true;
     })
 
     this.categoyService.GetAllCategories(this.catParams).subscribe((resp: any) => {

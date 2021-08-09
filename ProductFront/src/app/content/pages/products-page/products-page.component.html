@@ -26,7 +26,7 @@
         <a (click)="rightPage()">&raquo;</a>
     </div>
 </div>
-<div class="products-panel">
+<div class="products-panel" *ngIf="isLoad; else loading">
     <ul class="products-list" *ngFor="let product of products">
         <li class="product-card">
             <img class="card-product-img" src="{{product.imageUrl}}">
@@ -43,3 +43,7 @@
         </li>
     </ul>
 </div>
+
+
+<ng-template #loading>
+</ng-template>

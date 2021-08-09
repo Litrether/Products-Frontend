@@ -1,4 +1,4 @@
-<div class="wapper">
+<div *ngIf="isLoad; else loading">
     <table>
         <tr>
             <td class="td-header " (click)="orderBy('id')">Id </td>
@@ -21,4 +21,7 @@
         <img class="edit-img" src="assets/img/ok.png" alt="ok" (click)="submitEdit(true)">
         <img class="edit-img" src="assets/img/cancel.png" alt="cancel" (click)="submitEdit(false)">
     </td>
+</ng-template>
+
+<ng-template #loading>
 </ng-template>

@@ -1,11 +1,12 @@
 import { HttpClient, HttpHeaders, HttpParamsOptions } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { ICategory } from "../../interfaces/categories-interfaces";
+import { connectionString } from "src/app/shared/constants/connection.constants";
+import { ICategory } from "../interfaces/categories-interfaces";
 
 @Injectable({ providedIn: 'root' })
 export class CategoryApiService {
-    public pathBase: string = "https://litretherproducts.azurewebsites.net/api/categories";
+    public pathBase: string = `${connectionString}/categories`;
 
     constructor(private http: HttpClient) { }
 

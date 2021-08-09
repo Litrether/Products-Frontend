@@ -3,6 +3,9 @@
         <h2> {{currentPurpose}} manage </h2>
 
         <input type="text" (input)="null" placeholder="Search" id="search-input">
+        <a class="create-link" *ngIf="!authService.isClient()" [routerLink]="['/user/products/form']">
+            <img src=" assets/img/create.png" alt="create">
+        </a>
         <ul class="purpose-list">
             <li routerLinkActive="active">
                 <a [routerLink]="['/user/manage/categories']" (click)="currentPurpose = 'Categories'"> Categories </a>
@@ -12,5 +15,7 @@
             </li>
         </ul>
     </div>
-    <router-outlet></router-outlet>
+    <div class="contentWrap">
+        <router-outlet></router-outlet>
+    </div>
 </div>

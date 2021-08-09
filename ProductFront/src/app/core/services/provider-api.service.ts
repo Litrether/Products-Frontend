@@ -1,11 +1,12 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { IProvider } from "../../interfaces/providers-interfaces";
+import { IProvider } from "../interfaces/providers-interfaces";
+import { connectionString } from "src/app/shared/constants/connection.constants";
 
 @Injectable({ providedIn: 'root' })
 export class ProviderApiService {
-    public pathBase: string = "https://litretherproducts.azurewebsites.net/api/providers";
+    public pathBase: string = `${connectionString}/providers`;
 
     constructor(private http: HttpClient) { }
 

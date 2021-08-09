@@ -9,7 +9,7 @@
     background-color: var(--light-gray-input-color);
     border-radius: 20px;
     width: 300px;
-    min-height: 530px;
+    min-height: 545px;
     box-shadow: 3px 3px 5px -3px #000000 inset;
 }
 
@@ -80,7 +80,6 @@
 }
 
 .products-list{
-    top: 10vh;
     display: inline-block;
     font-size: 16px;   
 }
@@ -90,7 +89,7 @@
     border: solid 1px white;
     color: white;
     width: 175px;
-    margin-left: 20px;
+    margin: 0 0 25px 20px;
     padding: 10px;
 }
 

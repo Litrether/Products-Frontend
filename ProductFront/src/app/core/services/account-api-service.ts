@@ -1,12 +1,12 @@
 import { HttpClient, HttpHeaders, HttpParamsOptions } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { IAccountData, IChangePassword } from "../../interfaces/accounts-interfaces";
-import { IProduct } from "../../interfaces/products-interfaces";
+import { connectionString } from "src/app/shared/constants/connection.constants";
+import { IAccountData, IChangePassword } from "../interfaces/accounts-interfaces";
 
 @Injectable({ providedIn: 'root' })
 export class AccountApiService {
-    public pathBase: string = "https://litretherproducts.azurewebsites.net/api/account";
+    public pathBase: string = `${connectionString}/account`;
 
     constructor(private http: HttpClient) {
     }

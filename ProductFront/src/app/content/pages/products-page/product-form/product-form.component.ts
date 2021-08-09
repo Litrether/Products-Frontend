@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { ICategory } from 'src/app/core/interfaces/categories-interfaces';
 import { IProduct } from 'src/app/core/interfaces/products-interfaces';
 import { IProvider } from 'src/app/core/interfaces/providers-interfaces';
-import { CategoryApiService } from 'src/app/core/services/api-services/category-api.service';
-import { ProductApiService } from 'src/app/core/services/api-services/product-api.service';
-import { ProviderApiService } from 'src/app/core/services/api-services/provider-api.service';
+import { CategoryApiService } from 'src/app/core/services/category-api.service';
+import { ProductApiService } from 'src/app/core/services/product-api.service';
+import { ProviderApiService } from 'src/app/core/services/provider-api.service';
 
 @Component({
   selector: 'app-product-form',

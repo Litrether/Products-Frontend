@@ -9,7 +9,7 @@ import { ManagePageRoutingModule } from './manage-routing-module';
   declarations: [
     ManagePageComponent,
     ManageCategoriesTableComponent,
-    ManageProviderTableComponent
+    ManageProviderTableComponent,
   ],
   imports: [
     CommonModule,

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ICategory } from 'src/app/core/interfaces/categories-interfaces';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
-import { CategoryApiService } from 'src/app/core/services/api-services/category-api.service';
+import { CategoryApiService } from 'src/app/core/services/category-api.service';
 
 @Component({
   selector: 'app-manage-categories-table',
@@ -12,6 +12,8 @@ import { CategoryApiService } from 'src/app/core/services/api-services/category-
 export class ManageCategoriesTableComponent implements OnInit {
   categories: ICategory[] = [];
   pagination: IPagination;
+
+  isLoad: boolean = false;
 
   editId: number = -1;
   public params = {
@@ -25,8 +27,10 @@ export class ManageCategoriesTableComponent implements OnInit {
     private categoryService: CategoryApiService) { }
 
   ngOnInit(): void {
+    this.isLoad = false;
     this.categoryService.GetAllCategories(this.params).subscribe((resp: any) => {
       this.categories = resp.body;
+      this.isLoad = true;
     })
   }
 

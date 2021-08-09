@@ -3,11 +3,20 @@
 }
 
 .filter-panel{
+    position:fixed; 
+    top: 10vh;
     padding: 20px;
     background-color: var(--light-gray-input-color);
     border-radius: 20px;
-    min-width: 300px;
-    width: 20vw;
+    width: 300px;
+    min-height: 545px;
+    box-shadow: 3px 3px 5px -3px #000000 inset;
+}
+
+.contentWrap{
+    margin-left: 300px;
+    min-height: 545px;
+    width: 65vw;
 }
 
 input{
@@ -17,6 +26,15 @@ input{
     height: 28px;
     margin: 6px 0;
     border-radius: 10px;
+}
+
+.create-link{
+    padding-top: 20px;
+}
+
+.create-link img{
+    width: 28px;
+    height: 28px;
 }
 
 .purpose-list li{

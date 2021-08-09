@@ -1,0 +1,1 @@
+export const connectionString: string = "https://litretherproducts.azurewebsites.net/api";

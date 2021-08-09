@@ -5,6 +5,7 @@ import { AccountPageComponent } from "./account-page/account-page.component";
 import { HomePageComponent } from "./home-page/home-page.component";
 import { LoginPageComponent } from "./login-page/login-page.component";
 import { PagesComponent } from "./pages.component";
+import { ProductsPageModule } from "./products-page/products-page.module";
 import { SignupPageComponent } from "./signup-page/signup-page.component";
 
 const routes: Routes = [
@@ -12,7 +13,7 @@ const routes: Routes = [
         path: "",
         component: PagesComponent,
         children: [
-            { path: "products", loadChildren: () => import("./products-page/products-page.module").then(p => p.ProductsPageModule) },
+            { path: "products", loadChildren: () => ProductsPageModule },
             { path: "account", component: AccountPageComponent },
             { path: "signup", component: SignupPageComponent },
             { path: "manage", loadChildren: () => import("./manage-page/manage-page.module").then(p => p.ManagePageModule) },

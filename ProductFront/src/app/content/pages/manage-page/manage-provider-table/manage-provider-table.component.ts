@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
 import { IProvider } from 'src/app/core/interfaces/providers-interfaces';
-import { ProviderApiService } from 'src/app/core/services/api-services/provider-api.service';
+import { ProviderApiService } from 'src/app/core/services/provider-api.service';
 
 @Component({
   selector: 'app-manage-provider-table',
@@ -12,6 +12,8 @@ import { ProviderApiService } from 'src/app/core/services/api-services/provider-
 export class ManageProviderTableComponent implements OnInit {
   providers: IProvider[] = [];
   pagination: IPagination;
+
+  isLoad: boolean = false;
 
   editId: number = -1;
   public params = {
@@ -25,8 +27,10 @@ export class ManageProviderTableComponent implements OnInit {
     private providerService: ProviderApiService) { }
 
   ngOnInit(): void {
+    this.isLoad = false;
     this.providerService.GetAllProviders(this.params).subscribe((resp: any) => {
       this.providers = resp.body;
+      this.isLoad = true;
     })
   }
 
