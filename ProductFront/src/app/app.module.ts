@@ -31,7 +31,6 @@ import { LoadingModule } from './content/layout/loading/loading.module';
     FormsModule,
     ReactiveFormsModule,
     HeaderModule,
-    LoadingModule
   ],
   providers: [
     AuthGuard,

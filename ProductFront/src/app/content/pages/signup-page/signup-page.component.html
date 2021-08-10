@@ -24,17 +24,17 @@
         </div>
     </div>
     <div class="form-control">
-        <input id="password" type="text" formControlName="password" placeholder="Password">
+        <input id="password" type="password" formControlName="password" placeholder="Password">
         <div class="validation" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
             <small>Password is required</small>
         </div>
     </div>
     <div class="form-control">
-        <input id="repeatedPassword" type="text" formControlName="repeatedPassword" placeholder="Confirm Password">
-        <div class="validation" *ngIf="form.get('repeatedPassword')?.invalid && form.get('repeatedPassword')?.touched">
+        <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Confirm Password">
+        <div class="validation" *ngIf="form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched">
             <small>Confirm Password is required</small>
         </div>
     </div>
     <p class="form-message"> Has account? <a [routerLink]="['/login']"> Sign in now! </a> </p>
-    <button type="submit" [disabled]="form.invalid || submitted">Sign Up</button>
+    <button type="submit" [disabled]="submitted">Sign Up</button>
 </form>

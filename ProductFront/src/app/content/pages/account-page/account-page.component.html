@@ -1,35 +1,41 @@
 <div class="account-page">
-    <div class="account-wrapper" ngIf="">
-        <img class="account-photo" src="assets/img/account.png" alt="photo">
-        <div class="account-info">
-            <ul>
-                <li>
-                    <p> Firstname: {{accountData.firstName}}</p>
-                </li>
-                <li>
-                    <p> Lastname: {{accountData.lastName}}</p>
-                </li>
-                <li>
-                    <p> Username: {{accountData.username}}</p>
-                </li>
-                <li>
-                    <p> Email: {{accountData.email}}</p>
-                </li>
-            </ul>
+    <div class="account-wrapper" *ngIf="isLoad; else loading">
+        <div class="account-panel">
+            <img class="account-photo" src="assets/img/account.png" alt="photo">
+            <div class="account-info">
+                <ul>
+                    <li>
+                        <p> Firstname: {{accountData.firstName}}</p>
+                    </li>
+                    <li>
+                        <p> Lastname: {{accountData.lastName}}</p>
+                    </li>
+                    <li>
+                        <p> Username: {{accountData.username}}</p>
+                    </li>
+                    <li>
+                        <p> Email: {{accountData.email}}</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="account-control">
+                <button (click)="changePassword()">Change password</button>
+                <button (click)="deleteAccount()">Delete account</button>
+            </div>
         </div>
-        <div class="account-control">
-            <button (click)="changePassword()">Change password</button>
-            <button (click)="deleteAccount()">Delete account</button>
-        </div>
-
         <div class="cart-panel">
             <ul class="products-list" *ngFor="let product of cartProducts">
                 <li class="product-card">
-                    <img class="card-product-img" src="{{product.imageUrl}}">
+                    <img class="product-card-img" src="{{product.imageUrl}}">
                     <p>{{product.name}}</p>
                     <p>{{product.provider}}</p>
+                    <img class="card-button" src="assets/img/cross.png" (click)="deleteProductFromCart(product)">
                 </li>
             </ul>
         </div>
     </div>
 </div>
+
+<ng-template #loading>
+    <app-loading></app-loading>
+</ng-template>

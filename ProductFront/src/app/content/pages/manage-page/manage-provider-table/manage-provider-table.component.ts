@@ -27,6 +27,10 @@ export class ManageProviderTableComponent implements OnInit {
     private providerService: ProviderApiService) { }
 
   ngOnInit(): void {
+    this.query();
+  }
+
+  query(): any {
     this.isLoad = false;
     this.providerService.GetAllProviders(this.params).subscribe((resp: any) => {
       this.providers = resp.body;
@@ -36,7 +40,7 @@ export class ManageProviderTableComponent implements OnInit {
 
   orderBy(orderBy: string) {
     this.params.orderBy = orderBy;
-    this.ngOnInit();
+    this.query();
   }
 
   deleteItem(provider: IProvider) {
@@ -44,7 +48,7 @@ export class ManageProviderTableComponent implements OnInit {
       return;
     }
     this.providerService.DeleteProvider(provider.id).subscribe(() => {
-      this.ngOnInit();
+      this.query();
     })
   }
 
@@ -61,8 +65,7 @@ export class ManageProviderTableComponent implements OnInit {
         name: (<HTMLInputElement>(document.getElementById('editName'))).value
       }
       this.providerService.UpdateProvider(provider).subscribe((data: any) => {
-        console.log(data)
-        this.ngOnInit()
+        this.query();
       });
       this.editId = -1;
     }

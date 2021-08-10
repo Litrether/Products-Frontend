@@ -22,7 +22,7 @@
     </ul>
     <div class="pagination">
         <a (click)="leftPage()">&laquo;</a>
-        <a class="active"> {{prodParams.pageNumber}} </a>
+        <a class="active"> {{productParams.pageNumber}} </a>
         <a (click)="rightPage()">&raquo;</a>
     </div>
 </div>
@@ -36,7 +36,7 @@
                 {{(product.cost).toFixed(2)}} {{currCurrency}}
             </p>
             <div class="manage-card-buttons">
-                <img src="assets/img/basket.png" (click)="cartApiService.CreateCart(product.id)">
+                <img src="assets/img/basket.png" (click)="addProductToCart(product)">
                 <img src="assets/img/edit.png" (click)="editItem(product)" *ngIf="!authService.isClient()">
                 <img src="assets/img/delete.png" (click)="deleteItem(product)" *ngIf="!authService.isClient()">
             </div>

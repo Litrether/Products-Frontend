@@ -36,7 +36,7 @@ export class AuthService {
             );
     }
 
-    registration(regAccount: IRegAccount): Observable<any> {
+    register(regAccount: IRegAccount): Observable<any> {
         return this.http.post(`${this.pathBase}`, regAccount)
             .pipe(
                 tap((response: any) => this.setToken(response)),
@@ -74,6 +74,8 @@ export class AuthService {
     }
 
     private setToken(response: IAuthResponse | null) {
+        console.log(response);
+
         if (response) {
             const expiresDate = new Date(new Date().getTime() + 60 * 60 * 1000);
             localStorage.setItem('fb-token', response.token);

@@ -41,7 +41,7 @@ export class SignupPageComponent implements OnInit {
       lastname: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required],
-      repeatedPassword: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       roles: [''],
     });
@@ -64,15 +64,13 @@ export class SignupPageComponent implements OnInit {
       roles: 'User'
     }
 
-    console.log(regAccount);
-
-
-    if (this.form.value.password == this.form.value.repeatedPassword) {
-      this.authService.registration(regAccount);
+    if (this.form.value.password == this.form.value.confirmPassword) {
+      this.authService.register(regAccount);
       this.submitted = false;
     } else {
+      this.form.get("password")?.setValue('');
+      this.form.get("confirmPassword")?.setValue('');
       this.submitted = false;
-
     }
   }
 }

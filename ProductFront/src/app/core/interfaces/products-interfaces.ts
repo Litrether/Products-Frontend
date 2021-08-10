@@ -11,16 +11,16 @@ export interface IProduct {
 }
 
 export interface IProductParams {
-    searchTerm: string,
-    fields: string,
-    currency: string,
-    categories: string,
-    providers: string,
-    minCost: number,
-    maxCost: number,
+    searchTerm?: string,
+    fields?: string,
+    currency?: string,
+    categories?: string,
+    providers?: string,
+    minCost?: number,
+    maxCost?: number,
     pageNumber: number,
-    pageSize: number,
-    orderBy: string,
+    pageSize?: number,
+    orderBy?: string,
 }
 
 

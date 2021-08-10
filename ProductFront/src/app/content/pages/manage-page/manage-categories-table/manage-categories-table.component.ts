@@ -27,6 +27,10 @@ export class ManageCategoriesTableComponent implements OnInit {
     private categoryService: CategoryApiService) { }
 
   ngOnInit(): void {
+    this.query();
+  }
+
+  query(): any {
     this.isLoad = false;
     this.categoryService.GetAllCategories(this.params).subscribe((resp: any) => {
       this.categories = resp.body;
@@ -36,7 +40,7 @@ export class ManageCategoriesTableComponent implements OnInit {
 
   orderBy(orderBy: string) {
     this.params.orderBy = orderBy;
-    this.ngOnInit();
+    this.query();
   }
 
   deleteItem(category: ICategory) {
@@ -44,7 +48,7 @@ export class ManageCategoriesTableComponent implements OnInit {
       return;
     }
     this.categoryService.DeleteCategory(category.id).subscribe(() => {
-      this.ngOnInit();
+      this.query();
     })
   }
 
@@ -60,12 +64,10 @@ export class ManageCategoriesTableComponent implements OnInit {
         id: this.editId,
         name: (<HTMLInputElement>(document.getElementById('editName'))).value
       }
-      console.log(category)
       this.categoryService.UpdateCategory(category).subscribe((data: any) => {
-        this.ngOnInit()
+        this.query();
       });
     }
     this.editId = -1;
   }
-
 }

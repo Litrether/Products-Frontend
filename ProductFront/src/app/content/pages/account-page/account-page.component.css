@@ -1,8 +1,9 @@
 .account-page{
-    padding: 0 10vw;
+    padding: 0 7.5vw;
 }
 
 .account-wrapper{
+    display: flex;
     border-radius: 20px;
     padding: 3vw;
     background: var(--gray-block-color);
@@ -31,17 +32,33 @@
 
 .products-list{
     display: inline-block;
-    font-size: 16px;   
+    font-size: 14px;   
 }
 
 .product-card{
     background-color: var(--gray-block-color);
     border: solid 1px white;
     color: white;
-    width: 175px;
+    width: 125px;
     margin: 0 0 25px 20px;
     padding: 10px;
 }
 
+.product-card-img{
+    width: 105px;
+    height: 105px;
+}
 
+.card-button{
+    width: 15px;
+    height: 15px;
+}
+
+.card-button:active{
+    padding: 1px;
+}
+
+.account-control button{
+    width: 200px;
+}
 

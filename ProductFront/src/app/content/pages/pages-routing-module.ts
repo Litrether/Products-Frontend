@@ -1,7 +1,9 @@
+import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "src/app/core/guards/auth.guard";
 import { AccountPageComponent } from "./account-page/account-page.component";
+import { AccountPageModule } from "./account-page/account-page.module";
 import { HomePageComponent } from "./home-page/home-page.component";
 import { LoginPageComponent } from "./login-page/login-page.component";
 import { PagesComponent } from "./pages.component";
@@ -29,7 +31,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
+    imports: [RouterModule.forChild(routes), CommonModule],
     exports: [RouterModule],
     providers: [AuthGuard]
 })

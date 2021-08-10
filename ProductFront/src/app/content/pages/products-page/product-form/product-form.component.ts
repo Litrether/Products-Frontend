@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { zip } from 'rxjs';
 import { ICategory } from 'src/app/core/interfaces/categories-interfaces';
 import { IProduct } from 'src/app/core/interfaces/products-interfaces';
 import { IProvider } from 'src/app/core/interfaces/providers-interfaces';
@@ -14,7 +15,6 @@ import { ProviderApiService } from 'src/app/core/services/provider-api.service';
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit {
-
   public form: FormGroup;
   submitted: boolean = false;
   message: string;
@@ -24,6 +24,7 @@ export class ProductFormComponent implements OnInit {
   product: IProduct;
 
   isEditMode: boolean = false;
+  isLoad: boolean = false;
 
   public params = {
     searchTerm: '',
@@ -39,12 +40,15 @@ export class ProductFormComponent implements OnInit {
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    const result = zip(
+      this.categoryService.GetAllCategories(this.params),
+      this.providerService.GetAllProviders(this.params));
 
-    this.categoryService.GetAllCategories(this.params).subscribe((data: any) =>
-      this.categories = data.body);
-
-    this.providerService.GetAllProviders(this.params).subscribe((data: any) =>
-      this.providers = data.body);
+    result.subscribe(([categories, providers]: any) => {
+      this.categories = categories.body;
+      this.providers = providers.body;
+      this.isLoad = true;
+    });
 
     const options = history.state.options;
     this.product = options && options.product;
@@ -53,8 +57,8 @@ export class ProductFormComponent implements OnInit {
       name: ['', Validators.required],
       description: [''],
       cost: ['', Validators.required],
-      providerId: [''],
-      categoryId: [''],
+      providerId: ['-1'],
+      categoryId: ['-1'],
     });
 
     if (this.product) {

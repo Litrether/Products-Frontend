@@ -7,7 +7,7 @@ import { IProduct, IProductParams } from "../interfaces/products-interfaces";
 
 @Injectable({ providedIn: 'root' })
 export class ProductApiService {
-    public pathBase: string = `${connectionString}/products?`;
+    public pathBase: string = `${connectionString}/products`;
 
     constructor(private http: HttpClient) { }
 

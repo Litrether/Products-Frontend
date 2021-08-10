@@ -95,7 +95,8 @@
 
 .card-product-img{
     border: solid 1px white;
-    width: 100%;
+    width: 155px;
+    height: 155px;
 }
 
 .manage-card-buttons{

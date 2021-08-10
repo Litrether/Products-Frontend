@@ -4,7 +4,7 @@ import { zip } from 'rxjs';
 import { AuthService } from 'src/app/core/account/auth-service';
 import { ICategory } from 'src/app/core/interfaces/categories-interfaces';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
-import { IProduct } from 'src/app/core/interfaces/products-interfaces';
+import { IProduct, IProductParams } from 'src/app/core/interfaces/products-interfaces';
 import { CartApiService } from 'src/app/core/services/cart-api.service';
 import { CategoryApiService } from 'src/app/core/services/category-api.service';
 import { ProductApiService } from 'src/app/core/services/product-api.service';
@@ -20,17 +20,8 @@ export class ProductsPageComponent implements OnInit {
   currCurrency: string = 'USD';
   pagination: IPagination;
 
-  public prodParams = {
-    searchTerm: '',
-    fields: '',
-    currency: 'USD',
-    categories: '',
-    providers: '',
-    minCost: null,
-    maxCost: null,
+  public productParams: IProductParams = {
     pageNumber: 1,
-    pageSize: 10,
-    orderBy: ''
   }
 
   public catParams = {
@@ -57,7 +48,7 @@ export class ProductsPageComponent implements OnInit {
   query(): void {
     this.isLoad = false;
     const result = zip(
-      this.productService.GetAllProducts(this.prodParams),
+      this.productService.GetAllProducts(this.productParams),
       this.categoryService.GetAllCategories(this.catParams));
 
     result.subscribe(([products, categories]: any) => {
@@ -88,33 +79,37 @@ export class ProductsPageComponent implements OnInit {
   }
 
   search() {
-    this.prodParams.searchTerm = (<HTMLInputElement>(document.getElementById('search-input'))).value;
-    this.prodParams.pageNumber = 1;
+    this.productParams.searchTerm = (<HTMLInputElement>(document.getElementById('search-input'))).value;
+    this.productParams.pageNumber = 1;
     this.query();
   }
 
   changeCategory(category: string) {
-    this.prodParams.categories = category;
-    this.prodParams.pageNumber = 1;
+    this.productParams.categories = category;
+    this.productParams.pageNumber = 1;
     this.query();
   }
 
   changeCurrency() {
-    this.prodParams.currency = (<HTMLInputElement>(document.getElementById('currency-select'))).value;
-    this.prodParams.pageNumber = 1;
+    this.productParams.currency = (<HTMLInputElement>(document.getElementById('currency-select'))).value;
+    this.productParams.pageNumber = 1;
     this.query();
   }
 
+  addProductToCart(product: IProduct) {
+    this.cartApiService.AddProductToCart(product.id).subscribe((data: any) => console.log(data));
+  }
+
   leftPage() {
-    if (this.prodParams.pageNumber > 1) {
-      this.prodParams.pageNumber--;
+    if (this.productParams.pageNumber > 1) {
+      this.productParams.pageNumber--;
       this.query();
     }
   }
 
   rightPage() {
-    if (this.prodParams.pageNumber < this.pagination.TotalPages) {
-      this.prodParams.pageNumber++;
+    if (this.productParams.pageNumber < this.pagination.TotalPages) {
+      this.productParams.pageNumber++;
       this.query();
     }
   }
