@@ -28,7 +28,7 @@
 </div>
 <div class="products-panel" *ngIf="isLoad; else loading">
     <ul class="products-list" *ngFor="let product of products">
-        <li class="product-card">
+        <li class="product-card" title="{{product.description}}">
             <img class="card-product-img" src="{{product.imageUrl}}">
             <p>{{product.name}}</p>
             <p>{{product.provider}}</p>

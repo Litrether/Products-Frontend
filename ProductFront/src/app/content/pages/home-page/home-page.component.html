@@ -5,11 +5,11 @@
         fresh products. Order only the most
         selected products from us, with a 30%
         discount on the first purchase!
-        <input *ngIf="authService.isAuthenticated();else signin" class="home-btn" type="button" value="Catalog"
-            [routerLink]="['/user', '/products']">
     </p>
+    <button *ngIf="authService.isAuthenticated();else signin" class="home-btn"
+        [routerLink]="['/user', '/products']">Catalog</button>
 </div>
 
 <ng-template #signin>
-    <input class="home-btn" type="button" value="Sign In" [routerLink]="['/login']">
+    <button class="home-btn" [routerLink]="['/login']">Submit</button>
 </ng-template>

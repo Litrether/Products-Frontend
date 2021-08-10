@@ -4,29 +4,29 @@
         <a><img class="form-exit" [routerLink]="['/user/products']" src="assets/img/cross.png" alt="exit"></a>
     </div>
     <div class=" form-control">
-        <input id="name" type="name" formControlName="name" placeholder="Product name">
+        <input type="name" formControlName="name" placeholder="Product name">
         <div class="validation" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
             <small *ngIf="form.get('name')?.errors?.required">Name is required.</small>
         </div>
     </div>
     <div class="form-control">
-        <input id="description" type="text" formControlName="description" placeholder="Descriptions">
+        <input type="text" formControlName="description" placeholder="Descriptions">
         <div class="validation" *ngIf="form.get('description')?.invalid && form.get('description')?.touched">
         </div>
     </div>
     <div class="form-control">
-        <input id="cost" type="Number" formControlName="cost" placeholder="Cost">
+        <input type="Number" formControlName="cost" placeholder="Cost">
         <div class="validation" *ngIf="form.get('cost')?.invalid && form.get('cost')?.touched">
             <small *ngIf="form.get('cost')?.errors?.required">Cost is required.</small>
         </div>
     </div>
     <div class="twice-input-wrapper">
         <select class="twice-input" formControlName="categoryId">
-            <option disabled selected>Category</option>
+            <option selected>Category</option>
             <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
         </select>
         <select class="twice-input" formControlName="providerId">
-            <option disabled selected>Provider</option>
+            <option selected>Provider</option>
             <option *ngFor="let provider of providers" value="{{provider.id}}">{{provider.name}}</option>
         </select>
     </div>

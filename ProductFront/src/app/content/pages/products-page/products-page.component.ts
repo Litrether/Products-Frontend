@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { zip } from 'rxjs';
 import { AuthService } from 'src/app/core/account/auth-service';
 import { ICategory } from 'src/app/core/interfaces/categories-interfaces';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
@@ -28,7 +29,7 @@ export class ProductsPageComponent implements OnInit {
     minCost: null,
     maxCost: null,
     pageNumber: 1,
-    pageSize: 12,
+    pageSize: 10,
     orderBy: ''
   }
 
@@ -43,23 +44,28 @@ export class ProductsPageComponent implements OnInit {
 
   constructor(private router: Router,
     private productService: ProductApiService,
-    private categoyService: CategoryApiService,
+    private categoryService: CategoryApiService,
     public authService: AuthService,
     public cartApiService: CartApiService) {
     document.body.style.backgroundImage = "url('assets/img/products-bg.jpg')";
   }
 
   ngOnInit(): void {
-    this.isLoad = false;
-    this.productService.GetAllProducts(this.prodParams).subscribe((resp: any) => {
-      this.pagination = JSON.parse(resp.headers.get('pagination'));
-      this.products = resp.body;
-    })
+    this.query();
+  }
 
-    this.categoyService.GetAllCategories(this.catParams).subscribe((resp: any) => {
-      this.categories = resp.body;
+  query(): void {
+    this.isLoad = false;
+    const result = zip(
+      this.productService.GetAllProducts(this.prodParams),
+      this.categoryService.GetAllCategories(this.catParams));
+
+    result.subscribe(([products, categories]: any) => {
+      this.products = products.body;
+      this.categories = categories.body;
+      this.pagination = JSON.parse(products.headers.get('pagination'));
       this.isLoad = true;
-    })
+    });
   }
 
   editItem(product: IProduct) {
@@ -73,43 +79,43 @@ export class ProductsPageComponent implements OnInit {
   }
 
   deleteItem(product: IProduct) {
-    if (!confirm(`Are you sure you want to delete ${product.name} ?`)) {
+    if (!confirm(`Are you sure you want to delete ${product.name}?`)) {
       return;
     }
     this.productService.DeleteProduct(product?.id).subscribe(() => {
-      this.ngOnInit();
+      this.query();
     });
   }
 
   search() {
     this.prodParams.searchTerm = (<HTMLInputElement>(document.getElementById('search-input'))).value;
     this.prodParams.pageNumber = 1;
-    this.ngOnInit();
+    this.query();
   }
 
   changeCategory(category: string) {
     this.prodParams.categories = category;
     this.prodParams.pageNumber = 1;
-    this.ngOnInit();
+    this.query();
   }
 
   changeCurrency() {
     this.prodParams.currency = (<HTMLInputElement>(document.getElementById('currency-select'))).value;
     this.prodParams.pageNumber = 1;
-    this.ngOnInit();
+    this.query();
   }
 
   leftPage() {
     if (this.prodParams.pageNumber > 1) {
       this.prodParams.pageNumber--;
-      this.ngOnInit();
+      this.query();
     }
   }
 
   rightPage() {
     if (this.prodParams.pageNumber < this.pagination.TotalPages) {
       this.prodParams.pageNumber++;
-      this.ngOnInit();
+      this.query();
     }
   }
 }

@@ -2,20 +2,23 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { connectionString } from "src/app/shared/constants/connection.constants";
-import { IProduct } from "../interfaces/products-interfaces";
+import { getUrl } from "../functions/getUrl";
+import { IProduct, IProductParams } from "../interfaces/products-interfaces";
 
 @Injectable({ providedIn: 'root' })
 export class ProductApiService {
-    public pathBase: string = `${connectionString}/products`;
+    public pathBase: string = `${connectionString}/products?`;
 
     constructor(private http: HttpClient) { }
 
     public GetAllProducts(params: any): Observable<any> {
-        return this.http.get<any>(`${this.pathBase}`, { params: params, observe: 'response' });
+        console.log(getUrl(this.pathBase, params));
+
+        return this.http.get<any>(getUrl(this.pathBase, params), { observe: 'response' });
     }
 
     public GetProductById(id: Number, params: any): Observable<any> {
-        return this.http.get<any>(`${this.pathBase}/${id}`, { params: params });
+        return this.http.get<any>(`${getUrl(this.pathBase, params)}/${id}`);
     }
 
     public AddProduct(product: IProduct): Observable<IProduct> {

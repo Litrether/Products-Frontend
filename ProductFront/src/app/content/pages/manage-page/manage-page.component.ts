@@ -10,7 +10,9 @@ export class ManagePageComponent implements OnInit {
 
   currentPurpose: string = 'Categories';
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService) {
+    document.body.style.backgroundImage = "url('assets/img/manage-bg.jpg')";
+  }
 
   ngOnInit(): void {
   }
