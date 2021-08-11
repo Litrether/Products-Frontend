@@ -2,7 +2,9 @@ import { HttpClient, HttpHeaders, HttpParamsOptions } from "@angular/common/http
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { connectionString } from "src/app/shared/constants/connection.constants";
+import { getUrl } from "../functions/getUrl";
 import { ICategory } from "../interfaces/categories-interfaces";
+import { ICommonParams } from "../interfaces/params-interfaces";
 
 @Injectable({ providedIn: 'root' })
 export class CategoryApiService {
@@ -10,12 +12,12 @@ export class CategoryApiService {
 
     constructor(private http: HttpClient) { }
 
-    public GetAllCategories(params: any): Observable<any> {
-        return this.http.get<any>(`${this.pathBase}`, { params: params, observe: 'response' });
+    public GetAllCategories(params: ICommonParams): Observable<any> {
+        return this.http.get<any>(getUrl(this.pathBase, params), { observe: 'response' });
     }
 
-    public GetCategoryById(id: Number, params: any): Observable<ICategory> {
-        return this.http.get<ICategory>(`${this.pathBase}/${id}`, { params: params });
+    public GetCategoryById(id: Number): Observable<ICategory> {
+        return this.http.get<ICategory>(`${this.pathBase}/${id}`);
     }
 
     public AddCategory(category: ICategory): Observable<ICategory> {
@@ -23,12 +25,10 @@ export class CategoryApiService {
     }
 
     public UpdateCategory(category: ICategory): Observable<ICategory> {
-        this.http.put<ICategory>(`${this.pathBase}/${category.id}`, { name: category.name }).subscribe((data: any) =>
-            console.log(data))
         return this.http.put<ICategory>(`${this.pathBase}/${category.id}`, { name: category.name })
     }
 
-    public DeleteCategory(id: Number): Observable<any> {
-        return this.http.delete<any>(`${this.pathBase}/${id}`);
+    public DeleteCategory(category: ICategory): Observable<any> {
+        return this.http.delete<any>(`${this.pathBase}/${category.id}`);
     }
 }

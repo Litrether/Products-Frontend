@@ -1,10 +1,10 @@
 export interface IRegAccount {
-    firstname: string;
-    lastname: string;
-    username: string;
+    firstName: string;
+    lastName: string;
+    userName: string;
     password: string;
     email: string;
-    roles: string[] | string;
+    roles: string[];
 }
 
 export interface IAuthAccount {

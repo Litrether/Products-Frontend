@@ -36,14 +36,6 @@ export class AuthService {
             );
     }
 
-    register(regAccount: IRegAccount): Observable<any> {
-        return this.http.post(`${this.pathBase}`, regAccount)
-            .pipe(
-                tap((response: any) => this.setToken(response)),
-                catchError(this.handleError.bind(this))
-            );
-    }
-
     logout() {
         this.setToken(null);
         this.router.navigate(['']);

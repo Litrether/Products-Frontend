@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AuthService } from 'src/app/core/account/auth-service';
 import { IRegAccount } from 'src/app/core/interfaces/accounts-interfaces';
+import { AccountApiService } from 'src/app/core/services/account-api-service';
 
 @Component({
   selector: 'app-signup-page',
@@ -15,7 +16,8 @@ export class SignupPageComponent implements OnInit {
   submitted: boolean = false;
   message: string;
 
-  constructor(public authService: AuthService,
+  constructor(public accountService: AccountApiService,
+    public authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder) {
@@ -52,21 +54,23 @@ export class SignupPageComponent implements OnInit {
       return;
     }
 
-
     this.submitted = true;
 
     const regAccount: IRegAccount = {
-      firstname: this.form.value.firstname,
-      lastname: this.form.value.lastname,
-      username: this.form.value.username,
+      firstName: this.form.value.firstname,
+      lastName: this.form.value.lastname,
+      userName: this.form.value.username,
       password: this.form.value.password,
       email: this.form.value.email,
-      roles: 'User'
+      roles: ['User']
     }
 
     if (this.form.value.password == this.form.value.confirmPassword) {
-      this.authService.register(regAccount);
-      this.submitted = false;
+      this.accountService.CreateAccount(regAccount).subscribe((data: any) => {
+        this.submitted = false;
+        this.router.navigate(['/login']);
+        console.log(data);
+      });
     } else {
       this.form.get("password")?.setValue('');
       this.form.get("confirmPassword")?.setValue('');

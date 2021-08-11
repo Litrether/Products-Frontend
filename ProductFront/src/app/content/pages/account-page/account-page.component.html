@@ -1,14 +1,11 @@
 <div class="account-page">
-    <div class="account-wrapper" *ngIf="isLoad; else loading">
+    <div class="account-wrapper">
         <div class="account-panel">
             <img class="account-photo" src="assets/img/account.png" alt="photo">
             <div class="account-info">
                 <ul>
                     <li>
-                        <p> Firstname: {{accountData.firstName}}</p>
-                    </li>
-                    <li>
-                        <p> Lastname: {{accountData.lastName}}</p>
+                        <p> Name: {{accountData.firstName}} {{accountData.lastName}}</p>
                     </li>
                     <li>
                         <p> Username: {{accountData.username}}</p>
@@ -23,7 +20,7 @@
                 <button (click)="deleteAccount()">Delete account</button>
             </div>
         </div>
-        <div class="cart-panel">
+        <div class="cart-panel" *ngIf="isLoad; else loading">
             <ul class="products-list" *ngFor="let product of cartProducts">
                 <li class="product-card">
                     <img class="product-card-img" src="{{product.imageUrl}}">

@@ -1,4 +1,5 @@
-import { IProductParams } from "../interfaces/products-interfaces";
+import { IProductParams } from "../interfaces/params-interfaces";
+
 
 export function getUrl(pathBase: string, params: IProductParams | undefined): string {
     let url = `${pathBase}?`;

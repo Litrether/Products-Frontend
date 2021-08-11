@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ICategory } from 'src/app/core/interfaces/categories-interfaces';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
+import { ICommonParams } from 'src/app/core/interfaces/params-interfaces';
 import { CategoryApiService } from 'src/app/core/services/category-api.service';
 
 @Component({
@@ -16,11 +17,8 @@ export class ManageCategoriesTableComponent implements OnInit {
   isLoad: boolean = false;
 
   editId: number = -1;
-  public params = {
-    searchTerm: '',
-    pageSize: 10,
+  public params: ICommonParams = {
     pageNumber: 1,
-    orderBy: ''
   }
 
   constructor(private router: Router,
@@ -31,7 +29,6 @@ export class ManageCategoriesTableComponent implements OnInit {
   }
 
   query(): any {
-    this.isLoad = false;
     this.categoryService.GetAllCategories(this.params).subscribe((resp: any) => {
       this.categories = resp.body;
       this.isLoad = true;
@@ -47,7 +44,8 @@ export class ManageCategoriesTableComponent implements OnInit {
     if (!confirm(`Are you sure want to delete ${category.name}?`)) {
       return;
     }
-    this.categoryService.DeleteCategory(category.id).subscribe(() => {
+    this.isLoad = false;
+    this.categoryService.DeleteCategory(category).subscribe(() => {
       this.query();
     })
   }
@@ -64,6 +62,7 @@ export class ManageCategoriesTableComponent implements OnInit {
         id: this.editId,
         name: (<HTMLInputElement>(document.getElementById('editName'))).value
       }
+      this.isLoad = false;
       this.categoryService.UpdateCategory(category).subscribe((data: any) => {
         this.query();
       });

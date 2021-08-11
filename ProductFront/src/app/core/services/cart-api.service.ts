@@ -3,7 +3,8 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { connectionString } from "src/app/shared/constants/connection.constants";
 import { getUrl } from "../functions/getUrl";
-import { IProduct, IProductParams } from "../interfaces/products-interfaces";
+import { IProductParams } from "../interfaces/params-interfaces";
+import { IProduct } from "../interfaces/products-interfaces";
 
 @Injectable({ providedIn: 'root' })
 export class CartApiService {
@@ -12,15 +13,15 @@ export class CartApiService {
     constructor(private http: HttpClient) {
     }
 
-    public GetCartProducts(params: IProductParams): Observable<IProduct[]> {
-        return this.http.get<IProduct[]>(getUrl(this.pathBase, params));
+    public GetCartProducts(params: IProductParams): Observable<any> {
+        return this.http.get<any>(getUrl(this.pathBase, params), { observe: 'response' });
     }
 
-    public AddProductToCart(productId?: number): Observable<any> {
-        return this.http.post(`${this.pathBase}/${productId}`, null);
+    public AddProductToCart(product: IProduct): Observable<any> {
+        return this.http.post(`${this.pathBase}/${product.id}`, null);
     }
 
-    public DeleteProductFromCart(productId?: number) {
-        return this.http.delete(`${this.pathBase}/${productId}`);
+    public DeleteProductFromCart(product: IProduct): Observable<any> {
+        return this.http.delete(`${this.pathBase}/${product.id}`);
     }
 }

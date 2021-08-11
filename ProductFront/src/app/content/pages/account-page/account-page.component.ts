@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { zip } from 'rxjs';
 import { IAccountData } from 'src/app/core/interfaces/accounts-interfaces';
-import { IProduct, IProductParams } from 'src/app/core/interfaces/products-interfaces';
+import { IProductParams } from 'src/app/core/interfaces/params-interfaces';
+import { IProduct } from 'src/app/core/interfaces/products-interfaces';
 import { AccountApiService } from 'src/app/core/services/account-api-service';
 import { CartApiService } from 'src/app/core/services/cart-api.service';
 
@@ -31,7 +32,6 @@ export class AccountPageComponent implements OnInit {
 
   query() {
     this.isLoad = false;
-
     this.productParams.pageNumber = 1;
 
     const result = zip(
@@ -46,7 +46,8 @@ export class AccountPageComponent implements OnInit {
   }
 
   deleteProductFromCart(product: IProduct) {
-    this.cartService.DeleteProductFromCart(product.id);
+    this.isLoad = false;
+    this.cartService.DeleteProductFromCart(product).subscribe(() => this.query());
   }
 
   changePassword() { }

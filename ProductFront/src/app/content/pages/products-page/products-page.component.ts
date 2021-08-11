@@ -4,7 +4,8 @@ import { zip } from 'rxjs';
 import { AuthService } from 'src/app/core/account/auth-service';
 import { ICategory } from 'src/app/core/interfaces/categories-interfaces';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
-import { IProduct, IProductParams } from 'src/app/core/interfaces/products-interfaces';
+import { ICommonParams, IProductParams } from 'src/app/core/interfaces/params-interfaces';
+import { IProduct } from 'src/app/core/interfaces/products-interfaces';
 import { CartApiService } from 'src/app/core/services/cart-api.service';
 import { CategoryApiService } from 'src/app/core/services/category-api.service';
 import { ProductApiService } from 'src/app/core/services/product-api.service';
@@ -24,11 +25,9 @@ export class ProductsPageComponent implements OnInit {
     pageNumber: 1,
   }
 
-  public catParams = {
-    searchTerm: '',
+  public categoryParams: ICommonParams = {
     pageNumber: 1,
     pageSize: 50,
-    orderBy: 'name'
   }
 
   isLoad: boolean = false;
@@ -49,7 +48,7 @@ export class ProductsPageComponent implements OnInit {
     this.isLoad = false;
     const result = zip(
       this.productService.GetAllProducts(this.productParams),
-      this.categoryService.GetAllCategories(this.catParams));
+      this.categoryService.GetAllCategories(this.categoryParams));
 
     result.subscribe(([products, categories]: any) => {
       this.products = products.body;
@@ -73,7 +72,7 @@ export class ProductsPageComponent implements OnInit {
     if (!confirm(`Are you sure you want to delete ${product.name}?`)) {
       return;
     }
-    this.productService.DeleteProduct(product?.id).subscribe(() => {
+    this.productService.DeleteProduct(product).subscribe(() => {
       this.query();
     });
   }
@@ -97,7 +96,7 @@ export class ProductsPageComponent implements OnInit {
   }
 
   addProductToCart(product: IProduct) {
-    this.cartApiService.AddProductToCart(product.id).subscribe((data: any) => console.log(data));
+    this.cartApiService.AddProductToCart(product).subscribe((data: any) => console.log(data));
   }
 
   leftPage() {

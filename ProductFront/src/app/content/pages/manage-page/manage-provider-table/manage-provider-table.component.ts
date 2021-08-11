@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
+import { ICommonParams } from 'src/app/core/interfaces/params-interfaces';
 import { IProvider } from 'src/app/core/interfaces/providers-interfaces';
 import { ProviderApiService } from 'src/app/core/services/provider-api.service';
 
@@ -16,11 +17,8 @@ export class ManageProviderTableComponent implements OnInit {
   isLoad: boolean = false;
 
   editId: number = -1;
-  public params = {
-    searchTerm: '',
-    pageSize: 10,
+  public params: ICommonParams = {
     pageNumber: 1,
-    orderBy: ''
   }
 
   constructor(private router: Router,
@@ -47,7 +45,8 @@ export class ManageProviderTableComponent implements OnInit {
     if (!confirm(`Are you sure want to delete ${provider.name}?`)) {
       return;
     }
-    this.providerService.DeleteProvider(provider.id).subscribe(() => {
+    this.isLoad = false;
+    this.providerService.DeleteProvider(provider).subscribe(() => {
       this.query();
     })
   }
@@ -64,6 +63,7 @@ export class ManageProviderTableComponent implements OnInit {
         id: this.editId,
         name: (<HTMLInputElement>(document.getElementById('editName'))).value
       }
+      this.isLoad = false;
       this.providerService.UpdateProvider(provider).subscribe((data: any) => {
         this.query();
       });

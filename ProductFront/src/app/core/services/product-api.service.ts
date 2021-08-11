@@ -3,7 +3,8 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { connectionString } from "src/app/shared/constants/connection.constants";
 import { getUrl } from "../functions/getUrl";
-import { IProduct, IProductParams } from "../interfaces/products-interfaces";
+import { IProductParams } from "../interfaces/params-interfaces";
+import { IProduct } from "../interfaces/products-interfaces";
 
 @Injectable({ providedIn: 'root' })
 export class ProductApiService {
@@ -11,14 +12,14 @@ export class ProductApiService {
 
     constructor(private http: HttpClient) { }
 
-    public GetAllProducts(params: any): Observable<any> {
+    public GetAllProducts(params: IProductParams): Observable<any> {
         console.log(getUrl(this.pathBase, params));
 
         return this.http.get<any>(getUrl(this.pathBase, params), { observe: 'response' });
     }
 
-    public GetProductById(id: Number, params: any): Observable<any> {
-        return this.http.get<any>(`${getUrl(this.pathBase, params)}/${id}`);
+    public GetProductById(id: Number): Observable<any> {
+        return this.http.get<any>(`${this.pathBase}/${id}`);
     }
 
     public AddProduct(product: IProduct): Observable<IProduct> {
@@ -29,7 +30,7 @@ export class ProductApiService {
         return this.http.put<IProduct>(`${this.pathBase}/${product.id}`, product);
     }
 
-    public DeleteProduct(id?: Number): Observable<any> {
-        return this.http.delete<any>(`${this.pathBase}/${id}`);
+    public DeleteProduct(product: IProduct): Observable<any> {
+        return this.http.delete<any>(`${this.pathBase}/${product.id}`);
     }
 }

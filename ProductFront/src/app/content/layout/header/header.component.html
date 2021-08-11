@@ -11,7 +11,7 @@
                <li routerLinkActive="active">
                     <a [routerLink]="['/user', 'products']"> Catalog </a>
                </li>
-               <li routerLinkActive="active" *ngIf="authService.isClient">
+               <li routerLinkActive="active" *ngIf="!authService.isClient()">
                     <a [routerLink]="['/user/manage/categories']"> Manage </a>
                </li>
                <li routerLinkActive="active">
