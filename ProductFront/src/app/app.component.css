@@ -33,6 +33,7 @@
 :host::ng-deep .form-logo{
     min-width: 20px;
     width: 50%;
+    height: 10%;
 }
 
 :host::ng-deep button,
