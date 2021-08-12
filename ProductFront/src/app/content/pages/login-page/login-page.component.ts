@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AuthService } from 'src/app/core/account/auth-service';
 import { IAuthAccount } from 'src/app/core/interfaces/accounts-interfaces';
+import { NotificationService } from 'src/app/core/services/notification-service';
 
 @Component({
   selector: 'app-login-page',
@@ -19,6 +20,7 @@ export class LoginPageComponent implements OnInit {
 
 
   constructor(public authService: AuthService,
+    private notice: NotificationService,
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder) {
@@ -63,6 +65,7 @@ export class LoginPageComponent implements OnInit {
       this.router.navigate(['/user', "products"]);
       this.submitted = false;
     }, () => {
+      this.notice.danger('Wrong username or password.')
       this.submitted = false;
     });
   }

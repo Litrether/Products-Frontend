@@ -1,0 +1,8 @@
+<div class="notification-panel">
+    <div class="notification" *ngIf="text" [ngClass]="{
+        'notification-success': type === 'success',
+        'notification-danger': type === 'danger'}">
+        <p>{{text}}</p>
+        <img class="notification-close" src="assets/img/cross.png" alt="close" (click)="text = ''">
+    </div>
+</div>

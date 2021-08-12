@@ -3,7 +3,8 @@
     --gray-block-color: #001514;
     --light-brown-input-color: #C2A080;
     --light-gray-input-color: #C8BBB5;
-
+    --success-green-color: green;
+    --danger-red-color: red;
 }
 
 body{

@@ -8,6 +8,7 @@ import { ICommonParams, IProductParams } from 'src/app/core/interfaces/params-in
 import { IProduct } from 'src/app/core/interfaces/products-interfaces';
 import { CartApiService } from 'src/app/core/services/cart-api.service';
 import { CategoryApiService } from 'src/app/core/services/category-api.service';
+import { NotificationService } from 'src/app/core/services/notification-service';
 import { ProductApiService } from 'src/app/core/services/product-api.service';
 
 @Component({
@@ -35,12 +36,14 @@ export class ProductsPageComponent implements OnInit {
   constructor(private router: Router,
     private productService: ProductApiService,
     private categoryService: CategoryApiService,
+    private notice: NotificationService,
     public authService: AuthService,
     public cartApiService: CartApiService) {
     document.body.style.backgroundImage = "url('assets/img/products-bg.jpg')";
   }
 
   ngOnInit(): void {
+    this.notice.success('Account successfully created.  Log in please.')
     this.query();
   }
 
@@ -69,10 +72,12 @@ export class ProductsPageComponent implements OnInit {
   }
 
   deleteItem(product: IProduct) {
+    this.notice.danger('Задание было успешно добавлено');
     if (!confirm(`Are you sure you want to delete ${product.name}?`)) {
       return;
     }
     this.productService.DeleteProduct(product).subscribe(() => {
+      this.notice.success(`Product ${product.name} was deleted`);
       this.query();
     });
   }
@@ -96,7 +101,11 @@ export class ProductsPageComponent implements OnInit {
   }
 
   addProductToCart(product: IProduct) {
-    this.cartApiService.AddProductToCart(product).subscribe((data: any) => console.log(data));
+    this.cartApiService.AddProductToCart(product).subscribe((data: any) => {
+      this.notice.success(`Product ${product.name} added in your cart`);
+    }, () => {
+      this.notice.danger(`Product ${product.name} is in your cart`);
+    });
   }
 
   leftPage() {

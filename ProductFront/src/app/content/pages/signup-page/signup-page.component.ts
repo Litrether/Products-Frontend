@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AuthService } from 'src/app/core/account/auth-service';
 import { IRegAccount } from 'src/app/core/interfaces/accounts-interfaces';
 import { AccountApiService } from 'src/app/core/services/account-api-service';
+import { NotificationService } from 'src/app/core/services/notification-service';
 
 @Component({
   selector: 'app-signup-page',
@@ -18,6 +19,7 @@ export class SignupPageComponent implements OnInit {
 
   constructor(public accountService: AccountApiService,
     public authService: AuthService,
+    private notice: NotificationService,
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder) {
@@ -68,8 +70,8 @@ export class SignupPageComponent implements OnInit {
     if (this.form.value.password == this.form.value.confirmPassword) {
       this.accountService.CreateAccount(regAccount).subscribe((data: any) => {
         this.submitted = false;
+        this.notice.success('Account successfully created. Log in please.')
         this.router.navigate(['/login']);
-        console.log(data);
       });
     } else {
       this.form.get("password")?.setValue('');

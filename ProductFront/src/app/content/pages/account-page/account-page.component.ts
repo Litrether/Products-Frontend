@@ -5,6 +5,7 @@ import { IProductParams } from 'src/app/core/interfaces/params-interfaces';
 import { IProduct } from 'src/app/core/interfaces/products-interfaces';
 import { AccountApiService } from 'src/app/core/services/account-api-service';
 import { CartApiService } from 'src/app/core/services/cart-api.service';
+import { NotificationService } from 'src/app/core/services/notification-service';
 
 @Component({
   selector: 'app-account-page',
@@ -21,7 +22,9 @@ export class AccountPageComponent implements OnInit {
     pageNumber: 1,
   }
 
-  constructor(private accountService: AccountApiService,
+  constructor(
+    private accountService: AccountApiService,
+    private notice: NotificationService,
     private cartService: CartApiService) {
     document.body.style.backgroundImage = "url('assets/img/account-bg.jpg')";
   }
@@ -40,14 +43,18 @@ export class AccountPageComponent implements OnInit {
 
     result.subscribe(([accountData, cartProducts]: any) => {
       this.accountData = accountData;
-      this.cartProducts = cartProducts;
+      this.cartProducts = cartProducts.body;
       this.isLoad = true;
     })
   }
 
   deleteProductFromCart(product: IProduct) {
-    this.isLoad = false;
-    this.cartService.DeleteProductFromCart(product).subscribe(() => this.query());
+    this.cartService.DeleteProductFromCart(product).subscribe(() => {
+      this.notice.success(`Product ${product.name} successfuly delete from your cart.`)
+      this.query()
+    }, () => {
+      this.notice.success(`Something went wrong.`)
+    });
   }
 
   changePassword() { }

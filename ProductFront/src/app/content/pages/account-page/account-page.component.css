@@ -49,6 +49,7 @@
     height: 105px;
 }
 
+
 .card-button{
     width: 15px;
     height: 15px;
@@ -56,6 +57,10 @@
 
 .card-button:active{
     padding: 1px;
+}
+
+.card-button:hover{
+    cursor: pointer;
 }
 
 .account-control button{
