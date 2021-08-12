@@ -1,0 +1,21 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <div>
+        <div class="formhead">
+            <img class="form-logo" src="assets/img/logo.png" alt="logo">
+            <a><img class="form-exit" [routerLink]="['/user/manage/categories']" src="assets/img/cross.png"
+                    alt="exit"></a>
+        </div>
+        <div class=" form-control">
+            <input type="name" formControlName="name" placeholder="Category name">
+            <div class="validation" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+                <small *ngIf="form.get('name')?.errors?.required">Name is required.</small>
+            </div>
+        </div>
+        <button class="form-btn" type="submit" [disabled]="form.invalid || submitted">Submit</button>
+    </div>
+</form>
+
+
+<ng-template #loading>
+    <app-loading></app-loading>
+</ng-template>

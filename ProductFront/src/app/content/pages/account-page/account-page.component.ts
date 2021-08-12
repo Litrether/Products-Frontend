@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { zip } from 'rxjs';
 import { IAccountData } from 'src/app/core/interfaces/accounts-interfaces';
+import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
 import { IProductParams } from 'src/app/core/interfaces/params-interfaces';
 import { IProduct } from 'src/app/core/interfaces/products-interfaces';
 import { AccountApiService } from 'src/app/core/services/account-api-service';
@@ -17,6 +19,8 @@ export class AccountPageComponent implements OnInit {
 
   accountData: IAccountData;
   cartProducts: IProduct[];
+
+  public pagination: IPagination;
 
   public productParams: IProductParams = {
     pageNumber: 1,
@@ -35,7 +39,6 @@ export class AccountPageComponent implements OnInit {
 
   query() {
     this.isLoad = false;
-    this.productParams.pageNumber = 1;
 
     const result = zip(
       this.accountService.GetAccountData(),
@@ -44,7 +47,9 @@ export class AccountPageComponent implements OnInit {
     result.subscribe(([accountData, cartProducts]: any) => {
       this.accountData = accountData;
       this.cartProducts = cartProducts.body;
+      this.pagination = JSON.parse(cartProducts.headers.get('pagination'));
       this.isLoad = true;
+    }, (error: HttpErrorResponse) => {
     })
   }
 
@@ -60,4 +65,18 @@ export class AccountPageComponent implements OnInit {
   changePassword() { }
 
   deleteAccount() { }
+
+  leftPage() {
+    if (this.productParams.pageNumber > 1) {
+      this.productParams.pageNumber--;
+      this.query();
+    }
+  }
+
+  rightPage() {
+    if (this.productParams.pageNumber < this.pagination.TotalPages) {
+      this.productParams.pageNumber++;
+      this.query();
+    }
+  }
 }

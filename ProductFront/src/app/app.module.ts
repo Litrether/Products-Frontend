@@ -13,7 +13,6 @@ import { HeaderModule } from './content/layout/header/header.module';
 import { AuthGuard } from './core/guards/auth.guard';
 import { PaginationComponent } from './content/layout/pagination/pagination.component';
 import { AuthService } from './core/account/auth-service';
-import { LoadingModule } from './content/layout/loading/loading.module';
 import { NotificationComponent } from './shared/companents/notification/notification.component';
 
 @NgModule({

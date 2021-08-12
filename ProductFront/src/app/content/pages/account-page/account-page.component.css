@@ -5,6 +5,7 @@
 .account-wrapper{
     display: flex;
     border-radius: 20px;
+    height: 65vh;
     padding: 3vw;
     background: var(--gray-block-color);
     box-shadow: 3px 3px 5px -3px black inset;
@@ -28,6 +29,10 @@
     align-items: left;
     margin-top: 5px;
     width: 25%;
+}
+
+.cart-panel{
+    height: 100%;
 }
 
 .products-list{
@@ -67,3 +72,30 @@
     width: 200px;
 }
 
+
+.pagination {
+    top: 69vh;
+    position: fixed;
+    left: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: -20px;
+    width: 300px;
+}
+  
+.pagination a {
+    background-color: white;
+    padding: 6px 12px;
+    border: black 1px solid;
+    margin-left: 2px;
+}
+  
+.pagination a.active {
+    background-color: var(--gray-block-color);
+    color: white;
+}
+  
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+      cursor: pointer;
+}

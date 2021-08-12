@@ -30,6 +30,11 @@
                 </li>
             </ul>
         </div>
+        <div class="pagination">
+            <a (click)="leftPage()">&laquo;</a>
+            <a class="active"> {{productParams.pageNumber}} </a>
+            <a (click)="rightPage()">&raquo;</a>
+        </div>
     </div>
 </div>
 
