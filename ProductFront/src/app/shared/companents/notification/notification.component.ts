@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { NotificationService } from 'src/app/core/services/notification-service';
+import { Notification, NotificationService } from 'src/app/core/services/notification-service';
 
 @Component({
   selector: 'app-notification',
@@ -8,7 +8,8 @@ import { NotificationService } from 'src/app/core/services/notification-service'
   styleUrls: ['./notification.component.css']
 })
 export class NotificationComponent implements OnInit, OnDestroy {
-  @Input() delay = 5000;
+  @Input() delay = 15000;
+  public notices: Notification[] = [];
   public text: string;
   public type = "success";
   aSub: Subscription;
@@ -16,14 +17,15 @@ export class NotificationComponent implements OnInit, OnDestroy {
   constructor(private notificationService: NotificationService) { }
 
   ngOnInit(): void {
-    this.aSub = this.notificationService.notification$.subscribe(notice => {
-      this.text = notice.text;
-      this.type = notice.type;
+    this.aSub = this.notificationService.notification$.subscribe((notice: Notification) => {
+      this.notices.push(notice);
       const timeout = setTimeout(() => {
         clearTimeout(timeout);
-        this.text = '';
+        this.notices.splice(this.notices.indexOf(notice), 1);
       }, this.delay)
+
     })
+
   }
 
   ngOnDestroy(): void {

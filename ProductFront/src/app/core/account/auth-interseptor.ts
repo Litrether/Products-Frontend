@@ -25,7 +25,7 @@ export class AuthInterseptor implements HttpInterceptor {
             catchError((error: HttpErrorResponse) => {
                 console.log('Interseptor error');
                 if (error.status === 401) {
-                    this.notice.danger('Wrong username or password.')
+                    this.notice.textNotice('Wrong username or password.')
                     this.authService.logout();
                     this.router.navigate(['login'], {
                         queryParams: {

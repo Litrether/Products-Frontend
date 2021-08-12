@@ -43,7 +43,7 @@ export class ProductsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.notice.success('Account successfully created.  Log in please.')
+    this.notice.textNotice('Account successfully created.  Log in please.')
     this.query();
   }
 
@@ -72,12 +72,11 @@ export class ProductsPageComponent implements OnInit {
   }
 
   deleteItem(product: IProduct) {
-    this.notice.danger('Задание было успешно добавлено');
     if (!confirm(`Are you sure you want to delete ${product.name}?`)) {
       return;
     }
     this.productService.DeleteProduct(product).subscribe(() => {
-      this.notice.success(`Product ${product.name} was deleted`);
+      this.notice.productNotice(`Product ${product.name} was deleted`, product);
       this.query();
     });
   }
@@ -102,9 +101,9 @@ export class ProductsPageComponent implements OnInit {
 
   addProductToCart(product: IProduct) {
     this.cartApiService.AddProductToCart(product).subscribe((data: any) => {
-      this.notice.success(`Product ${product.name} added in your cart`);
+      this.notice.productNotice(`Product ${product.name} added in your cart`, product);
     }, () => {
-      this.notice.danger(`Product ${product.name} is in your cart`);
+      this.notice.productNotice(`Product ${product.name} is in your cart`, product);
     });
   }
 

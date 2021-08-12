@@ -4,18 +4,24 @@ import { Observable, Subject, throwError } from "rxjs";
 import { IAuthAccount, IAuthResponse, IRegAccount } from "../interfaces/accounts-interfaces";
 import { tap, catchError } from "rxjs/operators";
 import { Router } from "@angular/router";
+import { NotificationService } from "../services/notification-service";
+import { connectionString } from "src/app/shared/constants/connection.constants";
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
     public error$: Subject<string> = new Subject<string>();
-    public pathBase: string = "https://litretherproducts.azurewebsites.net/api/account";
-    constructor(private http: HttpClient,
+    public pathBase: string = `${connectionString}/account`;
+
+    constructor(
+        private notice: NotificationService,
+        private http: HttpClient,
         private router: Router) { }
 
     get token(): string | null {
         const expiresDate = new Date(String(localStorage.getItem('fb-token-exp')));
         if (new Date() > expiresDate) {
+            this.notice.textNotice('Session time ended. Please login again.')
             this.logout();
             return null;
         }
@@ -31,8 +37,7 @@ export class AuthService {
     login(authAccount: IAuthAccount): Observable<any> {
         return this.http.post(`${this.pathBase}/login`, authAccount)
             .pipe(
-                tap((response: any) => this.setToken(response)),
-                catchError(this.handleError.bind(this))
+                tap((response: any) => this.setToken(response))
             );
     }
 
@@ -45,29 +50,7 @@ export class AuthService {
         return !!this.token;
     }
 
-    handleError(error: HttpErrorResponse) {
-        const { message } = error.error.error;
-
-        switch (message) {
-            case 'INVALID_USERNAME':
-                this.error$.next('Wrong username');
-                break;
-            case 'INVALID_PASSWORD':
-                this.error$.next('Wrong password');
-                break;
-            case 'EMAIL_NOT_FOUND':
-                this.error$.next('Nonexistent email');
-                break;
-            default:
-                this.error$.next('ok');
-        }
-
-        return throwError(error);
-    }
-
     private setToken(response: IAuthResponse | null) {
-        console.log(response);
-
         if (response) {
             const expiresDate = new Date(new Date().getTime() + 60 * 60 * 1000);
             localStorage.setItem('fb-token', response.token);

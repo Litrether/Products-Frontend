@@ -50,10 +50,10 @@ export class AccountPageComponent implements OnInit {
 
   deleteProductFromCart(product: IProduct) {
     this.cartService.DeleteProductFromCart(product).subscribe(() => {
-      this.notice.success(`Product ${product.name} successfuly delete from your cart.`)
+      this.notice.productNotice(`Product ${product.name} successfuly delete from your cart.`, product)
       this.query()
     }, () => {
-      this.notice.success(`Something went wrong.`)
+      this.notice.textNotice(`Something went wrong.`)
     });
   }
 

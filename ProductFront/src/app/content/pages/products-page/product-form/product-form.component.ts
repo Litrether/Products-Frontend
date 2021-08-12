@@ -95,21 +95,21 @@ export class ProductFormComponent implements OnInit {
         this.form.reset();
         this.submitted = false;
         this.router.navigate(['/user', 'products']);
-        this.notice.success(`Product ${product.name} was updated`)
+        this.notice.productNotice(`Product ${product.name} was updated`, product)
       }, () => {
         this.submitted = false;
         this.isEditMode = false;
-        this.notice.danger(`Error in updating product ${product.name}`)
+        this.notice.textNotice(`Error in updating product ${product.name}`)
       });
     } else {
       this.productsService.AddProduct(product).subscribe(() => {
         this.form.reset();
         this.submitted = false;
-        this.notice.success(`Product ${product.name} was created`)
+        this.notice.productNotice(`Product ${product.name} was created`, product)
         this.router.navigate(['/user', 'products']);
       }, () => {
         this.submitted = false;
-        this.notice.danger(`Error in creating product ${product.name}`)
+        this.notice.textNotice(`Error in creating product ${product.name}`)
       });
     }
   }

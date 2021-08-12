@@ -1,8 +1,8 @@
 <div class="notification-panel">
-    <div class="notification" *ngIf="text" [ngClass]="{
-        'notification-success': type === 'success',
-        'notification-danger': type === 'danger'}">
-        <p>{{text}}</p>
-        <img class="notification-close" src="assets/img/cross.png" alt="close" (click)="text = ''">
+    <div class="notification" *ngFor="let notice of notices">
+        <img class="product-img" *ngIf="notice.product" src="{{notice.product.imageUrl}}" alt="imageProduct">
+        <p>{{notice.text}}</p>
+        <img class="notification-close" src="assets/img/cross.png" alt="close"
+            (click)="this.notices.splice(this.notices.indexOf(notice), 1);">
     </div>
 </div>

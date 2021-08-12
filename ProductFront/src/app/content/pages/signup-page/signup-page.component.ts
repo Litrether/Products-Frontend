@@ -70,7 +70,7 @@ export class SignupPageComponent implements OnInit {
     if (this.form.value.password == this.form.value.confirmPassword) {
       this.accountService.CreateAccount(regAccount).subscribe((data: any) => {
         this.submitted = false;
-        this.notice.success('Account successfully created. Log in please.')
+        this.notice.textNotice('Account successfully created. Log in please.')
         this.router.navigate(['/login']);
       });
     } else {
