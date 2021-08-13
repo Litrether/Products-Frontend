@@ -9,11 +9,14 @@ import { AuthService } from 'src/app/core/account/auth-service';
 export class ManagePageComponent implements OnInit {
 
   currentPurpose: string = 'Categories';
+  createForm: boolean = false;
 
   constructor(public authService: AuthService) {
     document.body.style.backgroundImage = "url('assets/img/manage-bg.jpg')";
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
+
+
+
 }

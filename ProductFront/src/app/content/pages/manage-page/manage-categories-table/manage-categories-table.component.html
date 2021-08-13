@@ -1,28 +1,23 @@
-<app-categories-form *ngIf="editId != -1"></app-categories-form>
 <div *ngIf="isLoad; else loading">
     <table>
         <tr>
-            <td class="td-header " (click)="orderBy('id')">Id </td>
-            <td class="td-header td-name" (click)="orderBy('name')">Name</td>
+            <td class="td-header " (click)="orderBy('id')" title="Sort by Id">Id </td>
+            <td class="td-header td-name" (click)="orderBy('name')" title="Sort by Name">Name</td>
             <td>Edit</td>
             <td>Delete</td>
         </tr>
         <tr *ngFor="let category of categories">
             <td>{{category.id}}</td>
-            <td class="td-name" *ngIf="editId != category.id; else editTemplate">{{category.name}}</td>
+            <td class="td-name">{{category.name}}</td>
             <td><img class="list-img" src="assets/img/edit.png" alt="edit" (click)="editItem(category)"></td>
             <td><img class="list-img" src="assets/img/delete.png" alt="delete" (click)="deleteItem(category)"></td>
         </tr>
     </table>
-</div>
 
-<ng-template #editTemplate>
-    <td class="td-name">
-        <input class="edit-input" type="text" id="editName">
-        <img class="edit-img" src="assets/img/ok.png" alt="ok" (click)="submitEdit(true)">
-        <img class="edit-img" src="assets/img/cancel.png" alt="cancel" (click)="submitEdit(false)">
-    </td>
-</ng-template>
+    <app-string-form *ngIf="editCategory" [inputValue]="editCategory.name" [placeholder]="'Category name'"
+        (onSubmit)="submitEdit($event)">
+    </app-string-form>
+</div>
 
 <ng-template #loading>
     <app-loading></app-loading>

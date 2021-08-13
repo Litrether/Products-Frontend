@@ -1,9 +1,11 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ICategory } from 'src/app/core/interfaces/categories-interfaces';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
 import { ICommonParams } from 'src/app/core/interfaces/params-interfaces';
 import { CategoryApiService } from 'src/app/core/services/category-api.service';
+import { NotificationService } from 'src/app/core/services/notification-service';
 
 @Component({
   selector: 'app-manage-categories-table',
@@ -15,13 +17,14 @@ export class ManageCategoriesTableComponent implements OnInit {
   pagination: IPagination;
 
   isLoad: boolean = false;
+  editCategory: ICategory | null;
 
-  editId: number = -1;
   public params: ICommonParams = {
     pageNumber: 1,
   }
 
   constructor(private router: Router,
+    private notice: NotificationService,
     private categoryService: CategoryApiService) { }
 
   ngOnInit(): void {
@@ -29,6 +32,7 @@ export class ManageCategoriesTableComponent implements OnInit {
   }
 
   query(): any {
+    this.isLoad = false;
     this.categoryService.GetAllCategories(this.params).subscribe((resp: any) => {
       this.categories = resp.body;
       this.isLoad = true;
@@ -40,6 +44,45 @@ export class ManageCategoriesTableComponent implements OnInit {
     this.query();
   }
 
+  addItem(name: string) {
+    let newCategory: ICategory = {
+      name: name
+    }
+    if (newCategory) {
+      this.categoryService.AddCategory(newCategory).subscribe((data: any) => {
+        this.notice.textNotice(`Category ${newCategory.name} successfully created.`)
+        this.query();
+      }, (error: HttpErrorResponse) => {
+        this.notice.textNotice(`Something want wrong! Maybe name ${newCategory.name} is taken.`);
+      })
+    }
+  }
+
+  editItem(category: ICategory) {
+    if (this.editCategory == null) {
+      this.editCategory = Object.assign({}, category);
+    }
+  }
+
+  submitEdit(newName: string) {
+    if (newName == this.editCategory?.name) {
+      this.editCategory = null;
+      return;
+    }
+
+    if (this.editCategory) {
+      this.editCategory.name = newName;
+      this.categoryService.UpdateCategory(this.editCategory).subscribe((data: any) => {
+        this.notice.textNotice(`Category ${this.editCategory?.name} successfully updated.`)
+        this.editCategory = null;
+        this.query();
+      }, (error: HttpErrorResponse) => {
+        this.notice.textNotice(`Something want wrong! Maybe name ${this.editCategory?.name} is taken.`);
+        this.editCategory = null;
+      })
+    }
+  }
+
   deleteItem(category: ICategory) {
     if (!confirm(`Are you sure want to delete ${category.name}?`)) {
       return;
@@ -48,25 +91,5 @@ export class ManageCategoriesTableComponent implements OnInit {
     this.categoryService.DeleteCategory(category).subscribe(() => {
       this.query();
     })
-  }
-
-  editItem(category: ICategory) {
-    if (this.editId == -1) {
-      this.editId = category.id;
-    }
-  }
-
-  submitEdit(submit: boolean) {
-    if (submit == true) {
-      var category: ICategory = {
-        id: this.editId,
-        name: (<HTMLInputElement>(document.getElementById('editName'))).value
-      }
-      this.isLoad = false;
-      this.categoryService.UpdateCategory(category).subscribe((data: any) => {
-        this.query();
-      });
-    }
-    this.editId = -1;
   }
 }

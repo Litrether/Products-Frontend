@@ -1,0 +1,20 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <div>
+        <div class="formhead">
+            <img class="form-logo" src="assets/img/logo.png" alt="logo">
+            <a><img class="form-exit" src="assets/img/cross.png" alt="exit" (click)="onSubmit.emit(inputValue)"></a>
+        </div>
+        <div class=" form-control">
+            <input type="value" formControlName="value" placeholder="{{placeholder}}" value="{{inputValue}}">
+            <div class="validation" *ngIf="form.get('value')?.invalid && form.get('value')?.touched">
+                <small *ngIf="form.get('value')?.errors?.required">Value is required.</small>
+            </div>
+        </div>
+        <button class="form-btn" type="submit" [disabled]="form.invalid">Submit</button>
+    </div>
+</form>
+
+
+
+<ng-template #loading>
+</ng-template>

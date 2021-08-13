@@ -5,15 +5,14 @@ import { ManageCategoriesTableComponent } from './manage-categories-table/manage
 import { ManagePageComponent } from './manage-page.component';
 import { ManageProviderTableComponent } from './manage-provider-table/manage-provider-table.component';
 import { ManagePageRoutingModule } from './manage-routing-module';
-import { CategoriesFormComponent } from './manage-categories-table/categories-form/categories-form.component';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StringFormModule } from 'src/app/shared/companents/string-form/string-form.module';
 
 @NgModule({
   declarations: [
     ManagePageComponent,
     ManageCategoriesTableComponent,
     ManageProviderTableComponent,
-    CategoriesFormComponent,
   ],
   imports: [
     CommonModule,
@@ -21,6 +20,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     LoadingModule,
+    StringFormModule,
   ],
   exports: [
     ManagePageComponent
