@@ -11,6 +11,7 @@ export class StringFormComponent implements OnInit {
 
   @Input() placeholder: string;
   @Input() inputValue: string;
+  @Input() inputType: string = 'text';
   @Input() minLength: number = 3;
   @Output() onSubmit = new EventEmitter<string>();
 

@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/account/auth-service';
 import { ICategory } from 'src/app/core/interfaces/categories-interfaces';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
 import { ICommonParams } from 'src/app/core/interfaces/params-interfaces';
@@ -17,6 +18,7 @@ export class ManageCategoriesTableComponent implements OnInit {
   pagination: IPagination;
 
   isLoad: boolean = false;
+  createMode: boolean = false;
   editCategory: ICategory | null;
 
   public params: ICommonParams = {
@@ -24,6 +26,7 @@ export class ManageCategoriesTableComponent implements OnInit {
   }
 
   constructor(private router: Router,
+    public authService: AuthService,
     private notice: NotificationService,
     private categoryService: CategoryApiService) { }
 
@@ -45,6 +48,7 @@ export class ManageCategoriesTableComponent implements OnInit {
   }
 
   addItem(name: string) {
+    this.createMode = false;
     let newCategory: ICategory = {
       name: name
     }

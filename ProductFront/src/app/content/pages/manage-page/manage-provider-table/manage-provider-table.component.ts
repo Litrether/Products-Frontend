@@ -1,8 +1,11 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/account/auth-service';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
 import { ICommonParams } from 'src/app/core/interfaces/params-interfaces';
 import { IProvider } from 'src/app/core/interfaces/providers-interfaces';
+import { NotificationService } from 'src/app/core/services/notification-service';
 import { ProviderApiService } from 'src/app/core/services/provider-api.service';
 
 @Component({
@@ -15,13 +18,16 @@ export class ManageProviderTableComponent implements OnInit {
   pagination: IPagination;
 
   isLoad: boolean = false;
+  createMode: boolean = false;
+  editProvider: IProvider | null;
 
-  editId: number = -1;
   public params: ICommonParams = {
     pageNumber: 1,
   }
 
   constructor(private router: Router,
+    public authService: AuthService,
+    private notice: NotificationService,
     private providerService: ProviderApiService) { }
 
   ngOnInit(): void {
@@ -41,6 +47,46 @@ export class ManageProviderTableComponent implements OnInit {
     this.query();
   }
 
+  addItem(name: string) {
+    this.createMode = false;
+    let newProvider: IProvider = {
+      name: name
+    }
+    if (newProvider) {
+      this.providerService.AddProvider(newProvider).subscribe((data: any) => {
+        this.notice.textNotice(`Provider ${newProvider.name} successfully created.`)
+        this.query();
+      }, (error: HttpErrorResponse) => {
+        this.notice.textNotice(`Something want wrong! Maybe name ${newProvider.name} is taken.`);
+      })
+    }
+  }
+
+  editItem(provider: IProvider) {
+    if (this.editProvider == null) {
+      this.editProvider = Object.assign({}, provider);
+    }
+  }
+
+  submitEdit(newName: string) {
+    if (newName == this.editProvider?.name) {
+      this.editProvider = null;
+      return;
+    }
+
+    if (this.editProvider) {
+      this.editProvider.name = newName;
+      this.providerService.UpdateProvider(this.editProvider).subscribe((data: any) => {
+        this.notice.textNotice(`Provider ${this.editProvider?.name} successfully updated.`)
+        this.editProvider = null;
+        this.query();
+      }, (error: HttpErrorResponse) => {
+        this.notice.textNotice(`Something want wrong! Maybe name ${this.editProvider?.name} is taken.`);
+        this.editProvider = null;
+      })
+    }
+  }
+
   deleteItem(provider: IProvider) {
     if (!confirm(`Are you sure want to delete ${provider.name}?`)) {
       return;
@@ -49,25 +95,5 @@ export class ManageProviderTableComponent implements OnInit {
     this.providerService.DeleteProvider(provider).subscribe(() => {
       this.query();
     })
-  }
-
-  editItem(provider: IProvider) {
-    if (this.editId == -1) {
-      this.editId = provider.id;
-    }
-  }
-
-  submitEdit(submit: boolean) {
-    if (submit == true) {
-      var provider: IProvider = {
-        id: this.editId,
-        name: (<HTMLInputElement>(document.getElementById('editName'))).value
-      }
-      this.isLoad = false;
-      this.providerService.UpdateProvider(provider).subscribe((data: any) => {
-        this.query();
-      });
-      this.editId = -1;
-    }
   }
 }

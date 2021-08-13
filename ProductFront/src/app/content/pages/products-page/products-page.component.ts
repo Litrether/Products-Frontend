@@ -43,7 +43,6 @@ export class ProductsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.notice.textNotice('Account successfully created.  Log in please.')
     this.query();
   }
 
