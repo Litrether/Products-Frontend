@@ -86,6 +86,18 @@ export class ProductsPageComponent implements OnInit {
     this.query();
   }
 
+  minCost() {
+    this.productParams.minCost = (<HTMLInputElement>(document.getElementById('minCost-input'))).valueAsNumber;
+    this.productParams.pageNumber = 1;
+    this.query();
+  }
+
+  maxCost() {
+    this.productParams.maxCost = (<HTMLInputElement>(document.getElementById('minCost-input'))).valueAsNumber;
+    this.productParams.pageNumber = 1;
+    this.query();
+  }
+
   changeCategory(category: string) {
     this.productParams.categories = category;
     this.productParams.pageNumber = 1;

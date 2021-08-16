@@ -1,5 +1,5 @@
 <div class="account-page">
-    <div class="account-wrapper">
+    <div class="account-wrapper" *ngIf="accountData; else loading">
         <div class="account-panel">
             <img class="account-photo" src="assets/img/account.png" alt="photo">
             <div class="account-info">
@@ -16,8 +16,8 @@
                 </ul>
             </div>
             <div class="account-control">
-                <button (click)="openPassForm = true">Change password</button>
-                <button (click)="deleteAccount()">Delete account</button>
+                <button (click)="changePasswordForm = true">Change password</button>
+                <button (click)="deleteAccountForm = true">Delete account</button>
             </div>
         </div>
         <div class="cart-panel" *ngIf="isLoad; else loading">
@@ -37,7 +37,10 @@
         </div>
     </div>
 
-    <app-change-pass-form *ngIf="openPassForm" (onSubmit)="changePassword($event)"></app-change-pass-form>
+    <app-change-pass-form *ngIf="changePasswordForm" (onSubmit)="changePassword($event)"></app-change-pass-form>
+    <app-string-form *ngIf="deleteAccountForm" (onSubmit)="deleteAccount($event)" [inputType]="'password'"
+        [placeholder]="'Account password'">
+    </app-string-form>
 </div>
 
 <ng-template #loading>

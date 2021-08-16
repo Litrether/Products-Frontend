@@ -1,7 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { zip } from 'rxjs';
-import { IAccountData, IChangePassword } from 'src/app/core/interfaces/accounts-interfaces';
+import { AuthService } from 'src/app/core/account/auth-service';
+import { IAccountData, IAuthAccount, IChangePassword } from 'src/app/core/interfaces/accounts-interfaces';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
 import { IProductParams } from 'src/app/core/interfaces/params-interfaces';
 import { IProduct } from 'src/app/core/interfaces/products-interfaces';
@@ -16,7 +17,9 @@ import { NotificationService } from 'src/app/core/services/notification-service'
 })
 export class AccountPageComponent implements OnInit {
   isLoad: boolean = false;
-  openPassForm: boolean = false;
+
+  changePasswordForm: boolean = false;
+  deleteAccountForm: boolean = false;
 
   accountData: IAccountData;
   cartProducts: IProduct[];
@@ -29,6 +32,7 @@ export class AccountPageComponent implements OnInit {
 
   constructor(
     private accountService: AccountApiService,
+    private authService: AuthService,
     private notice: NotificationService,
     private cartService: CartApiService) {
     document.body.style.backgroundImage = "url('assets/img/account-bg.jpg')";
@@ -65,7 +69,7 @@ export class AccountPageComponent implements OnInit {
   }
 
   changePassword(changePasswordData: IChangePassword) {
-    this.openPassForm = false;
+    this.changePasswordForm = false;
     if (changePasswordData) {
       this.accountService.ChangePassword(changePasswordData).subscribe((data: any) => {
         this.notice.textNotice('Password successfully changed!')
@@ -75,7 +79,23 @@ export class AccountPageComponent implements OnInit {
     }
   }
 
-  deleteAccount() { }
+  deleteAccount(password: string) {
+    this.deleteAccountForm = false;
+    if (password) {
+      let account: IAuthAccount = {
+        username: this.accountData.username,
+        password: password,
+      }
+      console.log(account);
+
+      this.accountService.DeleteAccount(account).subscribe((data: any) => {
+        this.notice.textNotice('Account successfully deleted. Come back!');
+        this.authService.logout();
+      }, (error: HttpErrorResponse) => {
+        this.notice.textNotice('Something went wrong');
+      })
+    }
+  }
 
   leftPage() {
     if (this.productParams.pageNumber > 1) {

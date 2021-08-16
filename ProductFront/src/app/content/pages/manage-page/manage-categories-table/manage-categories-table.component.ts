@@ -18,8 +18,9 @@ export class ManageCategoriesTableComponent implements OnInit {
   pagination: IPagination;
 
   isLoad: boolean = false;
-  createMode: boolean = false;
-  editCategory: ICategory | null;
+  createForm: boolean = false;
+  editForm: boolean = false;
+  editCategory: ICategory;
 
   public params: ICommonParams = {
     pageNumber: 1,
@@ -48,7 +49,7 @@ export class ManageCategoriesTableComponent implements OnInit {
   }
 
   addItem(name: string) {
-    this.createMode = false;
+    this.createForm = false;
     let newCategory: ICategory = {
       name: name
     }
@@ -65,24 +66,20 @@ export class ManageCategoriesTableComponent implements OnInit {
   editItem(category: ICategory) {
     if (this.editCategory == null) {
       this.editCategory = Object.assign({}, category);
+      this.editForm = true;
     }
   }
 
   submitEdit(newName: string) {
-    if (newName == this.editCategory?.name) {
-      this.editCategory = null;
-      return;
-    }
+    this.editForm = false;
 
-    if (this.editCategory) {
+    if (newName) {
       this.editCategory.name = newName;
       this.categoryService.UpdateCategory(this.editCategory).subscribe((data: any) => {
         this.notice.textNotice(`Category ${this.editCategory?.name} successfully updated.`)
-        this.editCategory = null;
         this.query();
       }, (error: HttpErrorResponse) => {
         this.notice.textNotice(`Something want wrong! Maybe name ${this.editCategory?.name} is taken.`);
-        this.editCategory = null;
       })
     }
   }
@@ -93,7 +90,10 @@ export class ManageCategoriesTableComponent implements OnInit {
     }
     this.isLoad = false;
     this.categoryService.DeleteCategory(category).subscribe(() => {
+      this.notice.textNotice(`Category ${this.editCategory?.name} successfully deleted.`)
       this.query();
+    }, (error: HttpErrorResponse) => {
+      this.notice.textNotice(`Something want wrong!`);
     })
   }
 }

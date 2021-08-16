@@ -13,18 +13,18 @@
             <td><img class="list-img" src="assets/img/delete.png" alt="delete" (click)="deleteItem(provider)"></td>
         </tr>
         <tr *ngIf="!authService.isClient()">
-            <td class="add-cell" (click)="createMode = true">+</td>
+            <td class="add-cell" (click)="createForm = true">+</td>
             <td class="td-name "></td>
             <td></td>
             <td></td>
         </tr>
     </table>
 
-    <app-string-form *ngIf="editProvider" [inputValue]="editProvider.name" [placeholder]="'Provider name'"
+    <app-string-form *ngIf="editForm" [inputValue]="editProvider.name" [placeholder]="'Provider name'"
         (onSubmit)="submitEdit($event)">
     </app-string-form>
 
-    <app-string-form *ngIf="createMode" [placeholder]="'Provider name'" (onSubmit)="addItem($event)">
+    <app-string-form *ngIf="createForm" [placeholder]="'Provider name'" (onSubmit)="addItem($event)">
     </app-string-form>
 </div>
 

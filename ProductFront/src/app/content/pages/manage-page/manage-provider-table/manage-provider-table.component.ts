@@ -18,8 +18,9 @@ export class ManageProviderTableComponent implements OnInit {
   pagination: IPagination;
 
   isLoad: boolean = false;
-  createMode: boolean = false;
-  editProvider: IProvider | null;
+  createForm: boolean = false;
+  editForm: boolean = false;
+  editProvider: IProvider;
 
   public params: ICommonParams = {
     pageNumber: 1,
@@ -48,7 +49,7 @@ export class ManageProviderTableComponent implements OnInit {
   }
 
   addItem(name: string) {
-    this.createMode = false;
+    this.createForm = false;
     let newProvider: IProvider = {
       name: name
     }
@@ -65,24 +66,20 @@ export class ManageProviderTableComponent implements OnInit {
   editItem(provider: IProvider) {
     if (this.editProvider == null) {
       this.editProvider = Object.assign({}, provider);
+      this.editForm = true;
     }
   }
 
   submitEdit(newName: string) {
-    if (newName == this.editProvider?.name) {
-      this.editProvider = null;
-      return;
-    }
+    this.editForm = false;
 
-    if (this.editProvider) {
+    if (newName) {
       this.editProvider.name = newName;
       this.providerService.UpdateProvider(this.editProvider).subscribe((data: any) => {
         this.notice.textNotice(`Provider ${this.editProvider?.name} successfully updated.`)
-        this.editProvider = null;
         this.query();
       }, (error: HttpErrorResponse) => {
         this.notice.textNotice(`Something want wrong! Maybe name ${this.editProvider?.name} is taken.`);
-        this.editProvider = null;
       })
     }
   }

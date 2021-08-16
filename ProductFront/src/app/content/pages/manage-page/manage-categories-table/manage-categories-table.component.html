@@ -13,18 +13,18 @@
             <td><img class="list-img" src="assets/img/delete.png" alt="delete" (click)="deleteItem(category)"></td>
         </tr>
         <tr *ngIf="!authService.isClient()">
-            <td class="add-cell" (click)="createMode = true">+</td>
+            <td class="add-cell" (click)="createForm = true">+</td>
             <td class="td-name "></td>
             <td></td>
             <td></td>
         </tr>
     </table>
 
-    <app-string-form *ngIf="editCategory" [inputValue]="editCategory.name" [placeholder]="'Category name'"
+    <app-string-form *ngIf="editForm" [inputValue]="editCategory.name" [placeholder]="'Category name'"
         (onSubmit)="submitEdit($event)">
     </app-string-form>
 
-    <app-string-form *ngIf="createMode" [placeholder]="'Category name'" (onSubmit)="addItem($event)">
+    <app-string-form *ngIf="createForm" [placeholder]="'Category name'" (onSubmit)="addItem($event)">
     </app-string-form>
 </div>
 

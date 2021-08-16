@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParamsOptions } from "@angular/common/http
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { connectionString } from "src/app/shared/constants/connection.constants";
-import { IAccountData, IChangePassword, IRegAccount } from "../interfaces/accounts-interfaces";
+import { IAccountData, IAuthAccount, IChangePassword, IRegAccount } from "../interfaces/accounts-interfaces";
 
 @Injectable({ providedIn: 'root' })
 export class AccountApiService {
@@ -16,10 +16,14 @@ export class AccountApiService {
     }
 
     public GetAccountData(): Observable<IAccountData> {
-        return this.http.get<IAccountData>(`${this.pathBase}`);
+        return this.http.get<any>(`${this.pathBase}`);
     }
 
-    public ChangePassword(passwords: IChangePassword) {
-        return this.http.put<IChangePassword>(`${this.pathBase}/password`, passwords);
+    public ChangePassword(passwords: IChangePassword): Observable<any> {
+        return this.http.put<any>(`${this.pathBase}/password`, passwords);
+    }
+
+    public DeleteAccount(account: IAuthAccount): Observable<any> {
+        return this.http.delete<any>(`${this.pathBase}/delete`, { body: account });
     }
 }
