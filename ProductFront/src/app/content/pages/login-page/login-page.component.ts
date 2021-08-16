@@ -33,19 +33,10 @@ export class LoginPageComponent implements OnInit {
       this.router.navigate(['']);
     }
 
-    this.route.queryParams.subscribe((params: Params) => {
-      if (params.loginAgain) {
-        this.message = 'Please, enter data';
-      } else if (params.authFieled) {
-        this.message = 'Session ended. Enter data again.'
-      }
-    });
-
     this.form = this.fb.group({
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
-
   }
 
   submit() {
@@ -65,6 +56,7 @@ export class LoginPageComponent implements OnInit {
       this.router.navigate(['/user', "products"]);
       this.submitted = false;
     }, () => {
+      this.notice.textNotice(`Wrong login or password.`)
       this.submitted = false;
     });
   }

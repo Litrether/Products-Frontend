@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { zip } from 'rxjs';
-import { IAccountData } from 'src/app/core/interfaces/accounts-interfaces';
+import { IAccountData, IChangePassword } from 'src/app/core/interfaces/accounts-interfaces';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
 import { IProductParams } from 'src/app/core/interfaces/params-interfaces';
 import { IProduct } from 'src/app/core/interfaces/products-interfaces';
@@ -16,6 +16,7 @@ import { NotificationService } from 'src/app/core/services/notification-service'
 })
 export class AccountPageComponent implements OnInit {
   isLoad: boolean = false;
+  openPassForm: boolean = false;
 
   accountData: IAccountData;
   cartProducts: IProduct[];
@@ -50,6 +51,7 @@ export class AccountPageComponent implements OnInit {
       this.pagination = JSON.parse(cartProducts.headers.get('pagination'));
       this.isLoad = true;
     }, (error: HttpErrorResponse) => {
+      this.notice.textNotice(`Something went wrong.`)
     })
   }
 
@@ -62,7 +64,16 @@ export class AccountPageComponent implements OnInit {
     });
   }
 
-  changePassword() { }
+  changePassword(changePasswordData: IChangePassword) {
+    this.openPassForm = false;
+    if (changePasswordData) {
+      this.accountService.ChangePassword(changePasswordData).subscribe((data: any) => {
+        this.notice.textNotice('Password successfully changed!')
+      }, (error: HttpErrorResponse) => {
+        this.notice.textNotice('Something went wrong!')
+      })
+    }
+  }
 
   deleteAccount() { }
 

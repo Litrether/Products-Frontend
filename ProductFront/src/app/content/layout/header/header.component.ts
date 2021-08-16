@@ -7,9 +7,6 @@ import { AuthService } from 'src/app/core/account/auth-service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  profileStatus: string;
-
   constructor(public authService: AuthService) { }
 
   ngOnInit(): void { }
@@ -17,5 +14,4 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.authService.logout();
   }
-
 }

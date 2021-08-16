@@ -6,9 +6,6 @@
                     <a [routerLink]="['']">Home </a>
                </li>
                <li routerLinkActive="active">
-                    <a [routerLink]="['/user', 'products']">About </a>
-               </li>
-               <li routerLinkActive="active">
                     <a [routerLink]="['/user', 'products']"> Catalog </a>
                </li>
                <li routerLinkActive="active" *ngIf="!authService.isClient()">
@@ -22,7 +19,6 @@
                </li>
           </ul>
      </div>
-
      <ng-template #signin>
           <ul class="header-list">
                <li routerLinkActive="active">
@@ -33,5 +29,4 @@
                </li>
           </ul>
      </ng-template>
-
 </nav>

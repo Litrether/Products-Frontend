@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { zip } from 'rxjs';
 import { ICategory } from 'src/app/core/interfaces/categories-interfaces';
+import { IProductParams } from 'src/app/core/interfaces/params-interfaces';
 import { IProduct } from 'src/app/core/interfaces/products-interfaces';
 import { IProvider } from 'src/app/core/interfaces/providers-interfaces';
 import { CategoryApiService } from 'src/app/core/services/category-api.service';
@@ -18,7 +19,6 @@ import { ProviderApiService } from 'src/app/core/services/provider-api.service';
 export class ProductFormComponent implements OnInit {
   public form: FormGroup;
   submitted: boolean = false;
-  message: string;
 
   categories: ICategory[];
   providers: IProvider[];
@@ -27,11 +27,8 @@ export class ProductFormComponent implements OnInit {
   isEditMode: boolean = false;
   isLoad: boolean = false;
 
-  public params = {
-    searchTerm: '',
-    pageSize: 50,
+  public params: IProductParams = {
     pageNumber: 1,
-    orderBy: 'name'
   }
 
   constructor(private router: Router,

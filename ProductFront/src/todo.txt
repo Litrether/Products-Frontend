@@ -1,7 +1,6 @@
 1. Create little animation
 2. Manage form
 3. Find good loading animation
-4. Page About
 5. Add filter to product-page
 6. Buttons to api in account-page
 7. Find bg for all pages

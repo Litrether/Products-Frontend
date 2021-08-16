@@ -5,7 +5,7 @@
             <a><img class="form-exit" src="assets/img/cross.png" alt="exit" (click)="onSubmit.emit(inputValue)"></a>
         </div>
         <div class=" form-control">
-            <input type="password" formControlName="value" placeholder="{{placeholder}}" value="{{inputValue}}">
+            <input type="{{inputType}}" formControlName="value" placeholder="{{placeholder}}" value="{{inputValue}}">
             <div class="validation" *ngIf="form.get('value')?.invalid && form.get('value')?.touched">
                 <small *ngIf="form.get('value')?.errors?.required">Value is required.</small>
             </div>

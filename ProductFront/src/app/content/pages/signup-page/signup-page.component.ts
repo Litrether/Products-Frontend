@@ -69,11 +69,12 @@ export class SignupPageComponent implements OnInit {
 
     if (this.form.value.password == this.form.value.confirmPassword) {
       this.accountService.CreateAccount(regAccount).subscribe((data: any) => {
-        this.submitted = false;
         this.notice.textNotice('Account successfully created. Log in please.')
+        this.submitted = false;
         this.router.navigate(['/login']);
       });
     } else {
+      this.notice.textNotice(`Passwords don't match.`)
       this.form.get("password")?.setValue('');
       this.form.get("confirmPassword")?.setValue('');
       this.submitted = false;
