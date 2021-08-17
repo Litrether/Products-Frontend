@@ -88,7 +88,6 @@ export class ManageCategoriesTableComponent implements OnInit {
     if (!confirm(`Are you sure want to delete ${category.name}?`)) {
       return;
     }
-    this.isLoad = false;
     this.categoryService.DeleteCategory(category).subscribe(() => {
       this.notice.textNotice(`Category ${this.editCategory?.name} successfully deleted.`)
       this.query();
