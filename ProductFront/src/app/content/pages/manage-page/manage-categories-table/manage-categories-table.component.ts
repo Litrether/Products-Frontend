@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/core/account/auth-service';
 import { ICategory } from 'src/app/core/interfaces/categories-interfaces';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
 import { ICommonParams } from 'src/app/core/interfaces/params-interfaces';
+import { IProvider } from 'src/app/core/interfaces/providers-interfaces';
 import { CategoryApiService } from 'src/app/core/services/category-api.service';
 import { NotificationService } from 'src/app/core/services/notification-service';
 
@@ -54,9 +55,9 @@ export class ManageCategoriesTableComponent implements OnInit {
       name: name
     }
     if (newCategory) {
-      this.categoryService.AddCategory(newCategory).subscribe((data: any) => {
+      this.categoryService.AddCategory(newCategory).subscribe((category: ICategory) => {
+        this.categories.push(category);
         this.notice.textNotice(`Category ${newCategory.name} successfully created.`)
-        this.query();
       }, (error: HttpErrorResponse) => {
         this.notice.textNotice(`Something want wrong! Maybe name ${newCategory.name} is taken.`);
       })

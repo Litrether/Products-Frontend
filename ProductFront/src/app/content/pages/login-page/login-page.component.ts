@@ -56,7 +56,6 @@ export class LoginPageComponent implements OnInit {
       this.router.navigate(['/user', "products"]);
       this.submitted = false;
     }, () => {
-      this.notice.textNotice(`Wrong login or password.`)
       this.submitted = false;
     });
   }

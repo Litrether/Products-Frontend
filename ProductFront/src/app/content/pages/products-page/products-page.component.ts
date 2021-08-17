@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { zip } from 'rxjs';
@@ -75,8 +76,11 @@ export class ProductsPageComponent implements OnInit {
       return;
     }
     this.productService.DeleteProduct(product).subscribe(() => {
+      this.products.splice(this.products.indexOf(product), 1)
       this.notice.productNotice(`Product ${product.name} was deleted`, product);
       this.query();
+    }, (error: HttpErrorResponse) => {
+      this.notice.textNotice(`Something went wrong`);
     });
   }
 

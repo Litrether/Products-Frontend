@@ -14,6 +14,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { PaginationComponent } from './content/layout/pagination/pagination.component';
 import { AuthService } from './core/account/auth-service';
 import { NotificationComponent } from './shared/companents/notification/notification.component';
+import { RoleGuard } from './core/guards/role.guard';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { NotificationComponent } from './shared/companents/notification/notifica
   ],
   providers: [
     AuthGuard,
+    RoleGuard,
     AuthService,
     {
       provide: HTTP_INTERCEPTORS,

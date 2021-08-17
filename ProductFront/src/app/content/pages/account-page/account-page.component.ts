@@ -61,8 +61,8 @@ export class AccountPageComponent implements OnInit {
 
   deleteProductFromCart(product: IProduct) {
     this.cartService.DeleteProductFromCart(product).subscribe(() => {
-      this.notice.productNotice(`Product ${product.name} successfuly delete from your cart.`, product)
-      this.query()
+      this.cartProducts.splice(this.cartProducts.indexOf(product), 1);
+      this.notice.productNotice(`Product ${product.name} successfuly delete from your cart.`, product);
     }, () => {
       this.notice.textNotice(`Something went wrong.`)
     });
@@ -86,7 +86,6 @@ export class AccountPageComponent implements OnInit {
         username: this.accountData.username,
         password: password,
       }
-      console.log(account);
 
       this.accountService.DeleteAccount(account).subscribe((data: any) => {
         this.notice.textNotice('Account successfully deleted. Come back!');

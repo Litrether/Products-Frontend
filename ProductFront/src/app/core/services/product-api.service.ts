@@ -13,8 +13,6 @@ export class ProductApiService {
     constructor(private http: HttpClient) { }
 
     public GetAllProducts(params: IProductParams): Observable<any> {
-        console.log(getUrl(this.pathBase, params));
-
         return this.http.get<any>(getUrl(this.pathBase, params), { observe: 'response' });
     }
 
