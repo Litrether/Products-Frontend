@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, JsonpClientBackend } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, Subject, throwError } from "rxjs";
 import { IAuthAccount, IAuthResponse, IRegAccount } from "../interfaces/accounts-interfaces";
@@ -28,25 +28,20 @@ export class AuthService {
         return localStorage.getItem('fb-token');
     }
 
-    isClient(): boolean {
-        if (localStorage.getItem('fb-isClient') == "true")
-            return true;
-        return false;
+    isUser(): boolean {
+        return localStorage.getItem('fb-isUser') == 'true' ? true : false;
     }
 
     isManager(): boolean {
-        if (localStorage.getItem('fb-isManager') == "true")
-            return true;
-        return false;
+        return localStorage.getItem('fb-isManager') == 'true' ? true : false;
     }
 
     isAdministrator(): boolean {
-        if (localStorage.getItem('fb-isAdministrator') == "true")
-            return true;
-        return false;
+        return localStorage.getItem('fb-isAdministrator') == 'true' ? true : false;
     }
 
     login(authAccount: IAuthAccount): Observable<any> {
+
         return this.http.post(`${this.pathBase}/login`, authAccount)
             .pipe(
                 tap((response: any) => this.setToken(response))
@@ -67,9 +62,9 @@ export class AuthService {
             const expiresDate = new Date(new Date().getTime() + 60 * 60 * 1000);
             localStorage.setItem('fb-token', response.token);
             localStorage.setItem('fb-token-exp', expiresDate.toString());
-            localStorage.setItem(`fb-isClient`, response.roles.indexOf(`Client`) ? 'true' : 'false');
-            localStorage.setItem(`fb-isManager`, response.roles.indexOf(`Manager`) ? 'true' : 'false');
-            localStorage.setItem(`fb-isAdministrator`, response.roles.indexOf(`Administrator`) ? 'true' : 'false');
+            localStorage.setItem(`fb-isUser`, (response.roles.includes(`User`)).toString());
+            localStorage.setItem(`fb-isManager`, (response.roles.includes(`Manager`)).toString());
+            localStorage.setItem(`fb-isAdministrator`, (response.roles.includes(`Administrator`)).toString());
         } else {
             localStorage.clear();
         }

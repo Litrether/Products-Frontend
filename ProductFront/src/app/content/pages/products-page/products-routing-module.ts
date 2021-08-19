@@ -13,7 +13,6 @@ const routes: Routes = [
         children: [
             {
                 path: "form", component: ProductFormComponent,
-                canActivate: [RoleGuard]
             },
         ],
     },

@@ -88,7 +88,7 @@ export class ProductFormComponent implements OnInit {
 
     if (this.isEditMode) {
       product.id = this.product.id;
-      this, this.productsService.UpdateProduct(product).subscribe(() => {
+      this.productsService.UpdateProduct(product).subscribe(() => {
         this.form.reset();
         this.submitted = false;
         this.router.navigate(['/user', 'products']);

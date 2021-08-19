@@ -44,10 +44,6 @@ export class ProductsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.authService.isClient());
-    console.log(this.authService.isManager());
-    console.log(this.authService.isAdministrator());
-
     this.query();
   }
 
@@ -100,7 +96,7 @@ export class ProductsPageComponent implements OnInit {
   }
 
   maxCost() {
-    this.productParams.maxCost = (<HTMLInputElement>(document.getElementById('minCost-input'))).valueAsNumber;
+    this.productParams.maxCost = (<HTMLInputElement>(document.getElementById('maxCost-input'))).valueAsNumber;
     this.productParams.pageNumber = 1;
     this.query();
   }
