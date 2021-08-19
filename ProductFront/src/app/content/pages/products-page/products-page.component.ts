@@ -44,6 +44,10 @@ export class ProductsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.authService.isClient());
+    console.log(this.authService.isManager());
+    console.log(this.authService.isAdministrator());
+
     this.query();
   }
 
@@ -78,7 +82,6 @@ export class ProductsPageComponent implements OnInit {
     this.productService.DeleteProduct(product).subscribe(() => {
       this.products.splice(this.products.indexOf(product), 1)
       this.notice.productNotice(`Product ${product.name} was deleted`, product);
-      this.query();
     }, (error: HttpErrorResponse) => {
       this.notice.textNotice(`Something went wrong`);
     });

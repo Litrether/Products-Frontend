@@ -12,7 +12,7 @@
             <td><img class="list-img" src="assets/img/edit.png" alt="edit" (click)="editItem(provider)"></td>
             <td><img class="list-img" src="assets/img/delete.png" alt="delete" (click)="deleteItem(provider)"></td>
         </tr>
-        <tr *ngIf="!authService.isClient()">
+        <tr *ngIf="authService.isAdministrator()">
             <td class="add-cell" (click)="createForm = true">+</td>
             <td class="td-name "></td>
             <td></td>

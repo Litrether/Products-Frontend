@@ -34,6 +34,18 @@ export class AuthService {
         return false;
     }
 
+    isManager(): boolean {
+        if (localStorage.getItem('fb-isManager') == "true")
+            return true;
+        return false;
+    }
+
+    isAdministrator(): boolean {
+        if (localStorage.getItem('fb-isAdministrator') == "true")
+            return true;
+        return false;
+    }
+
     login(authAccount: IAuthAccount): Observable<any> {
         return this.http.post(`${this.pathBase}/login`, authAccount)
             .pipe(
@@ -55,8 +67,9 @@ export class AuthService {
             const expiresDate = new Date(new Date().getTime() + 60 * 60 * 1000);
             localStorage.setItem('fb-token', response.token);
             localStorage.setItem('fb-token-exp', expiresDate.toString());
-            if (response.roles.indexOf('Manager') == -1 && response.roles.indexOf('Administrator') == -1)
-                localStorage.setItem('fb-isClient', "true");
+            localStorage.setItem(`fb-isClient`, response.roles.indexOf(`Client`) ? 'true' : 'false');
+            localStorage.setItem(`fb-isManager`, response.roles.indexOf(`Manager`) ? 'true' : 'false');
+            localStorage.setItem(`fb-isAdministrator`, response.roles.indexOf(`Administrator`) ? 'true' : 'false');
         } else {
             localStorage.clear();
         }
