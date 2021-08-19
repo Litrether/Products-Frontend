@@ -76,7 +76,7 @@ export class ProductsPageComponent implements OnInit {
       return;
     }
     this.productService.DeleteProduct(product).subscribe(() => {
-      this.products.splice(this.products.indexOf(product), 1)
+      this.products.splice(this.products.indexOf(product), 1);
       this.notice.productNotice(`Product ${product.name} was deleted`, product);
     }, (error: HttpErrorResponse) => {
       this.notice.textNotice(`Something went wrong`);

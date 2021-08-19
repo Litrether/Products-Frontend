@@ -16,7 +16,4 @@ export class ManagePageComponent implements OnInit {
   }
 
   ngOnInit(): void { }
-
-
-
 }

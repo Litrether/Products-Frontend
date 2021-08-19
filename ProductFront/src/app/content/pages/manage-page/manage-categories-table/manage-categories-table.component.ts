@@ -5,7 +5,6 @@ import { AuthService } from 'src/app/core/account/auth-service';
 import { ICategory } from 'src/app/core/interfaces/categories-interfaces';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
 import { ICommonParams } from 'src/app/core/interfaces/params-interfaces';
-import { IProvider } from 'src/app/core/interfaces/providers-interfaces';
 import { CategoryApiService } from 'src/app/core/services/category-api.service';
 import { NotificationService } from 'src/app/core/services/notification-service';
 
@@ -90,8 +89,8 @@ export class ManageCategoriesTableComponent implements OnInit {
       return;
     }
     this.categoryService.DeleteCategory(category).subscribe(() => {
-      this.notice.textNotice(`Category ${this.editCategory?.name} successfully deleted.`)
-      this.query();
+      this.notice.textNotice(`Category ${this.editCategory?.name} successfully deleted.`);
+      this.categories.splice(this.categories.indexOf(category), 1);
     }, (error: HttpErrorResponse) => {
       this.notice.textNotice(`Something want wrong!`);
     })

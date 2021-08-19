@@ -88,9 +88,11 @@ export class ManageProviderTableComponent implements OnInit {
     if (!confirm(`Are you sure want to delete ${provider.name}?`)) {
       return;
     }
-    this.isLoad = false;
     this.providerService.DeleteProvider(provider).subscribe(() => {
-      this.query();
+      this.notice.textNotice(`Provider ${this.editProvider?.name} successfully deleted.`);
+      this.providers.splice(this.providers.indexOf(provider), 1);
+    }, (error: HttpErrorResponse) => {
+      this.notice.textNotice(`Something want wrong!`);
     })
   }
 }

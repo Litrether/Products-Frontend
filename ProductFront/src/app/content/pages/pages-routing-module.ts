@@ -22,7 +22,6 @@ const routes: Routes = [
             {
                 path: "manage",
                 loadChildren: () => import("./manage-page/manage-page.module").then(p => p.ManagePageModule),
-                canActivate: [RoleGuard]
             },
             { path: "login", component: LoginPageComponent },
             { path: "home", component: HomePageComponent },

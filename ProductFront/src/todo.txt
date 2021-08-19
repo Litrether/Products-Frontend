@@ -1,7 +1,6 @@
 1. Create little animation
-3. Find good loading animation
-5. Add filter to product-page
-7. Find bg for all pages
-8. Animation for notice
-9. optimaze query
-10. 
+2. Find good loading animation
+3. Add filter to product-page
+4. Find bg for all pages
+5. Animation for notice
+6. optimaze query

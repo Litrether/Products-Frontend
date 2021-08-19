@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { IProvider } from "../interfaces/providers-interfaces";
 import { connectionString } from "src/app/shared/constants/connection.constants";
 import { ICommonParams } from "../interfaces/params-interfaces";
-import { getUrl } from "../functions/getUrl";
+import { getUrl } from "src/app/shared/functions/getUrl";
 
 @Injectable({ providedIn: 'root' })
 export class ProviderApiService {

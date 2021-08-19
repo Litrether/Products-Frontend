@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParamsOptions } from "@angular/common/http
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { connectionString } from "src/app/shared/constants/connection.constants";
-import { getUrl } from "../functions/getUrl";
+import { getUrl } from "src/app/shared/functions/getUrl";
 import { IProductParams } from "../interfaces/params-interfaces";
 import { IProduct } from "../interfaces/products-interfaces";
 

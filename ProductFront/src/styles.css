@@ -8,8 +8,6 @@
 }
 
 body{
-    margin:0 auto;
-    width: 85%;
     -khtml-user-select: none; user-select: none;
     background: url('assets/img/home-bg.jpg') no-repeat fixed;
     background-color: black;

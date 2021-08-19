@@ -1,4 +1,4 @@
-import { IProductParams } from "../interfaces/params-interfaces";
+import { IProductParams } from "../../core/interfaces/params-interfaces";
 
 
 export function getUrl(pathBase: string, params: IProductParams | undefined): string {
