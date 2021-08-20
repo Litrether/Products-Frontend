@@ -3,6 +3,7 @@ import { PagesRoutingModule } from './pages-routing-module';
 import { PagesComponent } from './pages.component';
 import { CommonModule } from '@angular/common';
 import { LoadingModule } from '../layout/loading/loading.module';
+import { PaginationModule } from '../layout/pagination/pagination.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { LoadingModule } from '../layout/loading/loading.module';
   imports: [
     CommonModule,
     PagesRoutingModule,
-    LoadingModule
+    PaginationModule,
+    LoadingModule,
   ],
   exports: [
     PagesComponent

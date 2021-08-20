@@ -1,0 +1,25 @@
+.pagination {
+    position:absolute;
+    bottom: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: -20px;
+    width: 300px;
+}
+  
+.pagination a {
+    background-color: white;
+    padding: 6px 12px;
+    border: black 1px solid;
+    margin-left: 2px;
+}
+  
+.pagination a.active {
+    background-color: var(--gray-block-color);
+    color: white;
+}
+  
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+      cursor: pointer;
+}

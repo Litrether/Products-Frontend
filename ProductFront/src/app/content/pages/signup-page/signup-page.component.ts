@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AuthService } from 'src/app/core/account/auth-service';
 import { IRegAccount } from 'src/app/core/interfaces/accounts-interfaces';
-import { AccountApiService } from 'src/app/core/services/account-api-service';
+import { AccountApiService } from 'src/app/core/services/account-api.service';
 import { NotificationService } from 'src/app/core/services/notification-service';
 
 @Component({

@@ -1,4 +1,4 @@
-.header{
+header{
     display:  flex;
     justify-content: space-between;
     width: 100%;
@@ -22,27 +22,31 @@
     display: none;
 }
 
-@media only screen and (max-width: 768px) {
-    .header{
-        padding: none;
-        padding-left: 7.5%;
-    }
-
-    .menu{
-        display: none;
-    }
-}
-
-.menu{
+ul{
     display: flex;
     margin-top: 2.5vh;
     justify-content: space-between;
 }
 
 li{
-    list-style-type: none;
-    width: max-content;
     padding-left: 3vw;
+}
+
+@media only screen and (max-width: 812px) {
+    .header-logo{
+        width: 200px;
+        min-width: 200px;
+        height: 32px;
+        min-height: 32px;
+    }
+
+    header{
+        align-items: flex-start;
+    }
+
+    ul{
+        flex-direction: column;
+    }
 }
 
 a{
@@ -51,9 +55,9 @@ a{
 
 .account-img{
     border-radius: 100%;
-    margin-top: -1vh;
-    width: 5vh;
-    height: 5vh;
+    margin-top: -5px;
+    width: 40px;
+    height: 40px;
     transition: box-shadow 1s;
 }
 

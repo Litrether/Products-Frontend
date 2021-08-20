@@ -6,9 +6,10 @@ import { IAccountData, IAuthAccount, IChangePassword } from 'src/app/core/interf
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
 import { IProductParams } from 'src/app/core/interfaces/params-interfaces';
 import { IProduct } from 'src/app/core/interfaces/products-interfaces';
-import { AccountApiService } from 'src/app/core/services/account-api-service';
+import { AccountApiService } from 'src/app/core/services/account-api.service';
 import { CartApiService } from 'src/app/core/services/cart-api.service';
 import { NotificationService } from 'src/app/core/services/notification-service';
+import { PaginationService } from 'src/app/core/services/pagination.service';
 
 @Component({
   selector: 'app-account-page',
@@ -34,25 +35,25 @@ export class AccountPageComponent implements OnInit {
     private accountService: AccountApiService,
     private authService: AuthService,
     private notice: NotificationService,
+    private pagService: PaginationService,
     private cartService: CartApiService) {
     document.body.style.backgroundImage = "url('assets/img/account-bg.jpg')";
   }
 
   ngOnInit(): void {
+    this.accountService.GetAccountData().subscribe((data: any) =>
+      this.accountData = data);
+
     this.query();
   }
 
   query() {
     this.isLoad = false;
+    this.productParams.pageNumber = this.pagService.MetaData.CurrentPage;
 
-    const result = zip(
-      this.accountService.GetAccountData(),
-      this.cartService.GetCartProducts(this.productParams));
-
-    result.subscribe(([accountData, cartProducts]: any) => {
-      this.accountData = accountData;
-      this.cartProducts = cartProducts.body;
-      this.pagination = JSON.parse(cartProducts.headers.get('pagination'));
+    this.cartService.GetCartProducts(this.productParams).subscribe((data: any) => {
+      this.cartProducts = data.body;
+      this.pagService.MetaData.TotalPages = JSON.parse(data.headers.get('pagination')).TotalPages;
       this.isLoad = true;
     }, (error: HttpErrorResponse) => {
       this.notice.textNotice(`Something went wrong.`)
@@ -93,20 +94,6 @@ export class AccountPageComponent implements OnInit {
       }, (error: HttpErrorResponse) => {
         this.notice.textNotice('Something went wrong');
       })
-    }
-  }
-
-  leftPage() {
-    if (this.productParams.pageNumber > 1) {
-      this.productParams.pageNumber--;
-      this.query();
-    }
-  }
-
-  rightPage() {
-    if (this.productParams.pageNumber < this.pagination.TotalPages) {
-      this.productParams.pageNumber++;
-      this.query();
     }
   }
 }

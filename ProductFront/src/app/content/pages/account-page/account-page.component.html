@@ -1,4 +1,4 @@
-<div class="account-page">
+<div class="account-page-wrapper">
     <div class="account-wrapper" *ngIf="accountData; else loading">
         <div class="account-panel">
             <img class="account-photo" src="assets/img/account.png" alt="photo">
@@ -19,21 +19,17 @@
                 <button (click)="changePasswordForm = true">Change password</button>
                 <button (click)="deleteAccountForm = true">Delete account</button>
             </div>
+            <app-pagination (click)="query()"></app-pagination>
         </div>
-        <div class="cart-panel" *ngIf="isLoad; else loading">
+        <div class="products-panel" *ngIf="isLoad; else loading">
             <ul class="products-list" *ngFor="let product of cartProducts">
                 <li class="product-card">
-                    <img class="product-card-img" src="{{product.imageUrl}}">
+                    <img class="card-product-img" src="{{product.imageUrl}}">
                     <p>{{product.name}}</p>
-                    <p>{{product.provider}}</p>
                     <img class="card-button" src="assets/img/cross.png" (click)="deleteProductFromCart(product)">
+                    <p>{{product.provider}}</p>
                 </li>
             </ul>
-        </div>
-        <div class="pagination">
-            <a (click)="leftPage()">&laquo;</a>
-            <a class="active"> {{productParams.pageNumber}} </a>
-            <a (click)="rightPage()">&raquo;</a>
         </div>
     </div>
 

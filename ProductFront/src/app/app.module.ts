@@ -11,7 +11,6 @@ import { AuthInterseptor } from './core/account/auth-interseptor';
 import { SignupPageComponent } from './content/pages/signup-page/signup-page.component';
 import { HeaderModule } from './content/layout/header/header.module';
 import { AuthGuard } from './core/guards/auth.guard';
-import { PaginationComponent } from './content/layout/pagination/pagination.component';
 import { AuthService } from './core/account/auth-service';
 import { NotificationComponent } from './shared/companents/notification/notification.component';
 import { RoleGuard } from './core/guards/role.guard';
@@ -22,7 +21,6 @@ import { RoleGuard } from './core/guards/role.guard';
     HomePageComponent,
     LoginPageComponent,
     SignupPageComponent,
-    PaginationComponent,
     NotificationComponent,
   ],
   imports: [

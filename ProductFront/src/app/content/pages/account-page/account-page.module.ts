@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StringFormModule } from 'src/app/shared/companents/string-form/string-form.module';
 import { LoadingModule } from '../../layout/loading/loading.module';
+import { PaginationModule } from '../../layout/pagination/pagination.module';
 import { AccountPageComponent } from './account-page.component';
 import { ChangePassFormComponent } from './change-pass-form/change-pass-form.component';
 
@@ -16,7 +17,8 @@ import { ChangePassFormComponent } from './change-pass-form/change-pass-form.com
     LoadingModule,
     FormsModule,
     ReactiveFormsModule,
-    StringFormModule
+    StringFormModule,
+    PaginationModule,
   ],
   exports: [
     AccountPageComponent

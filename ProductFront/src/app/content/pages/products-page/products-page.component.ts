@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { zip } from 'rxjs';
 import { AuthService } from 'src/app/core/account/auth-service';
 import { ICategory } from 'src/app/core/interfaces/categories-interfaces';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
@@ -10,6 +9,7 @@ import { IProduct } from 'src/app/core/interfaces/products-interfaces';
 import { CartApiService } from 'src/app/core/services/cart-api.service';
 import { CategoryApiService } from 'src/app/core/services/category-api.service';
 import { NotificationService } from 'src/app/core/services/notification-service';
+import { PaginationService } from 'src/app/core/services/pagination.service';
 import { ProductApiService } from 'src/app/core/services/product-api.service';
 
 @Component({
@@ -35,6 +35,7 @@ export class ProductsPageComponent implements OnInit {
   isLoad: boolean = false;
 
   constructor(private router: Router,
+    private pagService: PaginationService,
     private productService: ProductApiService,
     private categoryService: CategoryApiService,
     private notice: NotificationService,
@@ -44,20 +45,21 @@ export class ProductsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.categoryService.GetAllCategories(this.categoryParams).subscribe((data: any) =>
+      this.categories = data.body)
     this.query();
   }
 
   query(): void {
-    this.isLoad = false;
-    const result = zip(
-      this.productService.GetAllProducts(this.productParams),
-      this.categoryService.GetAllCategories(this.categoryParams));
+    this.productParams.pageNumber = this.pagService.MetaData.CurrentPage;
 
-    result.subscribe(([products, categories]: any) => {
-      this.products = products.body;
-      this.categories = categories.body;
-      this.pagination = JSON.parse(products.headers.get('pagination'));
+    this.isLoad = false;
+    this.productService.GetAllProducts(this.productParams).subscribe((data: any) => {
+      this.products = data.body;
+      this.pagService.MetaData.TotalPages = JSON.parse(data.headers.get('pagination')).TotalPages;
       this.isLoad = true;
+    }, (error: HttpErrorResponse) => {
+      this.notice.textNotice(`Something went wrong.`)
     });
   }
 
@@ -121,17 +123,4 @@ export class ProductsPageComponent implements OnInit {
     });
   }
 
-  leftPage() {
-    if (this.productParams.pageNumber > 1) {
-      this.productParams.pageNumber--;
-      this.query();
-    }
-  }
-
-  rightPage() {
-    if (this.productParams.pageNumber < this.pagination.TotalPages) {
-      this.productParams.pageNumber++;
-      this.query();
-    }
-  }
 }

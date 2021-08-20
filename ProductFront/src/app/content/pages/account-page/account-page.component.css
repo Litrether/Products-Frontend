@@ -1,20 +1,24 @@
-.account-page{
-    padding: 0 7.5vw;
+.account-panel{
+    position:fixed; 
+    top: 10vh;
+    padding: 20px;
+    background-color: var(--gray-block-color);
+    border-radius: 20px;
+    width: 300px;
+    min-height: 545px;
+    box-shadow: 3px 3px 5px -3px black inset;
+    color:white;
+
 }
 
-.account-wrapper{
-    display: flex;
-    border-radius: 20px;
-    height: 65vh;
-    padding: 3vw;
-    background: var(--gray-block-color);
-    box-shadow: 3px 3px 5px -3px black inset;
-    color: white;
+.products-panel{
+    margin-left: 300px;
+    width: 65vw;
 }
 
 .account-photo{
-    width: 15vw;
-    height: 15vw;
+    width: 200px;
+    height: 200px;
     transition: box-shadow 1s;
     transition: transform 1s;
     border-radius: 100%;
@@ -31,36 +35,6 @@
     width: 25%;
 }
 
-.cart-panel{
-    margin-left: 5vw;
-    height: 100%;
-}
-
-.products-list{
-    display: inline-block;
-    font-size: 14px;   
-}
-
-.product-card{
-    background-color: var(--gray-block-color);
-    border: solid 1px white;
-    color: white;
-    width: 145px;
-    margin: 0 0 25px 20px;
-    padding: 10px;
-}
-
-.product-card-img{
-    width: 125px;
-    height: 125px;
-}
-
-
-.card-button{
-    width: 15px;
-    height: 15px;
-}
-
 .card-button:active{
     padding: 1px;
 }
@@ -73,9 +47,8 @@
     width: 200px;
 }
 
-
 .pagination {
-    top: 69vh;
+    top: 600px;
     position: fixed;
     left: 55%;
     display: flex;
@@ -99,4 +72,37 @@
 .pagination a:hover:not(.active) {
     background-color: #ddd;
       cursor: pointer;
+}
+
+.products-list{
+    display: inline-block;
+    font-size: 16px;   
+}
+
+.product-card{
+    background-color: var(--gray-block-color);
+    border: solid 1px white;
+    color: white;
+    width: 175px;
+    margin: 0 0 25px 20px;
+    padding: 10px;
+}
+
+.card-product-img{
+    border: solid 1px white;
+    width: 155px;
+    height: 155px;
+}
+
+.card-button{
+    float: right;
+    height: 15px;
+}
+
+.card-button:hover{
+    cursor: pointer;
+}
+
+.card-button:active{
+    padding: 1px;
 }

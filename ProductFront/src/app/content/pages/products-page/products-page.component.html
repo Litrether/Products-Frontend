@@ -24,11 +24,7 @@
                 <a (click)="changeCategory(category.name)"> {{category.name}} </a>
             </li>
         </ul>
-        <div class="pagination">
-            <a (click)="leftPage()">&laquo;</a>
-            <a class="active"> {{productParams.pageNumber}} </a>
-            <a (click)="rightPage()">&raquo;</a>
-        </div>
+        <app-pagination (click)="this.query()"></app-pagination>
     </div>
     <div class="products-panel" *ngIf="isLoad; else loading">
         <ul class="products-list" *ngFor="let product of products">

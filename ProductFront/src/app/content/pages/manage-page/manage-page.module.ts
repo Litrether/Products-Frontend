@@ -7,6 +7,7 @@ import { ManageProviderTableComponent } from './manage-provider-table/manage-pro
 import { ManagePageRoutingModule } from './manage-routing-module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StringFormModule } from 'src/app/shared/companents/string-form/string-form.module';
+import { PaginationModule } from '../../layout/pagination/pagination.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { StringFormModule } from 'src/app/shared/companents/string-form/string-f
     ReactiveFormsModule,
     LoadingModule,
     StringFormModule,
+    PaginationModule,
   ],
   exports: [
     ManagePageComponent

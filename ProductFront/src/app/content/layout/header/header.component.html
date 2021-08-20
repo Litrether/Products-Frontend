@@ -1,32 +1,30 @@
-<nav>
-     <div class="header">
-          <img src="assets/img/logo.png" class="header-logo" alt="logo">
-          <ul class="menu" *ngIf="authService.isAuthenticated();else signin">
-               <li routerLinkActive="active">
-                    <a [routerLink]="['']">Home </a>
-               </li>
-               <li routerLinkActive="active">
-                    <a [routerLink]="['/user', 'products']"> Catalog </a>
-               </li>
-               <li routerLinkActive="active" *ngIf="authService.isAdministrator()">
-                    <a [routerLink]="['/user/manage/categories']"> Manage </a>
-               </li>
-               <li routerLinkActive="active">
-                    <a [routerLink]="['/user', 'account']"> <img src="assets\img\account.png" class="account-img"> </a>
-               </li>
-               <li routerLinkActive="active">
-                    <a (click)="logout()"> Logout </a>
-               </li>
-          </ul>
-     </div>
+<header>
+     <img src="assets/img/logo.png" class="header-logo" alt="logo">
+     <ul *ngIf="authService.isAuthenticated();else signin">
+          <li>
+               <a [routerLink]="['']">Home </a>
+          </li>
+          <li>
+               <a [routerLink]="['/user', 'products']"> Catalog </a>
+          </li>
+          <li *ngIf="authService.isAdministrator()">
+               <a [routerLink]="['/user/manage/categories']"> Manage </a>
+          </li>
+          <li>
+               <a [routerLink]="['/user', 'account']"> <img src="assets\img\account.png" class="account-img"> </a>
+          </li>
+          <li>
+               <a (click)="logout()"> Logout </a>
+          </li>
+     </ul>
      <ng-template #signin>
-          <ul class="menu">
-               <li routerLinkActive="active">
+          <ul>
+               <li>
                     <a [routerLink]="['']"> Home </a>
                </li>
-               <li routerLinkActive="active">
+               <li>
                     <a [routerLink]="['/login']"> Sign in </a>
                </li>
           </ul>
      </ng-template>
-</nav>
+</header>

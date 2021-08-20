@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/core/account/auth-service';
+import { ManageCategoriesTableComponent } from './manage-categories-table/manage-categories-table.component';
+import { ManageProviderTableComponent } from './manage-provider-table/manage-provider-table.component';
 
 @Component({
   selector: 'app-manage-page',
