@@ -24,9 +24,9 @@
                 <a (click)="changeCategory(category.name)"> {{category.name}} </a>
             </li>
         </ul>
-        <app-pagination (click)="this.query()"></app-pagination>
+        <app-pagination (changePage)="query($event)"></app-pagination>
     </div>
-    <div class="products-panel" *ngIf="isLoad; else loading">
+    <div class=" products-panel" *ngIf="isLoad; else loading">
         <ul class="products-list" *ngFor="let product of products">
             <li class="product-card" title="{{product.description}}">
                 <img class="card-product-img" src="{{product.imageUrl}}">

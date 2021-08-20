@@ -20,7 +20,7 @@
         </tr>
     </table>
 
-    <app-string-form *ngIf="editForm" [inputValue]="editCategory.name" [placeholder]="'Category name'"
+    <app-string-form *ngIf="editForm" [inputValue]="editCategory?.name || '' " [placeholder]="'Category name'"
         (onSubmit)="submitEdit($event)">
     </app-string-form>
 

@@ -12,7 +12,6 @@ import { PaginationModule } from '../layout/pagination/pagination.module';
   imports: [
     CommonModule,
     PagesRoutingModule,
-    PaginationModule,
     LoadingModule,
   ],
   exports: [

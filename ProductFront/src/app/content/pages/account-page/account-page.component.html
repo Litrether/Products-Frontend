@@ -19,7 +19,7 @@
                 <button (click)="changePasswordForm = true">Change password</button>
                 <button (click)="deleteAccountForm = true">Delete account</button>
             </div>
-            <app-pagination (click)="query()"></app-pagination>
+            <app-pagination (changePage)="query($event)"></app-pagination>
         </div>
         <div class="products-panel" *ngIf="isLoad; else loading">
             <ul class="products-list" *ngFor="let product of cartProducts">

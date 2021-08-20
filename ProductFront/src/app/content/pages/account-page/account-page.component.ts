@@ -1,6 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { zip } from 'rxjs';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/core/account/auth-service';
 import { IAccountData, IAuthAccount, IChangePassword } from 'src/app/core/interfaces/accounts-interfaces';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
@@ -9,7 +8,7 @@ import { IProduct } from 'src/app/core/interfaces/products-interfaces';
 import { AccountApiService } from 'src/app/core/services/account-api.service';
 import { CartApiService } from 'src/app/core/services/cart-api.service';
 import { NotificationService } from 'src/app/core/services/notification-service';
-import { PaginationService } from 'src/app/core/services/pagination.service';
+import { PaginationComponent } from '../../layout/pagination/pagination.component';
 
 @Component({
   selector: 'app-account-page',
@@ -17,6 +16,9 @@ import { PaginationService } from 'src/app/core/services/pagination.service';
   styleUrls: ['./account-page.component.css'],
 })
 export class AccountPageComponent implements OnInit {
+  @ViewChild(PaginationComponent)
+  pag: PaginationComponent
+
   isLoad: boolean = false;
 
   changePasswordForm: boolean = false;
@@ -35,7 +37,6 @@ export class AccountPageComponent implements OnInit {
     private accountService: AccountApiService,
     private authService: AuthService,
     private notice: NotificationService,
-    private pagService: PaginationService,
     private cartService: CartApiService) {
     document.body.style.backgroundImage = "url('assets/img/account-bg.jpg')";
   }
@@ -44,17 +45,20 @@ export class AccountPageComponent implements OnInit {
     this.accountService.GetAccountData().subscribe((data: any) =>
       this.accountData = data);
 
-    this.query();
+    setTimeout(() => this.query());
   }
 
-  query() {
-    this.isLoad = false;
-    this.productParams.pageNumber = this.pagService.MetaData.CurrentPage;
+  query(pageNumber: number = 1, reset?: boolean): void {
+    if (reset)
+      this.pag.reset();
+
+    this.productParams.pageNumber = pageNumber;
+    this.pag.isActive = this.isLoad = false;
 
     this.cartService.GetCartProducts(this.productParams).subscribe((data: any) => {
       this.cartProducts = data.body;
-      this.pagService.MetaData.TotalPages = JSON.parse(data.headers.get('pagination')).TotalPages;
-      this.isLoad = true;
+      this.pag.MetaData.TotalPages = JSON.parse(data.headers.get('pagination')).TotalPages;
+      this.pag.isActive = this.isLoad = true;
     }, (error: HttpErrorResponse) => {
       this.notice.textNotice(`Something went wrong.`)
     })

@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/account/auth-service';
 import { ICategory } from 'src/app/core/interfaces/categories-interfaces';
@@ -9,8 +9,8 @@ import { IProduct } from 'src/app/core/interfaces/products-interfaces';
 import { CartApiService } from 'src/app/core/services/cart-api.service';
 import { CategoryApiService } from 'src/app/core/services/category-api.service';
 import { NotificationService } from 'src/app/core/services/notification-service';
-import { PaginationService } from 'src/app/core/services/pagination.service';
 import { ProductApiService } from 'src/app/core/services/product-api.service';
+import { PaginationComponent } from '../../layout/pagination/pagination.component';
 
 @Component({
   selector: 'app-products-page',
@@ -18,13 +18,16 @@ import { ProductApiService } from 'src/app/core/services/product-api.service';
   styleUrls: ['./products-page.component.css']
 })
 export class ProductsPageComponent implements OnInit {
+  @ViewChild(PaginationComponent)
+  pag: PaginationComponent
+
   products: IProduct[];
   categories: ICategory[];
   currCurrency: string = 'USD';
   pagination: IPagination;
 
   public productParams: IProductParams = {
-    pageNumber: 1,
+    pageNumber: 0,
   }
 
   public categoryParams: ICommonParams = {
@@ -35,7 +38,6 @@ export class ProductsPageComponent implements OnInit {
   isLoad: boolean = false;
 
   constructor(private router: Router,
-    private pagService: PaginationService,
     private productService: ProductApiService,
     private categoryService: CategoryApiService,
     private notice: NotificationService,
@@ -47,17 +49,21 @@ export class ProductsPageComponent implements OnInit {
   ngOnInit(): void {
     this.categoryService.GetAllCategories(this.categoryParams).subscribe((data: any) =>
       this.categories = data.body)
-    this.query();
+
+    setTimeout(() => this.query());
   }
 
-  query(): void {
-    this.productParams.pageNumber = this.pagService.MetaData.CurrentPage;
+  query(pageNumber: number = 1, reset?: boolean): void {
+    if (reset)
+      this.pag.reset();
 
-    this.isLoad = false;
+    this.productParams.pageNumber = pageNumber;
+    this.pag.isActive = this.isLoad = false;
+
     this.productService.GetAllProducts(this.productParams).subscribe((data: any) => {
       this.products = data.body;
-      this.pagService.MetaData.TotalPages = JSON.parse(data.headers.get('pagination')).TotalPages;
-      this.isLoad = true;
+      this.pag.MetaData.TotalPages = JSON.parse(data.headers.get('pagination')).TotalPages;
+      this.pag.isActive = this.isLoad = true;
     }, (error: HttpErrorResponse) => {
       this.notice.textNotice(`Something went wrong.`)
     });
@@ -87,32 +93,27 @@ export class ProductsPageComponent implements OnInit {
 
   search() {
     this.productParams.searchTerm = (<HTMLInputElement>(document.getElementById('search-input'))).value;
-    this.productParams.pageNumber = 1;
-    this.query();
+    this.query(undefined, true);
   }
 
   minCost() {
     this.productParams.minCost = (<HTMLInputElement>(document.getElementById('minCost-input'))).valueAsNumber;
-    this.productParams.pageNumber = 1;
-    this.query();
+    this.query(undefined, true);
   }
 
   maxCost() {
     this.productParams.maxCost = (<HTMLInputElement>(document.getElementById('maxCost-input'))).valueAsNumber;
-    this.productParams.pageNumber = 1;
-    this.query();
+    this.query(undefined, true);
   }
 
   changeCategory(category: string) {
     this.productParams.categories = category;
-    this.productParams.pageNumber = 1;
-    this.query();
+    this.query(undefined, true);
   }
 
   changeCurrency() {
     this.productParams.currency = (<HTMLInputElement>(document.getElementById('currency-select'))).value;
-    this.productParams.pageNumber = 1;
-    this.query();
+    this.query(undefined, true);
   }
 
   addProductToCart(product: IProduct) {
@@ -122,5 +123,4 @@ export class ProductsPageComponent implements OnInit {
       this.notice.productNotice(`Product ${product.name} is in your cart`, product);
     });
   }
-
 }

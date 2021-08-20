@@ -1,5 +1,5 @@
 <div class="pagination">
-    <a (click)="pagService.leftPage()">&laquo;</a>
-    <a class="active"> {{pagService.MetaData.CurrentPage}} </a>
-    <a (click)="pagService.rightPage()">&raquo;</a>
+    <a (click)="prevPage()">&laquo;</a>
+    <a class="active"> {{MetaData.CurrentPage}} </a>
+    <a (click)="nextPage()">&raquo;</a>
 </div>

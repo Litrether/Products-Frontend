@@ -20,7 +20,7 @@ export class ManageCategoriesTableComponent implements OnInit {
   isLoad: boolean = false;
   createForm: boolean = false;
   editForm: boolean = false;
-  editCategory: ICategory;
+  editCategory: ICategory | null;
 
   public params: ICommonParams = {
     pageNumber: 1,
@@ -73,13 +73,15 @@ export class ManageCategoriesTableComponent implements OnInit {
   submitEdit(newName: string) {
     this.editForm = false;
 
-    if (newName) {
+    if (newName && this.editCategory) {
       this.editCategory.name = newName;
       this.categoryService.UpdateCategory(this.editCategory).subscribe((data: any) => {
         this.notice.textNotice(`Category ${this.editCategory?.name} successfully updated.`)
         this.query();
+        this.editCategory = null;
       }, (error: HttpErrorResponse) => {
         this.notice.textNotice(`Something want wrong! Maybe name ${this.editCategory?.name} is taken.`);
+        this.editCategory = null;
       })
     }
   }
