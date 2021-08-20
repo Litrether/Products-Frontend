@@ -5,18 +5,25 @@
         <input type="text" (input)="null" placeholder="Search" id="search-input">
         <ul class="purpose-list">
             <li>
-                <a [routerLink]="['/user/manage/categories']" (click)="currentPurpose = 'Categories'"> Categories </a>
+                <a (click)="currentPurpose = 'Categories'"> Categories </a>
             </li>
             <li>
-                <a [routerLink]="['/user/manage/providers']" (click)="currentPurpose = 'Providers'"> Providers </a>
+                <a (click)="currentPurpose = 'Providers'"> Providers </a>
             </li>
         </ul>
 
         <app-string-form *ngIf="createForm" [placeholder]="'Write name'">
         </app-string-form>
-        <app-pagination (click)="null"></app-pagination>
+        <app-pagination (changePage)="sendQuery($event)"></app-pagination>
     </div>
-    <div class="contentWrap">
-        <router-outlet></router-outlet>
+    <div class="contentWrap" *ngIf="currentPurpose == 'Categories';else providers">
+        <app-manage-categories-table (totalPages)="pag.MetaData.TotalPages = $event"></app-manage-categories-table>
     </div>
 </div>
+
+<ng-template #providers>
+    <div class="contentWrap">
+        <app-manage-provider-table (totalPages)="pag.MetaData.TotalPages = $event"></app-manage-provider-table>
+    </div>
+
+</ng-template>

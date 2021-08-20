@@ -1,17 +1,15 @@
 <div class="account-page-wrapper">
     <div class="account-wrapper" *ngIf="accountData; else loading">
-        <div class="account-panel">
+        <div class="account-panel ">
+            <h2> Account {{accountData.username}}</h2>
             <img class="account-photo" src="assets/img/account.png" alt="photo">
             <div class="account-info">
                 <ul>
                     <li>
-                        <p> Name: {{accountData.firstName}} {{accountData.lastName}}</p>
+                        <p> {{accountData.firstName}} {{accountData.lastName}}</p>
                     </li>
                     <li>
-                        <p> Username: {{accountData.username}}</p>
-                    </li>
-                    <li>
-                        <p> Email: {{accountData.email}}</p>
+                        <p> {{accountData.email}}</p>
                     </li>
                 </ul>
             </div>

@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/account/auth-service';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
@@ -14,6 +14,8 @@ import { ProviderApiService } from 'src/app/core/services/provider-api.service';
   styleUrls: ['./manage-provider-table.component.css']
 })
 export class ManageProviderTableComponent implements OnInit {
+  @Output() totalPages = new EventEmitter<number>();
+
   providers: IProvider[] = [];
   pagination: IPagination;
 
@@ -31,15 +33,14 @@ export class ManageProviderTableComponent implements OnInit {
     private notice: NotificationService,
     private providerService: ProviderApiService) { }
 
-  ngOnInit(): void {
-    this.query();
-  }
+  ngOnInit() { this.query(); }
 
-  query(): any {
+  query(pageNumber: number = 1, reset: boolean = false): any {
     this.isLoad = false;
-    this.providerService.GetAllProviders(this.params).subscribe((resp: any) => {
-      this.providers = resp.body;
+    this.providerService.GetAllProviders(this.params).subscribe((data: any) => {
+      this.providers = data.body;
       this.isLoad = true;
+      this.totalPages.emit(JSON.parse(data.headers.get('pagination')).TotalPages);
     })
   }
 

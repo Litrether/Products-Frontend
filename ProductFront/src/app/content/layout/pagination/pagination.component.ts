@@ -31,6 +31,7 @@ export class PaginationComponent implements OnInit {
       return;
 
     if (this.MetaData.CurrentPage > 1) {
+      this.isActive = true;
       this.changePage.emit(--this.MetaData.CurrentPage);
     }
   }
@@ -40,6 +41,7 @@ export class PaginationComponent implements OnInit {
       return;
 
     if (this.MetaData.CurrentPage < this.MetaData.TotalPages) {
+      this.isActive = true;
       this.changePage.emit(++this.MetaData.CurrentPage);
     }
   }
@@ -47,5 +49,6 @@ export class PaginationComponent implements OnInit {
   reset() {
     this.MetaData.CurrentPage = 1;
     this.MetaData.TotalCount = 0;
+    this.isActive = true;
   }
 }

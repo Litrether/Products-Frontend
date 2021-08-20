@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/account/auth-service';
 import { ICategory } from 'src/app/core/interfaces/categories-interfaces';
@@ -14,6 +14,8 @@ import { NotificationService } from 'src/app/core/services/notification-service'
   styleUrls: ['./manage-categories-table.component.css']
 })
 export class ManageCategoriesTableComponent implements OnInit {
+  @Output() totalPages = new EventEmitter<number>();
+
   categories: ICategory[] = [];
   pagination: IPagination;
 
@@ -31,15 +33,14 @@ export class ManageCategoriesTableComponent implements OnInit {
     private notice: NotificationService,
     private categoryService: CategoryApiService) { }
 
-  ngOnInit(): void {
-    this.query();
-  }
+  ngOnInit() { }
 
-  query(): any {
+  query(pageNumber: number = 1, reset: boolean = false): any {
     this.isLoad = false;
-    this.categoryService.GetAllCategories(this.params).subscribe((resp: any) => {
-      this.categories = resp.body;
+    this.categoryService.GetAllCategories(this.params).subscribe((data: any) => {
+      this.categories = data.body;
       this.isLoad = true;
+      this.totalPages.emit(JSON.parse(data.headers.get('pagination')).TotalPages);
     })
   }
 
