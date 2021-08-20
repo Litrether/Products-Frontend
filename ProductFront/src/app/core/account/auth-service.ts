@@ -41,7 +41,6 @@ export class AuthService {
     }
 
     login(authAccount: IAuthAccount): Observable<any> {
-
         return this.http.post(`${this.pathBase}/login`, authAccount)
             .pipe(
                 tap((response: any) => this.setToken(response))

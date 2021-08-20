@@ -12,7 +12,7 @@
 .home-btn{
     border: none;
     font-size: 20px;
-    background:var(--light-brown-input-color);
+    background:var(--light-brown-color);
     width: 30%;
     min-height: 40px;
     display: block;

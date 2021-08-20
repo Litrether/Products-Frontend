@@ -4,20 +4,20 @@
         <a><img class="form-exit" (click)="onSubmit.emit()" src="assets/img/cross.png" alt="exit"></a>
     </div>
     <div class="form-control">
-        <input id="oldPassword" type="password" formControlName="oldPassword" placeholder="oldPassword">
+        <input id="oldPassword" type="password" formControlName="oldPassword" placeholder="Old password">
         <div class="validation" *ngIf="form.get('oldPassword')?.invalid && form.get('oldPassword')?.touched">
             <small>Old password is required</small>
         </div>
     </div>
     <div class="form-control">
-        <input id="newPassword" type="password" formControlName="newPassword" placeholder="newPassword">
+        <input id="newPassword" type="password" formControlName="newPassword" placeholder="New password">
         <div class="validation" *ngIf="form.get('newPassword')?.invalid && form.get('newPassword')?.touched">
             <small>New password is required</small>
         </div>
     </div>
     <div class="form-control">
         <input id="confirmNewPassword" type="password" formControlName="confirmNewPassword"
-            placeholder="confirmNewPassword">
+            placeholder="Confirm new password">
         <div class="validation"
             *ngIf="form.get('confirmNewPassword')?.invalid && form.get('confirmNewPassword')?.touched">
             <small>Confirm new password is required</small>

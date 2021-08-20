@@ -5,6 +5,7 @@ import { StringFormModule } from 'src/app/shared/companents/string-form/string-f
 import { LoadingModule } from '../../layout/loading/loading.module';
 import { PaginationModule } from '../../layout/pagination/pagination.module';
 import { AccountPageComponent } from './account-page.component';
+import { AccountRoutingModule } from './account-routing-module';
 import { ChangePassFormComponent } from './change-pass-form/change-pass-form.component';
 
 @NgModule({
@@ -17,11 +18,12 @@ import { ChangePassFormComponent } from './change-pass-form/change-pass-form.com
     LoadingModule,
     FormsModule,
     ReactiveFormsModule,
+    AccountRoutingModule,
     StringFormModule,
     PaginationModule,
   ],
   exports: [
-    AccountPageComponent
+    AccountPageComponent,
   ],
   providers: []
 })

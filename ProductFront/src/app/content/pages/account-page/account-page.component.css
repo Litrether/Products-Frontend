@@ -2,13 +2,12 @@
     position:fixed; 
     top: 10vh;
     padding: 20px;
-    background-color: var(--gray-block-color);
+    background-color: var(--light-gray-color);
     border-radius: 20px;
     width: 300px;
     min-height: 545px;
     box-shadow: 3px 3px 5px -3px black inset;
-    color:white;
-
+    color:black;
 }
 
 .products-panel{
@@ -17,6 +16,8 @@
 }
 
 .account-photo{
+    display: block;
+    margin: 0 auto;
     width: 200px;
     height: 200px;
     transition: box-shadow 1s;
@@ -25,7 +26,7 @@
 }
 
 .account-photo:hover{
-    box-shadow: 1px 1px 10px 3px white;
+    box-shadow: 1px 1px 5px 3px white;
     transform:scale(1.05);
 }
 
@@ -33,6 +34,23 @@
     align-items: left;
     margin-top: 5px;
     width: 25%;
+}
+
+.account-control li{
+    width: max-content;
+    transition: margin-left 2s reverse;
+    font-size: 25px;
+    margin-top: 10px;
+    transition: transform .5s;
+}
+
+.account-control li:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.account-control li:active{
+    transform: scale(0.95);
 }
 
 .card-button:active{

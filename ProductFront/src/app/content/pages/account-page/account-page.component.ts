@@ -1,8 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/core/account/auth-service';
 import { IAccountData, IAuthAccount, IChangePassword } from 'src/app/core/interfaces/accounts-interfaces';
-import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
 import { IProductParams } from 'src/app/core/interfaces/params-interfaces';
 import { IProduct } from 'src/app/core/interfaces/products-interfaces';
 import { AccountApiService } from 'src/app/core/services/account-api.service';
@@ -16,8 +15,7 @@ import { PaginationComponent } from '../../layout/pagination/pagination.componen
   styleUrls: ['./account-page.component.css'],
 })
 export class AccountPageComponent implements OnInit {
-  @ViewChild(PaginationComponent)
-  pag: PaginationComponent
+  @ViewChild(PaginationComponent) pag: PaginationComponent;
 
   isLoad: boolean = false;
 
@@ -26,8 +24,6 @@ export class AccountPageComponent implements OnInit {
 
   accountData: IAccountData;
   cartProducts: IProduct[];
-
-  public pagination: IPagination;
 
   public productParams: IProductParams = {
     pageNumber: 1,
@@ -41,14 +37,12 @@ export class AccountPageComponent implements OnInit {
     document.body.style.backgroundImage = "url('assets/img/account-bg.jpg')";
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.accountService.GetAccountData().subscribe((data: any) =>
       this.accountData = data);
-
-    setTimeout(() => this.query());
   }
 
-  query(pageNumber: number = 1, reset?: boolean): void {
+  query(pageNumber: number = 1, reset: boolean = false) {
     if (reset)
       this.pag.reset();
 

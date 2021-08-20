@@ -2,8 +2,6 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "src/app/core/guards/auth.guard";
-import { RoleGuard } from "src/app/core/guards/role.guard";
-import { AccountPageComponent } from "./account-page/account-page.component";
 import { AccountPageModule } from "./account-page/account-page.module";
 import { HomePageComponent } from "./home-page/home-page.component";
 import { LoginPageComponent } from "./login-page/login-page.component";
@@ -17,7 +15,7 @@ const routes: Routes = [
         component: PagesComponent,
         children: [
             { path: "products", loadChildren: () => ProductsPageModule },
-            { path: "account", component: AccountPageComponent },
+            { path: "account", loadChildren: () => AccountPageModule },
             { path: "signup", component: SignupPageComponent },
             {
                 path: "manage",

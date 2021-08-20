@@ -9,7 +9,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-    background-color: var(--light-gray-input-color);
+    background-color: var(--light-gray-color);
     padding: 10px;
     height: 95px;
     width: 300px;

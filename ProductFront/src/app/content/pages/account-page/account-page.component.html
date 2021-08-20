@@ -15,10 +15,18 @@
                     </li>
                 </ul>
             </div>
-            <div class="account-control">
-                <button (click)="changePasswordForm = true">Change password</button>
-                <button (click)="deleteAccountForm = true">Delete account</button>
-            </div>
+            <ul class="account-control">
+                <li>
+                    <a (click)="changePasswordForm = true">
+                        <h5> Change password</h5>
+                    </a>
+                </li>
+                <li>
+                    <a (click)="deleteAccountForm = true">
+                        <h5> Delete account</h5>
+                    </a>
+                </li>
+            </ul>
             <app-pagination (changePage)="query($event)"></app-pagination>
         </div>
         <div class="products-panel" *ngIf="isLoad; else loading">
@@ -32,7 +40,6 @@
             </ul>
         </div>
     </div>
-
     <app-change-pass-form *ngIf="changePasswordForm" (onSubmit)="changePassword($event)"></app-change-pass-form>
     <app-string-form *ngIf="deleteAccountForm" (onSubmit)="deleteAccount($event)" [inputType]="'password'"
         [placeholder]="'Account password'">

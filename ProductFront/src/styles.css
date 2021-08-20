@@ -1,10 +1,8 @@
 :root{
     font-size: 20px;
     --gray-block-color: #001514;
-    --light-brown-input-color: #C2A080;
-    --light-gray-input-color: #C8BBB5;
-    --success-green-color: green;
-    --danger-red-color: red;
+    --light-brown-color: #C2A080;
+    --light-gray-color: #C8BBB5;
 }
 
 body{

@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, DoCheck, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/account/auth-service';
 import { ICategory } from 'src/app/core/interfaces/categories-interfaces';
@@ -18,8 +18,7 @@ import { PaginationComponent } from '../../layout/pagination/pagination.componen
   styleUrls: ['./products-page.component.css']
 })
 export class ProductsPageComponent implements OnInit {
-  @ViewChild(PaginationComponent)
-  pag: PaginationComponent
+  @ViewChild(PaginationComponent) pag: PaginationComponent
 
   products: IProduct[];
   categories: ICategory[];
@@ -46,14 +45,12 @@ export class ProductsPageComponent implements OnInit {
     document.body.style.backgroundImage = "url('assets/img/products-bg.jpg')";
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.categoryService.GetAllCategories(this.categoryParams).subscribe((data: any) =>
-      this.categories = data.body)
-
-    setTimeout(() => this.query());
+      this.categories = data.body);
   }
 
-  query(pageNumber: number = 1, reset?: boolean): void {
+  query(pageNumber: number = 1, reset: boolean = false) {
     if (reset)
       this.pag.reset();
 

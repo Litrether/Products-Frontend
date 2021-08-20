@@ -23,6 +23,7 @@ export class PaginationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    setTimeout(() => this.changePage.emit(this.MetaData.CurrentPage));
   }
 
   prevPage() {

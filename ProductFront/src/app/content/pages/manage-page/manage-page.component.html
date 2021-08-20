@@ -4,10 +4,10 @@
 
         <input type="text" (input)="null" placeholder="Search" id="search-input">
         <ul class="purpose-list">
-            <li routerLinkActive="active">
+            <li>
                 <a [routerLink]="['/user/manage/categories']" (click)="currentPurpose = 'Categories'"> Categories </a>
             </li>
-            <li routerLinkActive="active">
+            <li>
                 <a [routerLink]="['/user/manage/providers']" (click)="currentPurpose = 'Providers'"> Providers </a>
             </li>
         </ul>

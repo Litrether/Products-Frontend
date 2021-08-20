@@ -21,7 +21,7 @@
 
 :host::ng-deep form input{
     padding-left: 10px;
-    background-color: var(--light-brown-input-color);
+    background-color: var(--light-brown-color);
     border: none;
     width: 100%;
     min-height: 30px;
@@ -45,7 +45,7 @@
 :host::ng-deep form select{
     border: none;
     font-size: 14px;
-    background:var(--light-brown-input-color);
+    background:var(--light-brown-color);
     width: 50%;
     min-height: 30px;
     display: block;

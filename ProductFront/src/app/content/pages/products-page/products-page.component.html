@@ -15,12 +15,12 @@
         </a>
 
         <ul class="categories-list">
-            <li routerLinkActive="active">
+            <li>
                 <a (click)="changeCategory('')">
                     <h3> All categories</h3>
                 </a>
             </li>
-            <li routerLinkActive="active" *ngFor="let category of categories">
+            <li *ngFor="let category of categories">
                 <a (click)="changeCategory(category.name)"> {{category.name}} </a>
             </li>
         </ul>
