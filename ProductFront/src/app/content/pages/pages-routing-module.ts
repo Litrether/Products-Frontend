@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { AdminGuard } from "src/app/core/guards/admin.guard";
 import { AuthGuard } from "src/app/core/guards/auth.guard";
 import { AccountPageModule } from "./account-page/account-page.module";
 import { CategoriesPageModule } from "./categories-page/categories-page.module";
@@ -18,8 +19,8 @@ const routes: Routes = [
         children: [
             { path: "account", loadChildren: () => AccountPageModule },
             { path: "products", loadChildren: () => ProductsPageModule },
-            { path: "categories", loadChildren: () => CategoriesPageModule },
-            { path: "providers", loadChildren: () => ProvidersPageModule },
+            { path: "categories", loadChildren: () => CategoriesPageModule, canActivate: [AdminGuard] },
+            { path: "providers", loadChildren: () => ProvidersPageModule, canActivate: [AdminGuard] },
             { path: "home", component: HomePageComponent },
             { path: "signup", component: SignupPageComponent },
             { path: "login", component: LoginPageComponent },

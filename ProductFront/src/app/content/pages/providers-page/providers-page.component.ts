@@ -32,7 +32,9 @@ export class ProvidersPageComponent implements OnInit {
   constructor(private router: Router,
     public authService: AuthService,
     private notice: NotificationService,
-    private providerService: ProviderApiService) { }
+    private providerService: ProviderApiService) {
+    document.body.style.backgroundImage = "url('assets/img/manage-bg.jpg')";
+  }
 
   ngOnInit() { }
 

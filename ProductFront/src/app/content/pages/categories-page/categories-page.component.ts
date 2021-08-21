@@ -59,7 +59,7 @@ export class CategoriesPageComponent implements OnInit {
     }
     if (newCategory) {
       this.categoryService.AddCategory(newCategory).subscribe((category: ICategory) => {
-        this.categories.push(category);
+        this.query();
         this.notice.textNotice(`Category ${newCategory.name} successfully created.`)
       }, (error: HttpErrorResponse) => {
         this.notice.textNotice(`Something want wrong! Maybe name ${newCategory.name} is taken.`);

@@ -13,7 +13,7 @@
 }
 
 :host::ng-deep  tr{
-    height: 47.5px;
+    height: 43px;
     background-color: var(--gray-block-color);
     color: white;
 }

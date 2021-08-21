@@ -15,11 +15,9 @@
         </a>
 
         <ul class="categories-list">
-            <li>
-                <a (click)="changeCategory('')">
+            <li> <a (click)="changeCategory('')">
                     <h3> All categories</h3>
-                </a>
-            </li>
+                </a> </li>
             <li *ngFor="let category of categories">
                 <a (click)="changeCategory(category.name)"> {{category.name}} </a>
             </li>

@@ -14,6 +14,8 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { AuthService } from './core/account/auth-service';
 import { NotificationComponent } from './shared/companents/notification/notification.component';
 import { RoleGuard } from './core/guards/role.guard';
+import { AdminGuard } from './core/guards/admin.guard';
+import { ManagerGuard } from './core/guards/manager.guard';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { RoleGuard } from './core/guards/role.guard';
   providers: [
     AuthGuard,
     RoleGuard,
+    AdminGuard,
     AuthService,
+    ManagerGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterseptor,
