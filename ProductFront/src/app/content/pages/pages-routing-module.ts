@@ -3,10 +3,12 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "src/app/core/guards/auth.guard";
 import { AccountPageModule } from "./account-page/account-page.module";
+import { CategoriesPageModule } from "./categories-page/categories-page.module";
 import { HomePageComponent } from "./home-page/home-page.component";
 import { LoginPageComponent } from "./login-page/login-page.component";
 import { PagesComponent } from "./pages.component";
 import { ProductsPageModule } from "./products-page/products-page.module";
+import { ProvidersPageModule } from "./providers-page/providers-page.module";
 import { SignupPageComponent } from "./signup-page/signup-page.component";
 
 const routes: Routes = [
@@ -14,15 +16,13 @@ const routes: Routes = [
         path: "",
         component: PagesComponent,
         children: [
-            { path: "products", loadChildren: () => ProductsPageModule },
             { path: "account", loadChildren: () => AccountPageModule },
-            { path: "signup", component: SignupPageComponent },
-            {
-                path: "manage",
-                loadChildren: () => import("./manage-page/manage-page.module").then(p => p.ManagePageModule),
-            },
-            { path: "login", component: LoginPageComponent },
+            { path: "products", loadChildren: () => ProductsPageModule },
+            { path: "categories", loadChildren: () => CategoriesPageModule },
+            { path: "providers", loadChildren: () => ProvidersPageModule },
             { path: "home", component: HomePageComponent },
+            { path: "signup", component: SignupPageComponent },
+            { path: "login", component: LoginPageComponent },
         ],
         canActivate: [AuthGuard]
     },

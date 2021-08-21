@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/account/auth-service';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
@@ -7,14 +7,15 @@ import { ICommonParams } from 'src/app/core/interfaces/params-interfaces';
 import { IProvider } from 'src/app/core/interfaces/providers-interfaces';
 import { NotificationService } from 'src/app/core/services/notification-service';
 import { ProviderApiService } from 'src/app/core/services/provider-api.service';
+import { PaginationComponent } from '../../layout/pagination/pagination.component';
 
 @Component({
-  selector: 'app-manage-provider-table',
-  templateUrl: './manage-provider-table.component.html',
-  styleUrls: ['./manage-provider-table.component.css']
+  selector: 'app-providers-page',
+  templateUrl: './providers-page.component.html',
+  styleUrls: ['./providers-page.component.css']
 })
-export class ManageProviderTableComponent implements OnInit {
-  @Output() totalPages = new EventEmitter<number>();
+export class ProvidersPageComponent implements OnInit {
+  @ViewChild(PaginationComponent) pag: PaginationComponent
 
   providers: IProvider[] = [];
   pagination: IPagination;
@@ -33,14 +34,14 @@ export class ManageProviderTableComponent implements OnInit {
     private notice: NotificationService,
     private providerService: ProviderApiService) { }
 
-  ngOnInit() { this.query(); }
+  ngOnInit() { }
 
   query(pageNumber: number = 1, reset: boolean = false): any {
-    this.isLoad = false;
+    this.pag.isActive = this.isLoad = false;
     this.providerService.GetAllProviders(this.params).subscribe((data: any) => {
       this.providers = data.body;
-      this.isLoad = true;
-      this.totalPages.emit(JSON.parse(data.headers.get('pagination')).TotalPages);
+      this.pag.isActive = this.isLoad = true;
+      this.pag.MetaData.TotalPages = JSON.parse(data.headers.get('pagination')).TotalPages;
     })
   }
 
@@ -96,4 +97,5 @@ export class ManageProviderTableComponent implements OnInit {
       this.notice.textNotice(`Something want wrong!`);
     })
   }
+
 }

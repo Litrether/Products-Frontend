@@ -63,7 +63,8 @@
 }
 
 .create-link{
-    padding-top: 20px;
+    float: right;
+    padding-top: 10px;
 }
 
 .create-link img{

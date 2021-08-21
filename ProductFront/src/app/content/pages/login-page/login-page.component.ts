@@ -28,7 +28,6 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.authFailed)
     if (this.authService.isAuthenticated()) {
       this.router.navigate(['']);
     }

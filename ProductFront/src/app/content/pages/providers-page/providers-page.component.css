@@ -1,0 +1,56 @@
+.manage-page{
+    display: flex;
+}
+
+.filter-panel{
+    position:fixed; 
+    top: 10vh;
+    padding: 20px;
+    background-color: var(--light-gray-color);
+    border-radius: 20px;
+    width: 300px;
+    min-height: 545px;
+    box-shadow: 3px 3px 5px -3px #000000 inset;
+}
+
+.contentWrap{
+    margin-left: 300px;
+    min-height: 545px;
+    width: 65vw;
+}
+
+input{
+    color: black;
+    padding-left: 5px;
+    border: none;
+    height: 28px;
+    margin: 6px 0;
+    border-radius: 10px;
+}
+
+.create-link{
+    padding-top: 20px;
+}
+
+.create-link img{
+    width: 28px;
+    height: 28px;
+}
+
+.purpose-list li{
+    width: max-content;
+    transition: margin-left 2s reverse;
+    font-size: 25px;
+    margin-top: 10px;
+    transition: transform .5s;
+}
+
+.purpose-list li:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.purpose-list li:active{
+    transform: scale(0.95);
+}
+

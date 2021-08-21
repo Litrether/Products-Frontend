@@ -8,7 +8,7 @@
                <a [routerLink]="['/user', 'products']"> Catalog </a>
           </li>
           <li *ngIf="authService.isAdministrator()">
-               <a [routerLink]="['/user/manage']"> Manage </a>
+               <a [routerLink]="['/user/','categories']"> Manage </a>
           </li>
           <li>
                <a [routerLink]="['/user', 'account']"> <img src="assets\img\account.png" class="account-img"> </a>
