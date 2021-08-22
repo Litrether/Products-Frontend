@@ -15,16 +15,18 @@ import { PaginationComponent } from '../../layout/pagination/pagination.componen
   styleUrls: ['./providers-page.component.css']
 })
 export class ProvidersPageComponent implements OnInit {
-  @ViewChild(PaginationComponent) pag: PaginationComponent
-
-  providers: IProvider[] = [];
-  pagination: IPagination;
-
   isLoad: boolean = false;
+  metaData: IPagination = {
+    CurrentPage: 1,
+    TotalPages: 1,
+  }
+
   createForm: boolean = false;
   editForm: boolean = false;
+
   editProvider: IProvider;
 
+  providers: IProvider[] = [];
   public params: ICommonParams = {
     pageNumber: 1,
   }
@@ -39,12 +41,18 @@ export class ProvidersPageComponent implements OnInit {
   ngOnInit() { }
 
   query(pageNumber: number = 1, reset: boolean = false): any {
-    this.pag.isActive = this.isLoad = false;
+    this.isLoad = false;
     this.providerService.GetAllProviders(this.params).subscribe((data: any) => {
       this.providers = data.body;
-      this.pag.isActive = this.isLoad = true;
-      this.pag.MetaData.TotalPages = JSON.parse(data.headers.get('pagination')).TotalPages;
+      this.isLoad = true;
+      this.metaData = JSON.parse(data.headers.get('pagination'));
     })
+  }
+
+
+  onPageChange(pageNumber: number) {
+    this.metaData.CurrentPage = pageNumber;
+    this.query();
   }
 
   orderBy(orderBy: string) {

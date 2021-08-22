@@ -14,7 +14,8 @@
 
         <app-string-form *ngIf="createForm" [placeholder]="'Write name'">
         </app-string-form>
-        <app-pagination (changePage)="query($event)"></app-pagination>
+        <app-pagination [MetaData]="metaData" [isActive]="isLoad" (changePage)="onPageChange($event)">
+        </app-pagination>
     </div>
     <div class="contentWrap">
         <div *ngIf="isLoad; else loading">

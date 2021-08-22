@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
 
 @Component({
@@ -9,16 +9,8 @@ import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
 export class PaginationComponent implements OnInit {
 
   @Output() changePage = new EventEmitter<number>();
-
-  public MetaData: IPagination = {
-    CurrentPage: 1,
-    HasNext: false,
-    HasPrevious: false,
-    PageSize: 0,
-    TotalCount: 0,
-    TotalPages: 0,
-  }
-  public isActive: boolean = true;
+  @Input() MetaData: IPagination;
+  @Input() isActive: boolean;
 
   constructor() { }
 
@@ -44,11 +36,5 @@ export class PaginationComponent implements OnInit {
       this.isActive = true;
       this.changePage.emit(++this.MetaData.CurrentPage);
     }
-  }
-
-  reset() {
-    this.MetaData.CurrentPage = 1;
-    this.MetaData.TotalCount = 0;
-    this.isActive = true;
   }
 }

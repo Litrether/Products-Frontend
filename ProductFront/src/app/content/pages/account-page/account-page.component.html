@@ -25,7 +25,8 @@
                     </a>
                 </li>
             </ul>
-            <app-pagination (changePage)="query($event)"></app-pagination>
+            <app-pagination [MetaData]="metaData" [isActive]="isLoad" (changePage)="onPageChange($event)">
+            </app-pagination>
         </div>
         <div class="products-panel" *ngIf="isLoad; else loading">
             <ul class="products-list" *ngFor="let product of cartProducts">

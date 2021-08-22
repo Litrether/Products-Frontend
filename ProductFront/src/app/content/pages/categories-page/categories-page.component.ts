@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/account/auth-service';
 import { ICategory } from 'src/app/core/interfaces/categories-interfaces';
@@ -7,7 +7,6 @@ import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
 import { ICommonParams } from 'src/app/core/interfaces/params-interfaces';
 import { CategoryApiService } from 'src/app/core/services/category-api.service';
 import { NotificationService } from 'src/app/core/services/notification-service';
-import { PaginationComponent } from '../../layout/pagination/pagination.component';
 
 @Component({
   selector: 'app-categories-page',
@@ -15,16 +14,17 @@ import { PaginationComponent } from '../../layout/pagination/pagination.componen
   styleUrls: ['./categories-page.component.css']
 })
 export class CategoriesPageComponent implements OnInit {
-  @ViewChild(PaginationComponent) pag: PaginationComponent
-
-  categories: ICategory[] = [];
-  pagination: IPagination;
-
   isLoad: boolean = false;
+  metaData: IPagination = {
+    CurrentPage: 1,
+    TotalPages: 1,
+  }
+
   createForm: boolean = false;
   editForm: boolean = false;
   editCategory: ICategory | null;
 
+  categories: ICategory[] = [];
   public params: ICommonParams = {
     pageNumber: 1,
   }
@@ -36,15 +36,22 @@ export class CategoriesPageComponent implements OnInit {
     document.body.style.backgroundImage = "url('assets/img/manage-bg.jpg')";
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.query();
+  }
 
-  query(pageNumber: number = 1, reset: boolean = false) {
-    this.pag.isActive = this.isLoad = false;
+  query() {
+    this.isLoad = false;
     this.categoryService.GetAllCategories(this.params).subscribe((data: any) => {
       this.categories = data.body;
-      this.pag.isActive = this.isLoad = true;
-      this.pag.MetaData.TotalPages = JSON.parse(data.headers.get('pagination')).TotalPages;
+      this.isLoad = true;
+      this.metaData = JSON.parse(data.headers.get('pagination'));
     })
+  }
+
+  onPageChange(pageNumber: number) {
+    this.metaData.CurrentPage = pageNumber;
+    this.query();
   }
 
   orderBy(orderBy: string) {

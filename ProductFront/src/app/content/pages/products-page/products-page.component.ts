@@ -18,23 +18,23 @@ import { PaginationComponent } from '../../layout/pagination/pagination.componen
   styleUrls: ['./products-page.component.css']
 })
 export class ProductsPageComponent implements OnInit {
-  @ViewChild(PaginationComponent) pag: PaginationComponent
-
-  products: IProduct[];
-  categories: ICategory[];
-  currCurrency: string = 'USD';
-  pagination: IPagination;
-
-  public productParams: IProductParams = {
-    pageNumber: 0,
+  isLoad: boolean = false;
+  metaData: IPagination = {
+    CurrentPage: 1,
+    TotalPages: 1,
   }
 
+  products: IProduct[];
+  public productParams: IProductParams = {
+    pageNumber: 1,
+    currency: 'USD',
+  }
+
+  categories: ICategory[];
   public categoryParams: ICommonParams = {
     pageNumber: 1,
     pageSize: 50,
   }
-
-  isLoad: boolean = false;
 
   constructor(private router: Router,
     private productService: ProductApiService,
@@ -48,22 +48,24 @@ export class ProductsPageComponent implements OnInit {
   ngOnInit() {
     this.categoryService.GetAllCategories(this.categoryParams).subscribe((data: any) =>
       this.categories = data.body);
+
+    this.query();
   }
 
-  query(pageNumber: number = 1, reset: boolean = false) {
-    if (reset)
-      this.pag.reset();
-
-    this.productParams.pageNumber = pageNumber;
-    this.pag.isActive = this.isLoad = false;
-
+  query() {
+    this.isLoad = false;
     this.productService.GetAllProducts(this.productParams).subscribe((data: any) => {
       this.products = data.body;
-      this.pag.MetaData.TotalPages = JSON.parse(data.headers.get('pagination')).TotalPages;
-      this.pag.isActive = this.isLoad = true;
+      this.metaData = JSON.parse(data.headers.get('pagination'));
+      this.isLoad = true;
     }, (error: HttpErrorResponse) => {
       this.notice.textNotice(`Something went wrong.`)
     });
+  }
+
+  onChangePage(pageNumber: number) {
+    this.productParams.pageNumber = pageNumber;
+    this.query();
   }
 
   editItem(product: IProduct) {
@@ -90,27 +92,27 @@ export class ProductsPageComponent implements OnInit {
 
   search() {
     this.productParams.searchTerm = (<HTMLInputElement>(document.getElementById('search-input'))).value;
-    this.query(undefined, true);
+    this.query();
   }
 
   minCost() {
     this.productParams.minCost = (<HTMLInputElement>(document.getElementById('minCost-input'))).valueAsNumber;
-    this.query(undefined, true);
+    this.query();
   }
 
   maxCost() {
     this.productParams.maxCost = (<HTMLInputElement>(document.getElementById('maxCost-input'))).valueAsNumber;
-    this.query(undefined, true);
+    this.query();
   }
 
   changeCategory(category: string) {
     this.productParams.categories = category;
-    this.query(undefined, true);
+    this.query();
   }
 
   changeCurrency() {
     this.productParams.currency = (<HTMLInputElement>(document.getElementById('currency-select'))).value;
-    this.query(undefined, true);
+    this.query();
   }
 
   addProductToCart(product: IProduct) {

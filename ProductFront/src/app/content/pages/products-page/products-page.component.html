@@ -22,7 +22,7 @@
                 <a (click)="changeCategory(category.name)"> {{category.name}} </a>
             </li>
         </ul>
-        <app-pagination (changePage)="query($event)"></app-pagination>
+        <app-pagination [MetaData]="metaData" [isActive]="isLoad" (changePage)="onChangePage($event)"></app-pagination>
     </div>
     <div class=" products-panel" *ngIf="isLoad; else loading">
         <ul class="products-list" *ngFor="let product of products">
@@ -31,7 +31,7 @@
                 <p>{{product.name}}</p>
                 <p>{{product.provider}}</p>
                 <p>
-                    {{(product.cost).toFixed(2)}} {{currCurrency}}
+                    {{(product.cost).toFixed(2)}} {{this.productParams.currency}}
                 </p>
                 <div class="manage-card-buttons">
                     <img src="assets/img/basket.png" (click)="addProductToCart(product)">
