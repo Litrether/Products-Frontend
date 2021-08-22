@@ -16,7 +16,10 @@ import { NotificationService } from 'src/app/core/services/notification-service'
 })
 export class AccountPageComponent implements OnInit {
   isLoad: boolean = false;
-  metaData: IPagination;
+  metaData: IPagination = {
+    CurrentPage: 1,
+    TotalPages: 1,
+  }
 
   changePasswordForm: boolean = false;
   deleteAccountForm: boolean = false;
