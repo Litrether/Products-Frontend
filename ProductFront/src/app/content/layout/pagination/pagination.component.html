@@ -1,5 +1,8 @@
 <div class="pagination">
-    <a (click)="prevPage()">&laquo;</a>
-    <a class="active"> {{MetaData.CurrentPage}} </a>
-    <a (click)="nextPage()">&raquo;</a>
+    <div class="pagination-control">
+        <a (click)="prevPage()">&laquo;</a>
+        <a class="active"> {{MetaData.CurrentPage}} </a>
+        <a (click)="nextPage()">&raquo;</a>
+    </div>
+    <input (change)="setPage()" type="number" id="page-input" class="page-input" placeholder="">
 </div>

@@ -37,4 +37,19 @@ export class PaginationComponent implements OnInit {
       this.changePage.emit(++this.MetaData.CurrentPage);
     }
   }
+
+  setPage() {
+    var page = (<HTMLInputElement>(document.getElementById('page-input'))).valueAsNumber;
+
+    if (page > 0 && page <= this.MetaData.TotalPages) {
+      this.MetaData.CurrentPage = page;
+      this.changePage.emit(page);
+    } else if (page < 0) {
+      this.MetaData.CurrentPage = 1;
+      this.changePage.emit(1);
+    } else if (page > this.MetaData.TotalPages) {
+      this.MetaData.CurrentPage = this.MetaData.TotalPages;
+      this.changePage.emit(this.MetaData.TotalPages);
+    }
+  }
 }

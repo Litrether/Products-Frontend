@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ControlPanelModule } from 'src/app/shared/components/control-panel/control-panel.module';
 import { StringFormModule } from 'src/app/shared/components/string-form/string-form.module';
 import { LoadingModule } from '../../layout/loading/loading.module';
 import { PaginationModule } from '../../layout/pagination/pagination.module';
@@ -21,6 +22,7 @@ import { ChangePassFormComponent } from './change-pass-form/change-pass-form.com
     AccountRoutingModule,
     StringFormModule,
     PaginationModule,
+    ControlPanelModule,
   ],
   exports: [
     AccountPageComponent,

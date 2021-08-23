@@ -5,6 +5,7 @@ import { CategoriesPageComponent } from './categories-page.component';
 import { LoadingModule } from '../../layout/loading/loading.module';
 import { PaginationModule } from '../../layout/pagination/pagination.module';
 import { CategoriesRoutingModule } from './categories-routing-module';
+import { ControlPanelModule } from 'src/app/shared/components/control-panel/control-panel.module';
 
 
 
@@ -18,6 +19,7 @@ import { CategoriesRoutingModule } from './categories-routing-module';
     PaginationModule,
     LoadingModule,
     CategoriesRoutingModule,
+    ControlPanelModule,
   ],
   exports: [
     CategoriesPageComponent

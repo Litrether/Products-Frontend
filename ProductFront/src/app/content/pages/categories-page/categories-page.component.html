@@ -1,20 +1,20 @@
 <div class="manage-page">
-    <div class="filter-panel">
-        <h2> Categories manage </h2>
-        <input type="text" (input)="null" placeholder="Search" id="search-input">
-        <ul class="purpose-list">
-            <li>
-                <a> Categories </a>
-            </li>
-            <li>
-                <a [routerLink]="['/user/','providers']"> Providers </a>
-            </li>
-        </ul>
-        <app-string-form *ngIf="createForm" [placeholder]="'Write name'">
-        </app-string-form>
+    <app-control-panel>
+        <div class="filter-control">
+            <h2> Categories manage </h2>
+            <input type="text" (input)="null" placeholder="Search" id="search-input">
+            <ul class="purpose-list">
+                <li>
+                    <a> Categories </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/user/','providers']"> Providers </a>
+                </li>
+            </ul>
+        </div>
         <app-pagination [MetaData]="metaData" [isActive]="isLoad" (changePage)="onPageChange($event)">
         </app-pagination>
-    </div>
+    </app-control-panel>
     <div class="contentWrap">
         <div *ngIf="isLoad; else loading">
             <table cellspacing="5">
@@ -50,3 +50,6 @@
         </ng-template>
     </div>
 </div>
+
+<app-string-form *ngIf="createForm" [placeholder]="'Write name'">
+</app-string-form>

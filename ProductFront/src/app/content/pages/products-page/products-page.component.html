@@ -1,29 +1,32 @@
 <router-outlet></router-outlet>
 <div class="product-page-wrapper">
-    <div class="filter-panel">
-        <input type="text" id="search-input" class="search-input" (input)="search()" placeholder="Search">
-        <input type="number" id="minCost-input" class="cost-input" (input)="minCost()" placeholder="Min. cost">
-        <input type="number" id="maxCost-input" class="cost-input" (input)="maxCost()" placeholder="Max. cost">
-        <select class="currency-select" id="currency-select" (change)="changeCurrency()">
-            <option selected value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="RUB">RUB</option>
-        </select>
-        <a class="create-link" *ngIf="authService.isManager() || authService.isAdministrator()"
-            [routerLink]="['/user/products/form']">
-            <img src=" assets/img/create.png" alt="create">
-        </a>
+    <app-control-panel>
+        <div class="filter-control">
+            <input type="text" id="search-input" class="search-input" (input)="search()" placeholder="Search">
+            <input type="number" id="minCost-input" class="cost-input" (input)="minCost()" placeholder="Min. cost">
+            <input type="number" id="maxCost-input" class="cost-input" (input)="maxCost()" placeholder="Max. cost">
+            <select class="currency-select" id="currency-select" (change)="changeCurrency()">
+                <option selected value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="RUB">RUB</option>
+            </select>
+            <a class="create-link" *ngIf="authService.isManager() || authService.isAdministrator()"
+                [routerLink]="['/user/products/form']">
+                <img src=" assets/img/create.png" alt="create">
+            </a>
 
-        <ul class="categories-list">
-            <li> <a (click)="changeCategory('')">
-                    <h3> All categories</h3>
-                </a> </li>
-            <li *ngFor="let category of categories">
-                <a (click)="changeCategory(category.name)"> {{category.name}} </a>
-            </li>
-        </ul>
-        <app-pagination [MetaData]="metaData" [isActive]="isLoad" (changePage)="onPageChange($event)"></app-pagination>
-    </div>
+            <ul class="categories-list">
+                <li> <a (click)="changeCategory('')">
+                        <h3> All categories</h3>
+                    </a> </li>
+                <li *ngFor="let category of categories">
+                    <a (click)="changeCategory(category.name)"> {{category.name}} </a>
+                </li>
+            </ul>
+        </div>
+        <app-pagination [MetaData]="metaData" [isActive]="isLoad" (changePage)="onPageChange($event)">
+        </app-pagination>
+    </app-control-panel>
     <div class=" products-panel" *ngIf="isLoad; else loading">
         <ul class="products-list" *ngFor="let product of products">
             <li class="product-card" title="{{product.description}}">

@@ -13,9 +13,9 @@ import { HeaderModule } from './content/layout/header/header.module';
 import { AuthGuard } from './core/guards/auth.guard';
 import { AuthService } from './core/account/auth-service';
 import { NotificationComponent } from './shared/components/notification/notification.component';
-import { RoleGuard } from './core/guards/role.guard';
 import { AdminGuard } from './core/guards/admin.guard';
 import { ManagerGuard } from './core/guards/manager.guard';
+import { ControlPanelComponent } from './shared/components/control-panel/control-panel.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,6 @@ import { ManagerGuard } from './core/guards/manager.guard';
   ],
   providers: [
     AuthGuard,
-    RoleGuard,
     AdminGuard,
     AuthService,
     ManagerGuard,

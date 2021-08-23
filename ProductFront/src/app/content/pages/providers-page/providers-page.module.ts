@@ -5,8 +5,7 @@ import { PaginationModule } from '../../layout/pagination/pagination.module';
 import { LoadingModule } from '../../layout/loading/loading.module';
 import { ProvidersPageComponent } from './providers-page.component';
 import { ProvidersRoutingModule } from './providers-routing-module';
-
-
+import { ControlPanelModule } from 'src/app/shared/components/control-panel/control-panel.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +17,7 @@ import { ProvidersRoutingModule } from './providers-routing-module';
     PaginationModule,
     LoadingModule,
     ProvidersRoutingModule,
+    ControlPanelModule,
   ],
   exports: [
     ProvidersPageComponent
