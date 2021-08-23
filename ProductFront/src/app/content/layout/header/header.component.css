@@ -64,16 +64,19 @@ header input{
 
 @media only screen and (max-width: 900px) {
     header{
-        align-items: flex-start;
-    }
-
-    .menu{
-        display:none;
-        flex-direction: column;
+        align-items: flex;
+        display: block;
     }
 
     .menu-img{
         display: inline-block;
+        position:absolute;
+        right: 10px;
+    }
+
+    .menu{
+        display:none;
+        font-size: 20px;
     }
 
     .account-text{
@@ -86,8 +89,8 @@ header input{
 
     #menuToggle:checked + .menu{
         display: flex;
-        width: 50%;
-        animation: slideHeader 1s ease-in-out ;
+        width: 100%;
+        animation: slideHeader 1s ease-in-out;
     }
 
     @keyframes slideHeader{

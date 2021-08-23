@@ -17,10 +17,10 @@
     border-radius: 10px;
     border: 1px solid var(--gray-block-color);
     box-shadow: inset 3px 3px 5px -3px black ;
-    animation: slide 1s ease-in-out ;
+    animation: slideNotice 1s ease-in-out ;
 }
 
-@keyframes slide{
+@keyframes slideNotice{
     0% { transform:translateX(500px) }
     100% { transform:none }
 }
