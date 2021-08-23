@@ -11,13 +11,11 @@ import { NotificationService } from 'src/app/core/services/notification-service'
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-
   @Input() authFailed = false;
 
   public form!: FormGroup;
   submitted: boolean = false;
   message: string;
-
 
   constructor(public authService: AuthService,
     private notice: NotificationService,

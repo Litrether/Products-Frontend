@@ -3,7 +3,7 @@ import { PagesRoutingModule } from './pages-routing-module';
 import { PagesComponent } from './pages.component';
 import { CommonModule } from '@angular/common';
 import { LoadingModule } from '../layout/loading/loading.module';
-import { StringFormModule } from 'src/app/shared/companents/string-form/string-form.module';
+import { StringFormModule } from 'src/app/shared/components/string-form/string-form.module';
 
 @NgModule({
   declarations: [

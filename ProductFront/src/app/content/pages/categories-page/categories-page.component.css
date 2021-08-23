@@ -10,7 +10,7 @@
     border-radius: 20px;
     width: 300px;
     min-height: 545px;
-    box-shadow: 3px 3px 5px -3px #000000 inset;
+    box-shadow: 1px 1px 5px 1px black inset;
 }
 
 .contentWrap{

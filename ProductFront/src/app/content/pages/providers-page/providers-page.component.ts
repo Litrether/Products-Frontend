@@ -50,14 +50,19 @@ export class ProvidersPageComponent implements OnInit {
   }
 
 
-  onPageChange(pageNumber: number) {
+  onPageChange(pageNumber: number = 1) {
     this.metaData.CurrentPage = pageNumber;
     this.query();
   }
 
+  search() {
+    this.params.searchTerm = (<HTMLInputElement>(document.getElementById('search-input'))).value;
+    this.onPageChange();
+  }
+
   orderBy(orderBy: string) {
     this.params.orderBy = orderBy;
-    this.query();
+    this.onPageChange();
   }
 
   addItem(name: string) {
@@ -89,7 +94,7 @@ export class ProvidersPageComponent implements OnInit {
       this.editProvider.name = newName;
       this.providerService.UpdateProvider(this.editProvider).subscribe((data: any) => {
         this.notice.textNotice(`Provider ${this.editProvider?.name} successfully updated.`)
-        this.query();
+        this.onPageChange();
       }, (error: HttpErrorResponse) => {
         this.notice.textNotice(`Something want wrong! Maybe name ${this.editProvider?.name} is taken.`);
       })

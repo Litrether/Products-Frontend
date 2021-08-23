@@ -3,6 +3,7 @@
     font-size: 20px;
     top: 80px;
     right: 10px;
+    overflow: hidden;
 }
 
 .notification{
@@ -11,14 +12,18 @@
     margin-bottom: 10px;
     background-color: var(--light-gray-color);
     padding: 10px;
-    height: 95px;
     width: 300px;
     border-radius: 10px;
     border: 1px solid var(--gray-block-color);
     box-shadow: inset 3px 3px 5px -3px black ;
-    transition: 2s color .5s;
-    transform: scale(1.05);
+    animation: slide 1s ease-in-out ;
 }
+
+@keyframes slide{
+    0% { transform:translateX(500px) }
+    100% { transform:none }
+}
+
 
 .notification p{
     width: 260;

@@ -22,7 +22,7 @@
                 <a (click)="changeCategory(category.name)"> {{category.name}} </a>
             </li>
         </ul>
-        <app-pagination [MetaData]="metaData" [isActive]="isLoad" (changePage)="onChangePage($event)"></app-pagination>
+        <app-pagination [MetaData]="metaData" [isActive]="isLoad" (changePage)="onPageChange($event)"></app-pagination>
     </div>
     <div class=" products-panel" *ngIf="isLoad; else loading">
         <ul class="products-list" *ngFor="let product of products">

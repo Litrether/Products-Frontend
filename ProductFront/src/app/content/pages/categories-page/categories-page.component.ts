@@ -49,14 +49,14 @@ export class CategoriesPageComponent implements OnInit {
     })
   }
 
-  onPageChange(pageNumber: number) {
+  onPageChange(pageNumber: number = 1) {
     this.metaData.CurrentPage = pageNumber;
     this.query();
   }
 
   orderBy(orderBy: string) {
     this.params.orderBy = orderBy;
-    this.query();
+    this.onPageChange();
   }
 
   addItem(name: string) {
@@ -88,7 +88,7 @@ export class CategoriesPageComponent implements OnInit {
       this.editCategory.name = newName;
       this.categoryService.UpdateCategory(this.editCategory).subscribe((data: any) => {
         this.notice.textNotice(`Category ${this.editCategory?.name} successfully updated.`)
-        this.query();
+        this.onPageChange();
         this.editCategory = null;
       }, (error: HttpErrorResponse) => {
         this.notice.textNotice(`Something want wrong! Maybe name ${this.editCategory?.name} is taken.`);

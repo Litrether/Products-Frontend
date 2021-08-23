@@ -63,7 +63,7 @@ export class ProductsPageComponent implements OnInit {
     });
   }
 
-  onChangePage(pageNumber: number) {
+  onPageChange(pageNumber: number = 1) {
     this.productParams.pageNumber = pageNumber;
     this.query();
   }
@@ -92,27 +92,27 @@ export class ProductsPageComponent implements OnInit {
 
   search() {
     this.productParams.searchTerm = (<HTMLInputElement>(document.getElementById('search-input'))).value;
-    this.query();
+    this.onPageChange();
   }
 
   minCost() {
     this.productParams.minCost = (<HTMLInputElement>(document.getElementById('minCost-input'))).valueAsNumber;
-    this.query();
+    this.onPageChange();
   }
 
   maxCost() {
     this.productParams.maxCost = (<HTMLInputElement>(document.getElementById('maxCost-input'))).valueAsNumber;
-    this.query();
+    this.onPageChange();
   }
 
   changeCategory(category: string) {
     this.productParams.categories = category;
-    this.query();
+    this.onPageChange();
   }
 
   changeCurrency() {
     this.productParams.currency = (<HTMLInputElement>(document.getElementById('currency-select'))).value;
-    this.query();
+    this.onPageChange();
   }
 
   addProductToCart(product: IProduct) {

@@ -6,7 +6,7 @@
     border-radius: 20px;
     width: 300px;
     min-height: 545px;
-    box-shadow: 3px 3px 5px -3px black inset;
+    box-shadow: 1px 1px 5px 1px black inset;
     color:black;
 }
 
@@ -63,33 +63,6 @@
 
 .account-control button{
     width: 200px;
-}
-
-.pagination {
-    top: 600px;
-    position: fixed;
-    left: 55%;
-    display: flex;
-    justify-content: space-evenly;
-    margin-left: -20px;
-    width: 300px;
-}
-  
-.pagination a {
-    background-color: white;
-    padding: 6px 12px;
-    border: black 1px solid;
-    margin-left: 2px;
-}
-  
-.pagination a.active {
-    background-color: var(--gray-block-color);
-    color: white;
-}
-  
-.pagination a:hover:not(.active) {
-    background-color: #ddd;
-      cursor: pointer;
 }
 
 .products-list{
