@@ -2,6 +2,11 @@
 <div class="product-page-wrapper">
     <app-control-panel>
         <div class="filter-control">
+            <a class="create-link" *ngIf="authService.checkRole('Manager') || authService.checkRole('Administrator')"
+                [routerLink]="['/user/products/form']">
+                <img src=" assets/img/create.png" alt="create">
+            </a>
+            <h2> Product catalog</h2>
             <input type="text" id="search-input" class="search-input" (input)="search()" placeholder="Search">
             <input type="number" id="minCost-input" class="cost-input" (input)="minCost()" placeholder="Min. cost">
             <input type="number" id="maxCost-input" class="cost-input" (input)="maxCost()" placeholder="Max. cost">
@@ -10,24 +15,20 @@
                 <option value="EUR">EUR</option>
                 <option value="RUB">RUB</option>
             </select>
-            <a class="create-link" *ngIf="authService.isManager() || authService.isAdministrator()"
-                [routerLink]="['/user/products/form']">
-                <img src=" assets/img/create.png" alt="create">
-            </a>
 
             <ul class="categories-list">
-                <li> <a (click)="changeCategory('')">
-                        <h3> All categories</h3>
-                    </a> </li>
+                <li>
+                    <a (click)="changeCategory('')"> <b> All categories </b></a>
+                </li>
                 <li *ngFor="let category of categories">
                     <a (click)="changeCategory(category.name)"> {{category.name}} </a>
                 </li>
             </ul>
         </div>
-        <app-pagination [MetaData]="metaData" [isActive]="isLoad" (changePage)="onPageChange($event)">
+        <app-pagination [MetaData]="metaData" [isActive]="isLoaded" (changePage)="onPageChange($event)">
         </app-pagination>
     </app-control-panel>
-    <div class=" products-panel" *ngIf="isLoad; else loading">
+    <div class=" products-panel" *ngIf="isLoaded; else loading">
         <ul class="products-list" *ngFor="let product of products">
             <li class="product-card" title="{{product.description}}">
                 <img class="card-product-img" src="{{product.imageUrl}}">
@@ -39,15 +40,14 @@
                 <div class="manage-card-buttons">
                     <img src="assets/img/basket.png" (click)="addProductToCart(product)">
                     <img src="assets/img/edit.png" (click)="editItem(product)"
-                        *ngIf="authService.isManager() || authService.isAdministrator()">
+                        *ngIf="authService.checkRole('Manager') || authService.checkRole('Administrator')">
                     <img src="assets/img/delete.png" (click)="deleteItem(product)"
-                        *ngIf="authService.isManager() || authService.isAdministrator()">
+                        *ngIf="authService.checkRole('Manager') || authService.checkRole('Administrator')">
                 </div>
             </li>
         </ul>
     </div>
 </div>
-
 
 <ng-template #loading>
     <div class="products-panel">

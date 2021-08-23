@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
 
 @Component({
@@ -39,17 +40,16 @@ export class PaginationComponent implements OnInit {
   }
 
   setPage() {
+
     var page = (<HTMLInputElement>(document.getElementById('page-input'))).valueAsNumber;
 
-    if (page > 0 && page <= this.MetaData.TotalPages) {
-      this.MetaData.CurrentPage = page;
-      this.changePage.emit(page);
-    } else if (page < 0) {
+    if (page < 0)
       this.MetaData.CurrentPage = 1;
-      this.changePage.emit(1);
-    } else if (page > this.MetaData.TotalPages) {
+    else if (page > this.MetaData.TotalPages)
       this.MetaData.CurrentPage = this.MetaData.TotalPages;
-      this.changePage.emit(this.MetaData.TotalPages);
-    }
+    else
+      this.MetaData.CurrentPage = page;
+
+    this.changePage.emit(this.MetaData.CurrentPage);
   }
 }

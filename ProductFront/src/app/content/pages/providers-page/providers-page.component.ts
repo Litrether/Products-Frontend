@@ -15,7 +15,7 @@ import { PaginationComponent } from '../../layout/pagination/pagination.componen
   styleUrls: ['./providers-page.component.css']
 })
 export class ProvidersPageComponent implements OnInit {
-  isLoad: boolean = false;
+  isLoaded: boolean = false;
   metaData: IPagination = {
     CurrentPage: 1,
     TotalPages: 1,
@@ -41,14 +41,13 @@ export class ProvidersPageComponent implements OnInit {
   ngOnInit() { }
 
   query(pageNumber: number = 1, reset: boolean = false): any {
-    this.isLoad = false;
+    this.isLoaded = false;
     this.providerService.GetAllProviders(this.params).subscribe((data: any) => {
       this.providers = data.body;
-      this.isLoad = true;
+      this.isLoaded = true;
       this.metaData = JSON.parse(data.headers.get('pagination'));
     })
   }
-
 
   onPageChange(pageNumber: number = 1) {
     this.metaData.CurrentPage = pageNumber;

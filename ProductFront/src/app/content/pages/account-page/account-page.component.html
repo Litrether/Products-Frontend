@@ -1,52 +1,51 @@
-<div class="account-page-wrapper">
-    <div class="account-wrapper" *ngIf="accountData; else loading">
-        <app-control-panel>
-            <div class="account-control">
-                <h2> Account {{accountData.username}}</h2>
-                <img class="account-photo" src="assets/img/account.png" alt="photo">
-                <div class="account-info">
-                    <ul>
-                        <li>
-                            <p> {{accountData.firstName}} {{accountData.lastName}}</p>
-                        </li>
-                        <li>
-                            <p> {{accountData.email}}</p>
-                        </li>
-                    </ul>
-                </div>
-                <ul class="account-btns">
+<div class="account-page-wrapper" *ngIf="accountData; else loading">
+    <app-control-panel>
+        <div class="account-control">
+            <h2> Account {{accountData.username}}</h2>
+            <img class="account-photo" src="assets/img/account.png" alt="photo">
+            <div class="account-info">
+                <ul>
                     <li>
-                        <a (click)="changePasswordForm = true">
-                            <h5> Change password</h5>
-                        </a>
+                        <p> {{accountData.firstName}} {{accountData.lastName}}</p>
                     </li>
                     <li>
-                        <a (click)="deleteAccountForm = true">
-                            <h5> Delete account</h5>
-                        </a>
+                        <p> {{accountData.email}}</p>
                     </li>
                 </ul>
             </div>
-            <app-pagination [MetaData]="metaData" [isActive]="isLoad" (changePage)="onPageChange($event)">
-            </app-pagination>
-        </app-control-panel>
-        <div class="products-panel" *ngIf="isLoad; else loading">
-            <ul class="products-list" *ngFor="let product of cartProducts">
-                <li class="product-card">
-                    <img class="card-product-img" src="{{product.imageUrl}}">
-                    <p>{{product.name}}</p>
-                    <img class="card-button" src="assets/img/cross.png" (click)="deleteProductFromCart(product)">
-                    <p>{{product.provider}}</p>
+            <ul class="account-btns">
+                <li>
+                    <a (click)="changePasswordForm = true">
+                        <h5> Change password</h5>
+                    </a>
+                </li>
+                <li>
+                    <a (click)="deleteAccountForm = true">
+                        <h5> Delete account</h5>
+                    </a>
                 </li>
             </ul>
         </div>
+        <app-pagination [MetaData]="metaData" [isActive]="isLoaded" (changePage)="onPageChange($event)">
+        </app-pagination>
+    </app-control-panel>
+    <div class="products-panel" *ngIf="isLoaded; else loading">
+        <ul class="products-list" *ngFor="let product of cartProducts">
+            <li class="product-card">
+                <img class="card-product-img" src="{{product.imageUrl}}">
+                <p>{{product.name}}</p>
+                <img class="card-button" src="assets/img/cross.png" (click)="deleteProductFromCart(product)">
+                <p>{{product.provider}}</p>
+            </li>
+        </ul>
     </div>
-    <app-change-pass-form *ngIf="changePasswordForm" (onSubmit)="changePassword($event)"></app-change-pass-form>
-    <app-string-form *ngIf="deleteAccountForm" (onSubmit)="deleteAccount($event)" [inputType]="'password'"
-        [placeholder]="'Account password'">
-    </app-string-form>
 </div>
 
 <ng-template #loading>
     <app-loading></app-loading>
 </ng-template>
+
+<app-change-pass-form *ngIf="changePasswordForm" (onSubmit)="changePassword($event)"></app-change-pass-form>
+<app-string-form *ngIf="deleteAccountForm" (onSubmit)="deleteAccount($event)" [inputType]="'password'"
+    [placeholder]="'Account password'">
+</app-string-form>

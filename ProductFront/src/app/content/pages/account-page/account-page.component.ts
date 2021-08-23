@@ -15,7 +15,7 @@ import { NotificationService } from 'src/app/core/services/notification-service'
   styleUrls: ['./account-page.component.css'],
 })
 export class AccountPageComponent implements OnInit {
-  isLoad: boolean = false;
+  isLoaded: boolean = false;
   metaData: IPagination = {
     CurrentPage: 1,
     TotalPages: 1,
@@ -46,11 +46,11 @@ export class AccountPageComponent implements OnInit {
   }
 
   query() {
-    this.isLoad = false;
+    this.isLoaded = false;
     this.cartService.GetCartProducts(this.productParams).subscribe((data: any) => {
       this.cartProducts = data.body;
       this.metaData = JSON.parse(data.headers.get('pagination'));
-      this.isLoad = true;
+      this.isLoaded = true;
     }, (error: HttpErrorResponse) => {
       this.notice.textNotice(`Something went wrong.`)
     })

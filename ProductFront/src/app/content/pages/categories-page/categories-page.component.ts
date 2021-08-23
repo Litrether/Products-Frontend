@@ -14,7 +14,7 @@ import { NotificationService } from 'src/app/core/services/notification-service'
   styleUrls: ['./categories-page.component.css']
 })
 export class CategoriesPageComponent implements OnInit {
-  isLoad: boolean = false;
+  isLoaded: boolean = false;
   metaData: IPagination = {
     CurrentPage: 1,
     TotalPages: 1,
@@ -41,10 +41,10 @@ export class CategoriesPageComponent implements OnInit {
   }
 
   query() {
-    this.isLoad = false;
+    this.isLoaded = false;
     this.categoryService.GetAllCategories(this.params).subscribe((data: any) => {
       this.categories = data.body;
-      this.isLoad = true;
+      this.isLoaded = true;
       this.metaData = JSON.parse(data.headers.get('pagination'));
     })
   }
@@ -56,6 +56,11 @@ export class CategoriesPageComponent implements OnInit {
 
   orderBy(orderBy: string) {
     this.params.orderBy = orderBy;
+    this.onPageChange();
+  }
+
+  search() {
+    this.params.searchTerm = (<HTMLInputElement>(document.getElementById('search-input'))).value;
     this.onPageChange();
   }
 

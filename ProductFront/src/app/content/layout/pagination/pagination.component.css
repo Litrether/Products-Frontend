@@ -14,7 +14,6 @@
     background-color: white;
     padding: 6px 12px;
     border: black 1px solid;
-    margin-left: 2px;
 }
   
 .pagination a.active {
@@ -25,4 +24,20 @@
 .pagination a:hover:not(.active) {
     background-color: #ddd;
       cursor: pointer;
+}
+
+.pagination input{
+    background-color: var(--gray-block-color);
+    border: none;
+    color: white;
+    width: 35px;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 1s, color .1s;
+}
+
+.pagination input:hover{
+    background-color: white;
+    color:var(--gray-block-color);
+    border: black 1px solid;
 }

@@ -1,5 +1,8 @@
+.account-page-wrapper{
+    display: flex;
+}
+
 .products-panel{
-    margin-left: 300px;
     width: 65vw;
 }
 

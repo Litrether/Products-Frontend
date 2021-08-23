@@ -1,5 +1,4 @@
 .filter-panel{
-    position:fixed; 
     display: flex;
     align-content: space-between ;
     flex-wrap: wrap;

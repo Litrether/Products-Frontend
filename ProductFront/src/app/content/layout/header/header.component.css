@@ -4,12 +4,7 @@ header{
     font-size: 24px;
     border-radius: 0 0 10px 10px;
     margin-bottom: 25px;
-}
-
-@media only screen and (max-width: 1200px) {
-    .header{
-            width: 100%;
-    }
+    line-height: 50px;
 }
 
 .header-logo{
@@ -26,45 +21,82 @@ header{
     display: none;
 }
 
-ul{
+.menu{
     display: flex;
     margin-top: 2.5vh;
     justify-content: space-between;
 }
 
-li{
+.menu li{
     padding-left: 3vw;
 }
 
-@media only screen and (max-width: 812px) {
-    .header-logo{
-        width: 200px;
-        min-width: 200px;
-        height: 32px;
-        min-height: 32px;
-    }
-
-    header{
-        align-items: flex-start;
-    }
-
-    ul{
-        flex-direction: column;
-    }
+.menu-img{
+    display:none;
+    margin-top: 2.5vh;
+    height: 35px;
+    width: 35px;
 }
 
-a{
+    a{
     color: white;
 }
 
-.account-img{
+header input{
+    display: none;
+}
+
+.account img{
     border-radius: 100%;
-    margin-top: -5px;
+    margin-top: 5px;
     width: 40px;
     height: 40px;
     transition: box-shadow 1s;
 }
 
-.account-img:hover{
+.account-text{
+    display: none;
+}
+
+.account img:hover{
     box-shadow: 1px 1px 10px 3px white;
+}
+
+@media only screen and (max-width: 900px) {
+    header{
+        align-items: flex-start;
+    }
+
+    .menu{
+        display:none;
+        flex-direction: column;
+    }
+
+    .menu-img{
+        display: inline-block;
+    }
+
+    .account-text{
+        display: block;
+    }
+
+    .account{
+        display: none;
+    }
+
+    #menuToggle:checked + .menu{
+        display: flex;
+        width: 50%;
+        animation: slideHeader 1s ease-in-out ;
+    }
+
+    @keyframes slideHeader{
+        0% { 
+            transform: translateY(-200px); 
+            transform:scaleY(100px) 
+        }
+        100% {
+             transform:none 
+            }
+    }
 }

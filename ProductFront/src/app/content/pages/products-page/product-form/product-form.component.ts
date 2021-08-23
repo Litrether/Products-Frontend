@@ -25,7 +25,7 @@ export class ProductFormComponent implements OnInit {
   product: IProduct;
 
   isEditMode: boolean = false;
-  isLoad: boolean = false;
+  isLoaded: boolean = false;
 
   public params: IProductParams = {
     pageNumber: 1,
@@ -46,7 +46,7 @@ export class ProductFormComponent implements OnInit {
     result.subscribe(([categories, providers]: any) => {
       this.categories = categories.body;
       this.providers = providers.body;
-      this.isLoad = true;
+      this.isLoaded = true;
     });
 
     const options = history.state.options;

@@ -12,7 +12,7 @@ export class ManagerGuard implements CanActivate {
     private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.authService.isManager() || this.authService.isAdministrator) {
+    if (this.authService.checkRole('Manager') || this.authService.checkRole('Administrator')) {
       return true;
     }
     else {

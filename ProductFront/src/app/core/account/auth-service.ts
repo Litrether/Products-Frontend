@@ -28,16 +28,8 @@ export class AuthService {
         return localStorage.getItem('fb-token');
     }
 
-    isUser(): boolean | undefined {
-        return localStorage.getItem('fb-roles')?.includes('User');
-    }
-
-    isManager(): boolean | undefined {
-        return localStorage.getItem('fb-roles')?.includes('Manager');
-    }
-
-    isAdministrator(): boolean | undefined {
-        return localStorage.getItem('fb-roles')?.includes('Administrator');
+    checkRole(role: string): boolean | undefined {
+        return localStorage.getItem('fb-roles')?.includes(role);
     }
 
     login(authAccount: IAuthAccount): Observable<any> {

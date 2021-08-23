@@ -1,5 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
-    <div *ngIf="isLoad; else loading">
+    <div *ngIf="isLoaded; else loading">
         <div class="formhead">
             <img class="form-logo" src="assets/img/logo.png" alt="logo">
             <a><img class="form-exit" [routerLink]="['/user/products']" src="assets/img/cross.png" alt="exit"></a>

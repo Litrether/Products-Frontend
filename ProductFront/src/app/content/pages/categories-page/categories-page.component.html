@@ -2,7 +2,7 @@
     <app-control-panel>
         <div class="filter-control">
             <h2> Categories manage </h2>
-            <input type="text" (input)="null" placeholder="Search" id="search-input">
+            <input type="text" (input)="search()" placeholder="Search" id="search-input">
             <ul class="purpose-list">
                 <li>
                     <a> Categories </a>
@@ -12,11 +12,11 @@
                 </li>
             </ul>
         </div>
-        <app-pagination [MetaData]="metaData" [isActive]="isLoad" (changePage)="onPageChange($event)">
+        <app-pagination [MetaData]="metaData" [isActive]="isLoaded" (changePage)="onPageChange($event)">
         </app-pagination>
     </app-control-panel>
     <div class="contentWrap">
-        <div *ngIf="isLoad; else loading">
+        <div *ngIf="isLoaded; else loading">
             <table cellspacing="5">
                 <tr>
                     <td class="td-header " (click)="orderBy('id')" title="Sort by Id">Id </td>
@@ -31,7 +31,7 @@
                     <td><img class="list-img" src="assets/img/delete.png" alt="delete" (click)="deleteItem(category)">
                     </td>
                 </tr>
-                <tr *ngIf="authService.isAdministrator()">
+                <tr *ngIf="authService.checkRole('Administrator')">
                     <td class="add-cell" (click)="createForm = true">+</td>
                     <td class="td-name "></td>
                     <td></td>

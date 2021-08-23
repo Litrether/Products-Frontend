@@ -3,7 +3,6 @@
 }
 
 .products-panel{
-    margin-left: 300px;
     width: 65vw;
 }
 
@@ -27,17 +26,17 @@
 }
 
 .currency-select{
-    margin-top: 10px;
     height: 28px;
     border: none;
     border-radius: 0px 10px 10px 0px;
     color: var(--gray-block-color);
+    font-size: 12px;
 }
 
 .categories-list li{
     width: max-content;
     transition: margin-left 2s reverse;
-    font-size: 25px;
+    font-size: 22px;
     margin-top: 10px;
     transition: transform .5s;
 }
@@ -53,7 +52,6 @@
 
 .create-link{
     float: right;
-    padding-top: 10px;
 }
 
 .create-link img{

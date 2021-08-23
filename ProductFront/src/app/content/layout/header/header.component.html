@@ -1,30 +1,37 @@
 <header>
      <img src="assets/img/logo.png" class="header-logo" alt="logo">
-     <ul *ngIf="authService.isAuthenticated();else signin">
+
+     <label for="menuToggle"><img src="assets\img\menu.png" class="menu-img"></label>
+     <input class="menuToggle" id="menuToggle" type="checkbox">
+     <ul class="menu" *ngIf="authService.isAuthenticated(); else signin">
           <li>
                <a [routerLink]="['']">Home </a>
           </li>
           <li>
                <a [routerLink]="['/user', 'products']"> Catalog </a>
           </li>
-          <li *ngIf="authService.isAdministrator()">
+          <li *ngIf="authService.checkRole('Administrator')">
                <a [routerLink]="['/user/','categories']"> Manage </a>
           </li>
-          <li>
-               <a [routerLink]="['/user', 'account']"> <img src="assets\img\account.png" class="account-img"> </a>
+          <li class="account">
+               <a [routerLink]=" ['/user', 'account' ]"> <img src="assets\img\account.png"> </a>
+          </li>
+          <li class="account-text">
+               <a [routerLink]="['/user/','account']"> Account </a>
           </li>
           <li>
                <a (click)="logout()"> Logout </a>
           </li>
      </ul>
-     <ng-template #signin>
-          <ul>
-               <li>
-                    <a [routerLink]="['']"> Home </a>
-               </li>
-               <li>
-                    <a [routerLink]="['/login']"> Sign in </a>
-               </li>
-          </ul>
-     </ng-template>
 </header>
+
+<ng-template #signin>
+     <ul class="menu">
+          <li>
+               <a [routerLink]="['']"> Home </a>
+          </li>
+          <li>
+               <a [routerLink]="['/login']"> Sign in </a>
+          </li>
+     </ul>
+</ng-template>
