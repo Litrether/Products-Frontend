@@ -11,7 +11,6 @@ export class AuthInterseptor implements HttpInterceptor {
 
     constructor(
         private authService: AuthService,
-        private notice: NotificationService,
         private router: Router) {
     }
 
@@ -25,7 +24,6 @@ export class AuthInterseptor implements HttpInterceptor {
             catchError((error: HttpErrorResponse) => {
                 console.log('Interseptor error');
                 if (error.status === 401) {
-                    this.notice.textNotice('Wrong username or password.')
                     this.authService.logout();
                     this.router.navigate(['login'], {
                         queryParams: {

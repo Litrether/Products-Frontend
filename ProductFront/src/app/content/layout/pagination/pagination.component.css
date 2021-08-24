@@ -36,7 +36,8 @@
     transition: background-color 1s, color .1s;
 }
 
-.pagination input:hover{
+.pagination input:hover,
+.pagination input:focus{
     background-color: white;
     color:var(--gray-block-color);
     border: black 1px solid;

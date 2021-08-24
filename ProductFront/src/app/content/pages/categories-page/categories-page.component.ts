@@ -25,12 +25,11 @@ export class CategoriesPageComponent implements OnInit {
   editCategory: ICategory | null;
 
   categories: ICategory[] = [];
-  public params: ICommonParams = {
+  private params: ICommonParams = {
     pageNumber: 1,
   }
 
-  constructor(private router: Router,
-    public authService: AuthService,
+  constructor(public authService: AuthService,
     private notice: NotificationService,
     private categoryService: CategoryApiService) {
     document.body.style.backgroundImage = "url('assets/img/manage-bg.jpg')";
@@ -71,10 +70,10 @@ export class CategoriesPageComponent implements OnInit {
     }
     if (newCategory) {
       this.categoryService.AddCategory(newCategory).subscribe((category: ICategory) => {
-        this.query();
         this.notice.textNotice(`Category ${newCategory.name} successfully created.`)
+        this.query();
       }, (error: HttpErrorResponse) => {
-        this.notice.textNotice(`Something want wrong! Maybe name ${newCategory.name} is taken.`);
+        this.notice.textNotice(`Something went wrong! Maybe name ${newCategory.name} is taken.`);
       })
     }
   }
@@ -96,21 +95,21 @@ export class CategoriesPageComponent implements OnInit {
         this.onPageChange();
         this.editCategory = null;
       }, (error: HttpErrorResponse) => {
-        this.notice.textNotice(`Something want wrong! Maybe name ${this.editCategory?.name} is taken.`);
+        this.notice.textNotice(`Something went wrong! Maybe name ${this.editCategory?.name} is taken.`);
         this.editCategory = null;
       })
     }
   }
 
   deleteItem(category: ICategory) {
-    if (!confirm(`Are you sure want to delete ${category.name}?`)) {
+    if (!confirm(`Are you sure went to delete ${category.name}?`)) {
       return;
     }
     this.categoryService.DeleteCategory(category).subscribe(() => {
       this.notice.textNotice(`Category ${this.editCategory?.name} successfully deleted.`);
       this.categories.splice(this.categories.indexOf(category), 1);
     }, (error: HttpErrorResponse) => {
-      this.notice.textNotice(`Something want wrong!`);
+      this.notice.textNotice(`Something went wrong!`);
     })
   }
 

@@ -17,8 +17,8 @@ export class SignupPageComponent implements OnInit {
   submitted: boolean = false;
   message: string;
 
-  constructor(public accountService: AccountApiService,
-    public authService: AuthService,
+  constructor(private accountService: AccountApiService,
+    private authService: AuthService,
     private notice: NotificationService,
     private router: Router,
     private route: ActivatedRoute,

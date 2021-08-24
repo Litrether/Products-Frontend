@@ -74,7 +74,7 @@ export class ProvidersPageComponent implements OnInit {
         this.notice.textNotice(`Provider ${newProvider.name} successfully created.`)
         this.query();
       }, (error: HttpErrorResponse) => {
-        this.notice.textNotice(`Something want wrong! Maybe name ${newProvider.name} is taken.`);
+        this.notice.textNotice(`Something went wrong! Maybe name ${newProvider.name} is taken.`);
       })
     }
   }
@@ -95,7 +95,7 @@ export class ProvidersPageComponent implements OnInit {
         this.notice.textNotice(`Provider ${this.editProvider?.name} successfully updated.`)
         this.onPageChange();
       }, (error: HttpErrorResponse) => {
-        this.notice.textNotice(`Something want wrong! Maybe name ${this.editProvider?.name} is taken.`);
+        this.notice.textNotice(`Something went wrong! Maybe name ${this.editProvider?.name} is taken.`);
       })
     }
   }
@@ -108,7 +108,7 @@ export class ProvidersPageComponent implements OnInit {
       this.notice.textNotice(`Provider ${this.editProvider?.name} successfully deleted.`);
       this.providers.splice(this.providers.indexOf(provider), 1);
     }, (error: HttpErrorResponse) => {
-      this.notice.textNotice(`Something want wrong!`);
+      this.notice.textNotice(`Something went wrong!`);
     })
   }
 

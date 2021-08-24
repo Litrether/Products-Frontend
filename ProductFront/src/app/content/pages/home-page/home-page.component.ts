@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/account/auth-service';
 
 @Component({
@@ -9,9 +8,7 @@ import { AuthService } from 'src/app/core/account/auth-service';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(public authService: AuthService,
-    public router: Router) {
-  }
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
     document.body.style.backgroundImage = "url('assets/img/home-bg.jpg')";

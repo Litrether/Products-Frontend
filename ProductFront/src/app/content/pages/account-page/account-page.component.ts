@@ -27,7 +27,7 @@ export class AccountPageComponent implements OnInit {
   accountData: IAccountData;
 
   cartProducts: IProduct[];
-  public productParams: IProductParams = {
+  private productParams: IProductParams = {
     pageNumber: 1,
   }
 
@@ -52,21 +52,21 @@ export class AccountPageComponent implements OnInit {
       this.metaData = JSON.parse(data.headers.get('pagination'));
       this.isLoaded = true;
     }, (error: HttpErrorResponse) => {
-      this.notice.textNotice(`Something went wrong.`)
+      this.notice.textNotice(`Something went wrong!`)
     })
   }
 
-  onPageChange(pageNumber: number) {
+  onPageChange(pageNumber: number = 1) {
     this.productParams.pageNumber = pageNumber;
     this.query();
   }
 
   deleteProductFromCart(product: IProduct) {
     this.cartService.DeleteProductFromCart(product).subscribe(() => {
-      this.cartProducts.splice(this.cartProducts.indexOf(product), 1);
       this.notice.productNotice(`Product ${product.name} successfuly delete from your cart.`, product);
+      this.onPageChange();
     }, () => {
-      this.notice.textNotice(`Something went wrong.`)
+      this.notice.textNotice(`Something went wrong!`)
     });
   }
 
@@ -93,7 +93,7 @@ export class AccountPageComponent implements OnInit {
         this.notice.textNotice('Account successfully deleted. Come back!');
         this.authService.logout();
       }, (error: HttpErrorResponse) => {
-        this.notice.textNotice('Something went wrong');
+        this.notice.textNotice('Something went wrong!');
       })
     }
   }

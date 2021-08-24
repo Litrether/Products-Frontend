@@ -29,20 +29,20 @@
         </app-pagination>
     </app-control-panel>
     <div class=" products-panel" *ngIf="isLoaded; else loading">
-        <ul class="products-list" *ngFor="let product of products">
+        <ul *ngFor="let product of products">
             <li class="product-card" title="{{product.description}}">
-                <img class="card-product-img" src="{{product.imageUrl}}">
+                <img class="product-card-img" src="{{product.imageUrl}}" alt="product image">
                 <p>{{product.name}}</p>
                 <p>{{product.provider}}</p>
                 <p>
                     {{(product.cost).toFixed(2)}} {{this.productParams.currency}}
                 </p>
                 <div class="manage-card-buttons">
-                    <img src="assets/img/basket.png" (click)="addProductToCart(product)">
+                    <img src="assets/img/basket.png" (click)="addProductToCart(product)" alt="to cart">
                     <img src="assets/img/edit.png" (click)="editItem(product)"
-                        *ngIf="authService.checkRole('Manager') || authService.checkRole('Administrator')">
+                        *ngIf="authService.checkRole('Manager') || authService.checkRole('Administrator')" alt="edit">
                     <img src="assets/img/delete.png" (click)="deleteItem(product)"
-                        *ngIf="authService.checkRole('Manager') || authService.checkRole('Administrator')">
+                        *ngIf="authService.checkRole('Manager') || authService.checkRole('Administrator')" alt="delete">
                 </div>
             </li>
         </ul>

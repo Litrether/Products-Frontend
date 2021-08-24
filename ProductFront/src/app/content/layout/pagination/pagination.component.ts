@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
 
 @Component({

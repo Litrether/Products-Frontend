@@ -2,9 +2,8 @@ import { HttpClient, HttpErrorResponse, JsonpClientBackend } from "@angular/comm
 import { Injectable } from "@angular/core";
 import { Observable, Subject, throwError } from "rxjs";
 import { IAuthAccount, IAuthResponse, IRegAccount } from "../interfaces/accounts-interfaces";
-import { tap, catchError } from "rxjs/operators";
+import { tap } from "rxjs/operators";
 import { Router } from "@angular/router";
-import { NotificationService } from "../services/notification-service";
 import { connectionString } from "src/app/shared/constants/connection.constants";
 
 @Injectable({ providedIn: 'root' })
@@ -14,14 +13,12 @@ export class AuthService {
     public pathBase: string = `${connectionString}/account`;
 
     constructor(
-        private notice: NotificationService,
         private http: HttpClient,
         private router: Router) { }
 
     get token(): string | null {
         const expiresDate = new Date(String(localStorage.getItem('fb-token-exp')));
         if (new Date() > expiresDate) {
-            this.notice.textNotice('Session time ended. Please login again.')
             this.logout();
             return null;
         }

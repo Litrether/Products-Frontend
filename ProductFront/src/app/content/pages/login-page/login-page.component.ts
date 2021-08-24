@@ -20,7 +20,6 @@ export class LoginPageComponent implements OnInit {
   constructor(public authService: AuthService,
     private notice: NotificationService,
     private router: Router,
-    private route: ActivatedRoute,
     private fb: FormBuilder) {
     document.body.style.backgroundImage = "url('assets/img/login-bg.jpg')";
   }
@@ -53,6 +52,7 @@ export class LoginPageComponent implements OnInit {
       this.router.navigate(['/user', "products"]);
       this.submitted = false;
     }, () => {
+      this.notice.textNotice('Wrong username or password.')
       this.submitted = false;
     });
   }

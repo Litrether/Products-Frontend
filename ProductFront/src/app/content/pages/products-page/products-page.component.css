@@ -3,7 +3,8 @@
 }
 
 .products-panel{
-    width: 65vw;
+    margin-left: 40px;
+    width: 1000px;
 }
 
 .search-input{
@@ -30,7 +31,6 @@
     border: none;
     border-radius: 0px 10px 10px 0px;
     color: var(--gray-block-color);
-    font-size: 12px;
 }
 
 .categories-list li{
@@ -59,7 +59,7 @@
     height: 28px;
 }
 
-.products-list{
+.products-panel ul{
     display: inline-block;
     font-size: 16px;   
 }
@@ -73,7 +73,7 @@
     padding: 10px;
 }
 
-.card-product-img{
+.product-card-img{
     border: solid 1px white;
     width: 155px;
     height: 155px;

@@ -8,11 +8,9 @@ import { Notification, NotificationService } from 'src/app/core/services/notific
   styleUrls: ['./notification.component.css']
 })
 export class NotificationComponent implements OnInit, OnDestroy {
-  @Input() delay = 15000;
   public notices: Notification[] = [];
-  public text: string;
-  public type = "success";
   aSub: Subscription;
+  delay = 15000;
 
   constructor(private notificationService: NotificationService) { }
 

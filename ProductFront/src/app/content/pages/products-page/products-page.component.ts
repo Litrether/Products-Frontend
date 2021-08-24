@@ -59,7 +59,7 @@ export class ProductsPageComponent implements OnInit {
       this.metaData = JSON.parse(data.headers.get('pagination'));
       this.isLoaded = true;
     }, (error: HttpErrorResponse) => {
-      this.notice.textNotice(`Something went wrong.`)
+      this.notice.textNotice(`Something went wrong!`)
     });
   }
 
@@ -83,10 +83,10 @@ export class ProductsPageComponent implements OnInit {
       return;
     }
     this.productService.DeleteProduct(product).subscribe(() => {
-      this.products.splice(this.products.indexOf(product), 1);
       this.notice.productNotice(`Product ${product.name} was deleted`, product);
+      this.query();
     }, (error: HttpErrorResponse) => {
-      this.notice.textNotice(`Something went wrong`);
+      this.notice.textNotice(`Something went wrong!`);
     });
   }
 
