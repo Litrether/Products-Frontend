@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Sanitizer, ViewChild } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/account/auth-service';
 import { IPagination } from 'src/app/core/interfaces/pagination-interfaces';
@@ -30,6 +31,8 @@ export class ProvidersPageComponent implements OnInit {
     pageNumber: 1,
   }
 
+  public currentLocation: string = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.0599144050398!2d37.633201316046446!3d55.75746139909995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54bc6463a7e1f%3A0xd68e89e31b1d749d!2sUnderdog!5e0!3m2!1sru!2sby!4v1629892468792!5m2!1sru!2sby"
+
   constructor(private router: Router,
     public authService: AuthService,
     private notice: NotificationService,
@@ -52,7 +55,6 @@ export class ProvidersPageComponent implements OnInit {
     this.metaData.CurrentPage = pageNumber;
     this.query();
   }
-
   search() {
     this.params.searchTerm = (<HTMLInputElement>(document.getElementById('search-input'))).value;
     this.onPageChange();
@@ -77,6 +79,14 @@ export class ProvidersPageComponent implements OnInit {
       })
     }
   }
+
+  map(provider: IProvider) {
+    console.log(provider.locationURl);
+
+    if (provider.locationURl)
+      this.currentLocation = provider.locationURl;
+  }
+
 
   editItem(provider: IProvider) {
     if (this.editProvider == null) {

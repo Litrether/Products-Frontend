@@ -9,7 +9,7 @@ import { ControlPanelModule } from 'src/app/shared/components/control-panel/cont
 
 @NgModule({
   declarations: [
-    ProvidersPageComponent
+    ProvidersPageComponent,
   ],
   imports: [
     CommonModule,

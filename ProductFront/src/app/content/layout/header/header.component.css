@@ -72,7 +72,7 @@ header input{
    }
 
    .header-logo{
-       margin-top: 20px;
+        margin-top: 20px;
         width: 200px;
         height: 32px;
     }
@@ -97,7 +97,6 @@ header input{
         top: 35px;
         display: flex;
         justify-content: space-between;
-        width: 90%;
         animation: slideHeader 1s ease-in-out;
         font-size: 26px;
     }

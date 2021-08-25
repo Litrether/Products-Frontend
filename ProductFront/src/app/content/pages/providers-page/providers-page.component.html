@@ -21,12 +21,14 @@
                 <tr>
                     <td class="td-header " (click)="orderBy('id')">Id </td>
                     <td class="td-header td-name" (click)="orderBy('name')">Name</td>
+                    <td>Map</td>
                     <td>Edit</td>
                     <td>Delete</td>
                 </tr>
                 <tr *ngFor="let provider of providers">
                     <td>{{provider.id}}</td>
                     <td class="td-name">{{provider.name}}</td>
+                    <td><img class="list-img" src="assets/img/edit.png" alt="edit" (click)="map(provider)"></td>
                     <td><img class="list-img" src="assets/img/edit.png" alt="edit" (click)="editItem(provider)"></td>
                     <td><img class="list-img" src="assets/img/delete.png" alt="delete" (click)="deleteItem(provider)">
                     </td>
@@ -41,6 +43,8 @@
         </div>
 
     </div>
+    <iframe [src]="currentLocation" width="600" height="450" style="border:0;" loading="lazy"></iframe>
+
 </div>
 
 <ng-template #loading>

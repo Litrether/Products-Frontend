@@ -1,13 +1,14 @@
 <div class="home-page-wrapper">
-    <img src="assets/img/logo.png" class="header-logo" alt="logo">
-    <p class="home-info">
-        We are delicious. We are fast. We are only
-        fresh products. Order only the most
-        selected products from us, with a 30%
-        discount on the first purchase!
-    </p>
-    <button *ngIf="authService.isAuthenticated();else signin" class="home-btn"
-        [routerLink]="['/user', '/products']">Catalog</button>
+    <div class="info-block">
+        <img src="assets/img/logo.png" class="header-logo" alt="logo">
+        <p>
+            We are delicious. We are fast. We are only
+            fresh products. Order only the most
+            selected products from us, with a 30%
+            discount on the first purchase!
+        </p>
+        <button *ngIf="authService.isAuthenticated();else signin" [routerLink]="['/user', '/products']">Catalog</button>
+    </div>
 </div>
 
 <ng-template #signin>
