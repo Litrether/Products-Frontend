@@ -3,8 +3,8 @@
 }
 
 .products-panel{
-    margin-left: 40px;
-    width: 1000px;
+    margin-left: 3vw;
+    max-width: 1000px;
 }
 
 .search-input{
@@ -61,6 +61,7 @@
 
 .products-panel ul{
     display: inline-block;
+    justify-content: space-between;
     font-size: 16px;   
 }
 
@@ -101,3 +102,29 @@
 }
 
 
+@media only screen and (max-width: 580px) {
+    .product-page-wrapper{
+         display: inline-block;
+    }
+
+    .product-card{
+        width: 250px;
+        margin: 0;
+        padding: 15px;
+        font-size: 22px;
+        margin: 10px 0 0 -10px;
+    }
+    
+    .product-card-img{
+        width: 220px;
+        height: 220px;
+    }
+    
+    .manage-card-buttons{
+        margin-top: 2px;
+    }
+    
+    .manage-card-buttons img{
+        height: 30px;
+    }
+}

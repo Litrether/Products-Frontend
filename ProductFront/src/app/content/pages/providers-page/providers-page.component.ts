@@ -7,7 +7,6 @@ import { ICommonParams } from 'src/app/core/interfaces/params-interfaces';
 import { IProvider } from 'src/app/core/interfaces/providers-interfaces';
 import { NotificationService } from 'src/app/core/services/notification-service';
 import { ProviderApiService } from 'src/app/core/services/provider-api.service';
-import { PaginationComponent } from '../../layout/pagination/pagination.component';
 
 @Component({
   selector: 'app-providers-page',
@@ -89,7 +88,7 @@ export class ProvidersPageComponent implements OnInit {
   submitEdit(newName: string) {
     this.editForm = false;
 
-    if (newName) {
+    if (newName && this.editProvider && this.editProvider.name != newName) {
       this.editProvider.name = newName;
       this.providerService.UpdateProvider(this.editProvider).subscribe((data: any) => {
         this.notice.textNotice(`Provider ${this.editProvider?.name} successfully updated.`)

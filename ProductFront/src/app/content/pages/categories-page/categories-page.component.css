@@ -1,4 +1,4 @@
-.manage-page{
+.manage-page-wrapper{
     display: flex;
 }
 
@@ -42,3 +42,14 @@ input{
     transform: scale(0.95);
 }
 
+@media only screen and (max-width: 800px) {
+    .manage-page-wrapper{
+         display: inline-block;
+    }
+
+    
+.contentWrap{
+    font-size: 16px;
+    margin-left: -20px;
+}
+}

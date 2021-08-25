@@ -1,4 +1,4 @@
-.home-page{
+.home-page-wrapper{
     margin: 12.5vw 0vh 0vh 40vw;
     width: 530px;
     min-width: 530px;
@@ -27,4 +27,23 @@ input:hover{
 input:active{
     cursor: pointer;
     margin: 21px 81px;
+}
+
+@media only screen and (max-width: 800px) {
+    .home-info{
+        margin-top: 30px;
+        font-size: 20px;
+        color:white;
+    }
+    
+    .home-btn{
+        border: none;
+        font-size: 20px;
+        background:var(--light-brown-color);
+        min-height: 40px;
+        display: block;
+        margin: 20px 80px;
+        border-radius: 10px;
+    }
+
 }

@@ -32,7 +32,7 @@
     <div class="products-panel" *ngIf="isLoaded; else loading">
         <ul class="products-list" *ngFor="let product of cartProducts">
             <li class="product-card">
-                <img class="card-product-img" src="{{product.imageUrl}}">
+                <img class="product-card-img" src="{{product.imageUrl}}">
                 <p>{{product.name}}</p>
                 <img class="card-button" src="assets/img/cross.png" (click)="deleteProductFromCart(product)">
                 <p>{{product.provider}}</p>

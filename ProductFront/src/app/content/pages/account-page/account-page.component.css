@@ -4,7 +4,7 @@
 
 .products-panel{
     margin-left: 40px;
-    width: 1000px;
+    max-width: 1000px;
 }
 
 .account-photo{
@@ -71,7 +71,7 @@
     padding: 10px;
 }
 
-.card-product-img{
+.product-card-img{
     border: solid 1px white;
     width: 155px;
     height: 155px;
@@ -89,3 +89,28 @@
 .card-button:active{
     padding: 1px;
 }
+
+@media only screen and (max-width: 512px) {
+    .products-panel,
+    .account-page-wrapper{
+         display: inline-block;
+    }
+
+    .product-card{
+        width: 250px;
+        margin: 0;
+        padding: 15px;
+        font-size: 22px;
+        margin: 10px 0 0 -10px;
+    }
+    
+    .product-card-img{
+        width: 220px;
+        height: 220px;
+    }
+    
+    .card-button{
+        height: 20px;
+    }
+}
+

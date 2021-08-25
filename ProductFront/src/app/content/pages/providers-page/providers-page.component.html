@@ -1,4 +1,4 @@
-<div class="manage-page">
+<div class="manage-page-wrapper">
     <app-control-panel>
         <div class="filter-control">
             <h2> Providers manage </h2>
@@ -12,8 +12,6 @@
                 </li>
             </ul>
         </div>
-        <app-string-form *ngIf="createForm" [placeholder]="'Write name'">
-        </app-string-form>
         <app-pagination [MetaData]="metaData" [isActive]="isLoaded" (changePage)="onPageChange($event)">
         </app-pagination>
     </app-control-panel>

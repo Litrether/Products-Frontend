@@ -1,4 +1,4 @@
-<div class="manage-page">
+<div class="manage-page-wrapper">
     <app-control-panel>
         <div class="filter-control">
             <h2> Categories manage </h2>
@@ -38,12 +38,6 @@
                     <td></td>
                 </tr>
             </table>
-            <app-string-form *ngIf="editForm" [inputValue]="editCategory?.name || '' " [placeholder]="'Category name'"
-                (onSubmit)="submitEdit($event)">
-            </app-string-form>
-
-            <app-string-form *ngIf="createForm" [placeholder]="'Category name'" (onSubmit)="addItem($event)">
-            </app-string-form>
         </div>
         <ng-template #loading>
             <app-loading></app-loading>
@@ -51,5 +45,9 @@
     </div>
 </div>
 
-<app-string-form *ngIf="createForm" [placeholder]="'Write name'">
+<app-string-form *ngIf="editForm" [inputValue]="editCategory?.name || '' " [placeholder]="'Category name'"
+    (onSubmit)="submitEdit($event)">
+</app-string-form>
+
+<app-string-form *ngIf="createForm" [placeholder]="'Category name'" (onSubmit)="addItem($event)">
 </app-string-form>

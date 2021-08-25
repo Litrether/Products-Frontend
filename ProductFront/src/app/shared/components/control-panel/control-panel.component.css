@@ -1,12 +1,11 @@
-.filter-panel{
+.filter-panel {
     display: flex;
     align-content: space-between ;
     flex-wrap: wrap;
-    top: 10vh;
     padding: 20px;
     background-color: var(--light-gray-color);
     border-radius: 20px;
-    width: 300px;
+    max-width: 300px;
     min-height: 545px;
     box-shadow: 1px 1px 5px 1px black inset;
 }

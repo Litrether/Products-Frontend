@@ -7,8 +7,6 @@ import { PaginationModule } from '../../layout/pagination/pagination.module';
 import { CategoriesRoutingModule } from './categories-routing-module';
 import { ControlPanelModule } from 'src/app/shared/components/control-panel/control-panel.module';
 
-
-
 @NgModule({
   declarations: [
     CategoriesPageComponent

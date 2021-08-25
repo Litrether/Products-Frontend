@@ -1,28 +1,29 @@
 <header>
-     <img src="assets/img/logo.png" class="header-logo" alt="logo">
-
-     <input class="menuToggle" id="menuToggle" type="checkbox">
-     <ul class="menu" *ngIf="authService.isAuthenticated(); else signin">
-          <li>
-               <a [routerLink]="['']">Home </a>
-          </li>
-          <li>
-               <a [routerLink]="['/user', 'products']"> Catalog </a>
-          </li>
-          <li *ngIf="authService.checkRole('Administrator')">
-               <a [routerLink]="['/user/','categories']"> Manage </a>
-          </li>
-          <li class="account">
-               <a [routerLink]=" ['/user', 'account' ]"> <img src="assets\img\account.png"> </a>
-          </li>
-          <li class="account-text">
-               <a [routerLink]="['/user/','account']"> Account </a>
-          </li>
-          <li>
-               <a (click)="logout()"> Logout </a>
-          </li>
-     </ul>
-     <label for="menuToggle"><img src="assets\img\menu.png" class="menu-img"></label>
+     <nav>
+          <img src="assets/img/logo.png" class="header-logo" alt="logo">
+          <input class="menuToggle" id="menuToggle" type="checkbox">
+          <ul class="menu" *ngIf="authService.isAuthenticated(); else signin">
+               <li>
+                    <a [routerLink]="['']">Home </a>
+               </li>
+               <li>
+                    <a [routerLink]="['/user', 'products']"> Catalog </a>
+               </li>
+               <li *ngIf="authService.checkRole('Administrator')">
+                    <a [routerLink]="['/user/','categories']"> Manage </a>
+               </li>
+               <li class="account">
+                    <a [routerLink]=" ['/user', 'account' ]"> <img src="assets\img\account.png"> </a>
+               </li>
+               <li class="account-text">
+                    <a [routerLink]="['/user/','account']"> Account </a>
+               </li>
+               <li>
+                    <a (click)="logout()"> Logout </a>
+               </li>
+          </ul>
+     </nav>
+     <label for="menuToggle" class="menu-nav"> <img src="assets\img\menu.png"> </label>
 </header>
 
 <ng-template #signin>

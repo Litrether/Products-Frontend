@@ -29,7 +29,8 @@ export class CategoriesPageComponent implements OnInit {
     pageNumber: 1,
   }
 
-  constructor(public authService: AuthService,
+  constructor(private router: Router,
+    public authService: AuthService,
     private notice: NotificationService,
     private categoryService: CategoryApiService) {
     document.body.style.backgroundImage = "url('assets/img/manage-bg.jpg')";
@@ -88,7 +89,7 @@ export class CategoriesPageComponent implements OnInit {
   submitEdit(newName: string) {
     this.editForm = false;
 
-    if (newName && this.editCategory) {
+    if (newName && this.editCategory && this.editCategory.name != newName) {
       this.editCategory.name = newName;
       this.categoryService.UpdateCategory(this.editCategory).subscribe((data: any) => {
         this.notice.textNotice(`Category ${this.editCategory?.name} successfully updated.`)

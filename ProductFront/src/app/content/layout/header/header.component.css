@@ -1,42 +1,38 @@
 header{
-    display:  flex;
-    width: 100%;
-    justify-content: space-between;
+    display: block;
     font-size: 24px;
-    border-radius: 0 0 10px 10px;
-    margin-bottom: 25px;
     line-height: 50px;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
 }
 
 .header-logo{
     width: 250px;
-    min-width: 250px;
     height: 40px;
-    min-height: 40px;
     margin-top: 10px;
     transition: box-shadow 1s;
 }
-
-.nav-icon{
-    float: right;
-    display: none;
-}
-
-.menu{
+.menu {
     display: flex;
     margin-top: 2.5vh;
-    justify-content: space-between;
 }
 
 .menu li{
     padding-left: 3vw;
 }
 
-.menu-img{
-    display:none;
+.menu-nav{
+    display: none;
+}
+
+.menu-nav img {
     margin-top: 2.5vh;
     height: 35px;
     width: 35px;
+    content: " ";
 }
 
 a{
@@ -64,13 +60,29 @@ header input{
 }
 
 @media only screen and (max-width: 900px) {
-    .menu-img{
+   header{
+       display: flex;
+       justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+   nav{
+       display: flex;
+       flex-direction: column;
+   }
+
+   .header-logo{
+       margin-top: 20px;
+        width: 200px;
+        height: 32px;
+    }
+
+    .menu-nav{
         display: flex;
     }
 
     .menu{
         display:none;
-        font-size: 20px;
     }
 
     .account-text{
@@ -82,9 +94,12 @@ header input{
     }
 
     #menuToggle:checked + .menu{
+        top: 35px;
         display: flex;
-        width: 100%;
+        justify-content: space-between;
+        width: 90%;
         animation: slideHeader 1s ease-in-out;
+        font-size: 26px;
     }
 
     @keyframes slideHeader{
@@ -97,3 +112,15 @@ header input{
             }
     }
 }
+
+@media only screen and (max-width: 512px) {
+     #menuToggle:checked + .menu{
+         font-size: 20px;
+     }
+ }
+
+ @media only screen and (max-width: 380px) {
+      #menuToggle:checked + .menu{
+          font-size: 16px;
+      }
+  }
