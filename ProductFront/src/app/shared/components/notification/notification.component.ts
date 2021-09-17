@@ -10,7 +10,7 @@ import { Notification, NotificationService } from 'src/app/core/services/notific
 export class NotificationComponent implements OnInit, OnDestroy {
   public notices: Notification[] = [];
   aSub: Subscription;
-  delay = 15000;
+  delay = 10000;
 
   constructor(private notificationService: NotificationService) { }
 
