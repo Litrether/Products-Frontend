@@ -27,7 +27,7 @@ export class ProductsPageComponent implements OnInit {
   products: IProduct[];
   public productParams: IProductParams = {
     pageNumber: 1,
-    currency: 'USD',
+    currency: 'BYN',
   }
 
   categories: ICategory[];
